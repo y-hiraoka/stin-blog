@@ -1,3 +1,4 @@
+import "../styles/ress.css";
 import "../styles/global.css";
 import { AppProps } from "next/app";
 
