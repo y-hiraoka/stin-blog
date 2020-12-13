@@ -1,0 +1,13 @@
+.footer {
+  padding: 2.4rem 1.6rem;
+}
+
+.text {
+  color: var(--theme-secondary);
+  font-size: 1.8rem;
+  margin-bottom: 2.4rem;
+}
+
+.icon {
+  font-size: 1.4rem;
+}

@@ -25,3 +25,8 @@ img {
   max-width: 100%;
   display: block;
 }
+
+body {
+  background-color: var(--theme-background);
+  color: var(--theme-primary);
+}

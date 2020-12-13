@@ -1,0 +1,38 @@
+<svg id="main" xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect id="長方形_1" data-name="長方形 1" width="1920" height="1080" fill="#1c1c1c"/>
+  <line id="線_1" data-name="線 1" y1="281.39" x2="380.782" transform="translate(181.006 202.333)" fill="none" stroke="#a47ed8" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_2" data-name="線 2" x2="496.089" y2="168.834" transform="translate(181.006 483.722)" fill="none" stroke="#a47ed8" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_3" data-name="線 3" x2="115.307" y2="450.223" transform="translate(561.788 202.333)" fill="none" stroke="#a47ed8" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_5" data-name="線 5" x1="83.128" y2="116.576" transform="translate(518.883 569.479)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_6" data-name="線 6" x1="136.76" y1="30.819" transform="translate(518.883 686.055)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_7" data-name="線 7" x1="69.721" y2="117.916" transform="translate(585.922 716.873)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_8" data-name="線 8" x1="71.813" y2="21.939" transform="translate(730.099 715.011)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_9" data-name="線 9" x2="4.022" y2="120.596" transform="translate(769.609 680.695)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_10" data-name="線 10" x1="18.951" y2="34.903" transform="translate(870.732 637.23)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_11" data-name="線 11" x1="35.906" transform="translate(870.732 672.133)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_12" data-name="線 12" x1="18.951" y1="30.914" transform="translate(887.688 641.219)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_13" data-name="線 13" y1="55.845" x2="3.99" transform="translate(875.717 708.033)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_14" data-name="線 14" y1="83.077" x2="1.341" transform="translate(977.771 696.774)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_15" data-name="線 15" x1="56.313" y1="81.737" transform="translate(979.112 696.774)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_16" data-name="線 16" y1="85.757" x2="1.341" transform="translate(1035.425 692.754)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <g id="多角形_1" data-name="多角形 1" transform="matrix(-0.966, -0.259, 0.259, -0.966, 1101.233, 719.234)" fill="#a47ed8">
+    <path d="M 47.51210403442383 58.45278167724609 L 0.7448990345001221 58.45278167724609 L 24.12850189208984 1.319998025894165 L 47.51210403442383 58.45278167724609 Z" stroke="none"/>
+    <path d="M 24.12850189208984 2.640003204345703 L 1.489799499511719 57.95278167724609 L 46.76720428466797 57.95278167724609 L 24.12850189208984 2.640003204345703 M 24.12850189208984 3.814697265625e-06 L 48.25700378417969 58.95278167724609 L 0 58.95278167724609 L 24.12850189208984 3.814697265625e-06 Z" stroke="none" fill="#a47ed8"/>
+  </g>
+  <line id="線_17" data-name="線 17" y1="24.119" x2="24.134" transform="translate(1098.441 727.593)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_18" data-name="線 18" x2="30.838" y2="16.079" transform="translate(1098.441 751.712)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_19" data-name="線 19" y1="28.139" x2="22.793" transform="translate(1106.486 767.792)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_20" data-name="線 20" y1="209.032" x2="8.045" transform="translate(1236.883 625.757)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_21" data-name="線 21" y1="107.196" x2="76.425" transform="translate(1236.883 727.593)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_22" data-name="線 22" y1="10.72" x2="72.402" transform="translate(1240.905 727.593)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_23" data-name="線 23" x1="2.992" y2="107.701" transform="translate(1363.444 667.147)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_24" data-name="線 24" x1="23.938" y2="82.77" transform="translate(1432.262 705.042)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_25" data-name="線 25" x2="47.875" y2="60.831" transform="translate(1456.2 705.042)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_26" data-name="線 26" y1="17.419" x2="75.084" transform="translate(1428.955 766.452)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_27" data-name="線 27" y1="2.992" x2="52.862" transform="translate(1542.977 672.133)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_28" data-name="線 28" x2="1.341" y2="54.938" transform="translate(1542.581 675.335)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_29" data-name="線 29" x1="53.631" y2="2.68" transform="translate(1543.922 727.593)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_30" data-name="線 30" x1="2.682" y1="50.918" transform="translate(1597.553 673.995)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_31" data-name="線 31" x1="2.288" y2="69.77" transform="translate(1596.212 727.5)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+  <line id="線_32" data-name="線 32" y1="1.34" x2="45.587" transform="translate(1550.626 797.271)" fill="none" stroke="#f2f2f2" stroke-linecap="round" stroke-width="8"/>
+</svg>

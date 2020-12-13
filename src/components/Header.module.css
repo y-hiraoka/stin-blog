@@ -1,0 +1,18 @@
+.header {
+  padding: 0.8rem 1.6rem;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 7.2rem;
+}
+
+@media (max-width: 767px) {
+  .logo {
+    height: 5.6rem;
+  }
+}
