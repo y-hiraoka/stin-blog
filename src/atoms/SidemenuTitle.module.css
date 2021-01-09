@@ -1,0 +1,20 @@
+.root {
+  height: 5.6rem;
+  display: flex;
+  align-items: center;
+  border-top: 2px solid var(--theme-accent);
+  border-bottom: 2px solid var(--theme-accent);
+  background-color: var(--theme-background);
+}
+
+.icon {
+  width: 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.children {
+  flex: 1;
+  font-size: 1.8rem;
+}

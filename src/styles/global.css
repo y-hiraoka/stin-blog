@@ -13,7 +13,7 @@ html {
 }
 
 a {
-  color: #0070f3;
+  color: var(--theme-primary);
   text-decoration: none;
 }
 
@@ -29,4 +29,8 @@ img {
 body {
   background-color: var(--theme-background);
   color: var(--theme-primary);
+}
+
+*:focus {
+  outline-color: var(--theme-secondary);
 }

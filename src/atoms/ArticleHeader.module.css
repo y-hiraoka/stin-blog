@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  flex-direction: column;
+}
+
+.root > :not(:first-child) {
+  margin-top: 1.6rem;
+}
+
+.title {
+  font-size: 2.6rem;
+  margin-bottom: 2.4rem;
+}
+
+@media (max-width: 700px) {
+  .title {
+    font-size: 2rem;
+  }
+}

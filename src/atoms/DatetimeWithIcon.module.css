@@ -1,0 +1,14 @@
+.root {
+  color: var(--theme-secondary);
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  font-size: 1.4rem;
+}
+
+.datetime {
+  margin-left: 0.8rem;
+  font-size: 1.6rem;
+}

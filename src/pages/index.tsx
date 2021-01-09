@@ -1,56 +1,35 @@
 import Head from "next/head";
-import utilStyles from "../styles/utils.module.css";
-import { getSortedPostsData } from "../lib/posts";
-import Link from "next/link";
-import Date from "../components/date";
-import { GetStaticProps } from "next";
+import { getAllArticleTags, getSortedArticleHeaders } from "../lib/posts";
+import { GetStaticProps, NextPage } from "next";
+import { ArticleHeader as IArticleHeader, Tag } from "../models";
+import { Root } from "../templates/Root";
 
-export default function Home({
-  allPostsData,
-}: {
-  allPostsData: {
-    date: string;
-    title: string;
-    id: string;
-  }[];
-}) {
+type Props = {
+  articles: IArticleHeader[];
+  tags: Tag[];
+};
+
+const Home: NextPage<Props> = ({ articles, tags }: Props) => {
   return (
     <>
       <Head>
-        <title>hoge</title>
+        <title>stin's blog</title>
       </Head>
-      <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this in{" "}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
-      </section>
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>
-                <a>{title}</a>
-              </Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <Root articles={articles} tags={tags} />
     </>
   );
-}
+};
 
-export const getStaticProps: GetStaticProps = async () => {
-  const allPostsData = getSortedPostsData();
+export default Home;
+
+export const getStaticProps: GetStaticProps<Props> = async () => {
+  const articles = await getSortedArticleHeaders();
+  const tags = await getAllArticleTags();
+
   return {
     props: {
-      allPostsData,
+      articles,
+      tags,
     },
   };
 };

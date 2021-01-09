@@ -1,0 +1,32 @@
+.icon {
+  font-size: 1.8rem;
+}
+
+.wrapper {
+  display: flex;
+}
+
+.aboutme {
+  display: flex;
+  align-items: center;
+  padding: 1.6rem 0.8rem;
+  margin: auto;
+}
+
+.avatar {
+  border-radius: 50%;
+  width: 9.6rem;
+}
+
+.biography {
+  margin-left: 1.6rem;
+}
+
+.biography > p {
+  font-size: 1.6rem;
+  line-height: 1.8;
+}
+
+.linkIcon {
+  font-size: 1.4rem;
+}
