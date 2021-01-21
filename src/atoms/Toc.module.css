@@ -18,6 +18,6 @@
 .link {
   display: block;
   width: 100%;
-  height: 3.6rem;
+  min-height: 3.6rem;
   line-height: 3.6rem;
 }

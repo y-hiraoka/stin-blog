@@ -3,6 +3,7 @@ import Head from "next/head";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { ArticleHeader, Tag } from "../../models";
 import { TaggedArticles } from "../../templates/TaggedArticles";
+import { SEO } from "../../molecules/SEO";
 
 type Props = {
   tagName: string;
@@ -16,7 +17,11 @@ const Post: NextPage<Props> = ({ articles, tagName, tags }) => {
       <Head>
         <title>tag: {tagName}</title>
       </Head>
-      <TaggedArticles tags={tags} articles={articles} />
+      <SEO
+        title={`tag: ${tagName}`}
+        description={`"${tagName}" でタグ付けされた記事一覧`}
+      />
+      <TaggedArticles tagName={tagName} tags={tags} articles={articles} />
     </>
   );
 };

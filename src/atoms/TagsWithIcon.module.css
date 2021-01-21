@@ -16,3 +16,9 @@
 .tag {
   color: var(--theme-secondary);
 }
+
+@media (max-width: 700px) {
+  .tags {
+    font-size: 1.2rem;
+  }
+}

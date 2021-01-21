@@ -2,10 +2,10 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import remark from "remark";
-import remarkHtml from "remark-html";
-import remarkSlug from "remark-slug";
+import strip from "strip-markdown";
 import markdownToc from "markdown-toc";
 import { Article, ArticleHeader, FrontMatter, Tag } from "../models";
+import { config } from "../config";
 
 const postsDirectory = path.join(process.cwd(), "contents");
 
@@ -32,10 +32,6 @@ function getFrontMatter(
     throw new Error(`${slug}: createdAt is required in front-matter`);
   }
 
-  if (!matterData.updatedAt) {
-    throw new Error(`${slug}: updatedAt is required in front-matter`);
-  }
-
   if (!matterData.tags) {
     throw new Error(`${slug}: tags is required in front-matter`);
   }
@@ -45,7 +41,6 @@ function getFrontMatter(
       ...matterData,
       title: matterData.title,
       createdAt: matterData.createdAt,
-      updatedAt: matterData.updatedAt,
       tags: matterData.tags,
     },
     content: matterResult.content,
@@ -56,6 +51,20 @@ export async function getAllPostSlugs(): Promise<string[]> {
   const fileNames = await fs.promises.readdir(postsDirectory);
 
   return fileNames.map(fileName => fileName.replace(/\.md$/, ""));
+}
+
+async function getArticleExcerpt(mdText: string): Promise<string> {
+  const processed = await remark().use(strip).process(mdText);
+
+  const contentText = processed.toString();
+
+  const excerpt = contentText.trim().replace(/\s+/g, " ").slice(0, config.excerptLength);
+
+  if (contentText.length > config.excerptLength) {
+    return excerpt + "...";
+  }
+
+  return excerpt;
 }
 
 async function getAllArticlesRawData() {
@@ -73,17 +82,18 @@ async function getAllArticlesRawData() {
 export async function getSortedArticleHeaders(): Promise<ArticleHeader[]> {
   const rawData = await getAllArticlesRawData();
 
-  const headers = rawData.map<ArticleHeader>(data => {
-    const { frontMatter: fonrtMatter } = getFrontMatter(data.slug, data.content);
+  const headerPromises = rawData.map(async data => {
+    const { frontMatter, content } = getFrontMatter(data.slug, data.content);
 
     return {
       slug: data.slug,
-      matterData: fonrtMatter,
+      matterData: frontMatter,
+      excerpt: await getArticleExcerpt(content),
     };
   });
 
   // Sort posts by date
-  return headers.sort((a, b) =>
+  return (await Promise.all(headerPromises)).sort((a, b) =>
     a.matterData.createdAt < b.matterData.createdAt ? 1 : -1,
   );
 }
@@ -93,16 +103,17 @@ export async function getArticleData(slug: string): Promise<Article> {
 
   const { content, frontMatter } = getFrontMatter(slug, rawData);
 
-  const contentHtml = await remark().use(remarkHtml).use(remarkSlug).process(content);
-
   const tocMdText = markdownToc(content).content;
+
+  const excerpt = await getArticleExcerpt(content);
 
   return {
     header: {
       slug,
       matterData: frontMatter,
+      excerpt,
     },
-    body: contentHtml.toString(),
+    bodyMdText: content,
     tocMdText,
   };
 }

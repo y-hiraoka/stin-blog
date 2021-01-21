@@ -8,14 +8,16 @@ export function useIsInViewport(ref: React.RefObject<HTMLElement>) {
 
     if (element === null) return;
 
-    const eventListner = () => {
+    const eventListener = () => {
       const isInViewport = checkIsInViewport(element);
       setIsInViewport(isInViewport);
     };
 
-    window.addEventListener("scroll", eventListner);
+    window.addEventListener("scroll", eventListener);
 
-    return () => window.removeEventListener("scroll", eventListner);
+    eventListener();
+
+    return () => window.removeEventListener("scroll", eventListener);
   }, []);
 
   return isInViewport;

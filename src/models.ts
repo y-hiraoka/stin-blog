@@ -4,17 +4,18 @@ export type FrontMatter = {
   title: string;
   tags: string[];
   createdAt: string;
-  updatedAt: string;
+  updatedAt?: string;
   imageUrl?: string;
 };
 
 export type ArticleHeader = {
   slug: string;
   matterData: FrontMatter;
+  excerpt: string;
 };
 
 export type Article = {
   header: ArticleHeader;
-  body: string;
+  bodyMdText: string;
   tocMdText: string;
 };

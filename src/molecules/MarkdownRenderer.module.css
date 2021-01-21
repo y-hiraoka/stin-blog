@@ -8,69 +8,11 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. */
 
-.markdownBody .octicon {
-  display: inline-block;
-  fill: currentColor;
-  vertical-align: text-bottom;
-}
-
-.markdownBody .anchor {
-  float: left;
-  line-height: 1;
-  margin-left: -20px;
-  padding-right: 4px;
-}
-
-.markdownBody .anchor:focus {
-  outline: none;
-}
-
-.markdownBody h1 .octicon-link,
-.markdownBody h2 .octicon-link,
-.markdownBody h3 .octicon-link,
-.markdownBody h4 .octicon-link,
-.markdownBody h5 .octicon-link,
-.markdownBody h6 .octicon-link {
-  color: #1b1f23;
-  vertical-align: middle;
-  visibility: hidden;
-}
-
-.markdownBody h1:hover .anchor,
-.markdownBody h2:hover .anchor,
-.markdownBody h3:hover .anchor,
-.markdownBody h4:hover .anchor,
-.markdownBody h5:hover .anchor,
-.markdownBody h6:hover .anchor {
-  text-decoration: none;
-}
-
-.markdownBody h1:hover .anchor .octicon-link,
-.markdownBody h2:hover .anchor .octicon-link,
-.markdownBody h3:hover .anchor .octicon-link,
-.markdownBody h4:hover .anchor .octicon-link,
-.markdownBody h5:hover .anchor .octicon-link,
-.markdownBody h6:hover .anchor .octicon-link {
-  visibility: visible;
-}
-
-.markdownBody h1:hover .anchor .octicon-link:before,
-.markdownBody h2:hover .anchor .octicon-link:before,
-.markdownBody h3:hover .anchor .octicon-link:before,
-.markdownBody h4:hover .anchor .octicon-link:before,
-.markdownBody h5:hover .anchor .octicon-link:before,
-.markdownBody h6:hover .anchor .octicon-link:before {
-  width: 16px;
-  height: 16px;
-  content: " ";
-  display: inline-block;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' version='1.1' width='16' height='16' aria-hidden='true'%3E%3Cpath fill-rule='evenodd' d='M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z'%3E%3C/path%3E%3C/svg%3E");
-}
 .markdownBody {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   line-height: 1.5;
-  color: #24292e;
+  color: var(--theme-primary);
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif,
     Apple Color Emoji, Segoe UI Emoji;
   font-size: 16px;
@@ -147,7 +89,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 
 .markdownBody a {
-  color: #0366d6;
+  color: var(--theme-link-text);
   text-decoration: none;
 }
 
@@ -157,15 +99,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .markdownBody strong {
   font-weight: 600;
-}
-
-.markdownBody hr {
-  height: 0;
-  margin: 15px 0;
-  overflow: hidden;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid #dfe2e5;
 }
 
 .markdownBody hr:after,
@@ -257,6 +190,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .markdownBody p {
   margin-top: 0;
   margin-bottom: 10px;
+  line-height: 1.8;
 }
 
 .markdownBody blockquote {
@@ -304,319 +238,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   appearance: none;
 }
 
-.markdownBody :checked + .radio-label {
-  position: relative;
-  z-index: 1;
-  border-color: #0366d6;
-}
-
-.markdownBody .border {
-  border: 1px solid #e1e4e8 !important;
-}
-
-.markdownBody .border-0 {
-  border: 0 !important;
-}
-
-.markdownBody .border-bottom {
-  border-bottom: 1px solid #e1e4e8 !important;
-}
-
-.markdownBody .rounded-1 {
-  border-radius: 3px !important;
-}
-
-.markdownBody .bg-white {
-  background-color: #fff !important;
-}
-
-.markdownBody .bg-gray-light {
-  background-color: #fafbfc !important;
-}
-
-.markdownBody .text-gray-light {
-  color: #6a737d !important;
-}
-
-.markdownBody .mb-0 {
-  margin-bottom: 0 !important;
-}
-
-.markdownBody .my-2 {
-  margin-top: 8px !important;
-  margin-bottom: 8px !important;
-}
-
-.markdownBody .pl-0 {
-  padding-left: 0 !important;
-}
-
-.markdownBody .py-0 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-.markdownBody .pl-1 {
-  padding-left: 4px !important;
-}
-
-.markdownBody .pl-2 {
-  padding-left: 8px !important;
-}
-
-.markdownBody .py-2 {
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
-}
-
-.markdownBody .pl-3,
-.markdownBody .px-3 {
-  padding-left: 16px !important;
-}
-
-.markdownBody .px-3 {
-  padding-right: 16px !important;
-}
-
-.markdownBody .pl-4 {
-  padding-left: 24px !important;
-}
-
-.markdownBody .pl-5 {
-  padding-left: 32px !important;
-}
-
-.markdownBody .pl-6 {
-  padding-left: 40px !important;
-}
-
-.markdownBody .f6 {
-  font-size: 12px !important;
-}
-
-.markdownBody .lh-condensed {
-  line-height: 1.25 !important;
-}
-
-.markdownBody .text-bold {
-  font-weight: 600 !important;
-}
-
-.markdownBody .pl-c {
-  color: #6a737d;
-}
-
-.markdownBody .pl-c1,
-.markdownBody .pl-s .pl-v {
-  color: #005cc5;
-}
-
-.markdownBody .pl-e,
-.markdownBody .pl-en {
-  color: #6f42c1;
-}
-
-.markdownBody .pl-s .pl-s1,
-.markdownBody .pl-smi {
-  color: #24292e;
-}
-
-.markdownBody .pl-ent {
-  color: #22863a;
-}
-
-.markdownBody .pl-k {
-  color: #d73a49;
-}
-
-.markdownBody .pl-pds,
-.markdownBody .pl-s,
-.markdownBody .pl-s .pl-pse .pl-s1,
-.markdownBody .pl-sr,
-.markdownBody .pl-sr .pl-cce,
-.markdownBody .pl-sr .pl-sra,
-.markdownBody .pl-sr .pl-sre {
-  color: #032f62;
-}
-
-.markdownBody .pl-smw,
-.markdownBody .pl-v {
-  color: #e36209;
-}
-
-.markdownBody .pl-bu {
-  color: #b31d28;
-}
-
-.markdownBody .pl-ii {
-  color: #fafbfc;
-  background-color: #b31d28;
-}
-
-.markdownBody .pl-c2 {
-  color: #fafbfc;
-  background-color: #d73a49;
-}
-
-.markdownBody .pl-c2:before {
-  content: "^M";
-}
-
-.markdownBody .pl-sr .pl-cce {
-  font-weight: 700;
-  color: #22863a;
-}
-
-.markdownBody .pl-ml {
-  color: #735c0f;
-}
-
-.markdownBody .pl-mh,
-.markdownBody .pl-mh .pl-en,
-.markdownBody .pl-ms {
-  font-weight: 700;
-  color: #005cc5;
-}
-
-.markdownBody .pl-mi {
-  font-style: italic;
-  color: #24292e;
-}
-
-.markdownBody .pl-mb {
-  font-weight: 700;
-  color: #24292e;
-}
-
-.markdownBody .pl-md {
-  color: #b31d28;
-  background-color: #ffeef0;
-}
-
-.markdownBody .pl-mi1 {
-  color: #22863a;
-  background-color: #f0fff4;
-}
-
-.markdownBody .pl-mc {
-  color: #e36209;
-  background-color: #ffebda;
-}
-
-.markdownBody .pl-mi2 {
-  color: #f6f8fa;
-  background-color: #005cc5;
-}
-
-.markdownBody .pl-mdr {
-  font-weight: 700;
-  color: #6f42c1;
-}
-
-.markdownBody .pl-ba {
-  color: #586069;
-}
-
-.markdownBody .pl-sg {
-  color: #959da5;
-}
-
-.markdownBody .pl-corl {
-  text-decoration: underline;
-  color: #032f62;
-}
-
-.markdownBody .mb-0 {
-  margin-bottom: 0 !important;
-}
-
-.markdownBody .my-2 {
-  margin-bottom: 8px !important;
-}
-
-.markdownBody .my-2 {
-  margin-top: 8px !important;
-}
-
-.markdownBody .pl-0 {
-  padding-left: 0 !important;
-}
-
-.markdownBody .py-0 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-.markdownBody .pl-1 {
-  padding-left: 4px !important;
-}
-
-.markdownBody .pl-2 {
-  padding-left: 8px !important;
-}
-
-.markdownBody .py-2 {
-  padding-top: 8px !important;
-  padding-bottom: 8px !important;
-}
-
-.markdownBody .pl-3 {
-  padding-left: 16px !important;
-}
-
-.markdownBody .pl-4 {
-  padding-left: 24px !important;
-}
-
-.markdownBody .pl-5 {
-  padding-left: 32px !important;
-}
-
-.markdownBody .pl-6 {
-  padding-left: 40px !important;
-}
-
-.markdownBody .pl-7 {
-  padding-left: 48px !important;
-}
-
-.markdownBody .pl-8 {
-  padding-left: 64px !important;
-}
-
-.markdownBody .pl-9 {
-  padding-left: 80px !important;
-}
-
-.markdownBody .pl-10 {
-  padding-left: 96px !important;
-}
-
-.markdownBody .pl-11 {
-  padding-left: 112px !important;
-}
-
-.markdownBody .pl-12 {
-  padding-left: 128px !important;
-}
-
-.markdownBody hr {
-  border-bottom-color: #eee;
-}
-
-.markdownBody kbd {
-  display: inline-block;
-  padding: 3px 5px;
-  font: 11px SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-  line-height: 10px;
-  color: #444d56;
-  vertical-align: middle;
-  background-color: #fafbfc;
-  border: 1px solid #d1d5da;
-  border-radius: 3px;
-  box-shadow: inset 0 -1px 0 #d1d5da;
-}
-
 .markdownBody:after,
 .markdownBody:before {
   display: table;
@@ -649,7 +270,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .markdownBody table,
 .markdownBody ul {
   margin-top: 0;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .markdownBody hr {
@@ -662,7 +283,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .markdownBody blockquote {
   padding: 0 1em;
-  color: #6a737d;
+  color: var(--theme-secondary);
   border-left: 0.25em solid #dfe2e5;
 }
 
@@ -714,7 +335,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 .markdownBody h6 {
   font-size: 0.85em;
-  color: #6a737d;
+  color: var(--theme-secondary);
 }
 
 .markdownBody ol,
@@ -772,16 +393,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 .markdownBody table td,
 .markdownBody table th {
   padding: 6px 13px;
-  border: 1px solid #dfe2e5;
+  border: 1px solid var(--theme-table-border);
 }
 
 .markdownBody table tr {
-  background-color: #fff;
-  border-top: 1px solid #c6cbd1;
+  background-color: var(--theme-table-bg);
+  border-top: 1px solid var(--theme-table-border);
 }
 
 .markdownBody table tr:nth-child(2n) {
-  background-color: #f6f8fa;
+  background-color: var(--theme-table-bg-2n);
 }
 
 .markdownBody img {
@@ -802,7 +423,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(27, 31, 35, 0.05);
+  background-color: var(--theme-inline-code-bg);
   border-radius: 3px;
 }
 
@@ -820,16 +441,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   border: 0;
 }
 
-.markdownBody .highlight {
-  margin-bottom: 16px;
-}
-
-.markdownBody .highlight pre {
-  margin-bottom: 0;
-  word-break: normal;
-}
-
-.markdownBody .highlight pre,
 .markdownBody pre {
   padding: 16px;
   overflow: auto;
@@ -849,149 +460,4 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   word-wrap: normal;
   background-color: initial;
   border: 0;
-}
-
-.markdownBody .commit-tease-sha {
-  display: inline-block;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-  font-size: 90%;
-  color: #444d56;
-}
-
-.markdownBody .full-commit .btn-outline:not(:disabled):hover {
-  color: #005cc5;
-  border-color: #005cc5;
-}
-
-.markdownBody .blob-wrapper {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-.markdownBody .blob-wrapper-embedded {
-  max-height: 240px;
-  overflow-y: auto;
-}
-
-.markdownBody .blob-num {
-  width: 1%;
-  min-width: 50px;
-  padding-right: 10px;
-  padding-left: 10px;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-  font-size: 12px;
-  line-height: 20px;
-  color: rgba(27, 31, 35, 0.3);
-  text-align: right;
-  white-space: nowrap;
-  vertical-align: top;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.markdownBody .blob-num:hover {
-  color: rgba(27, 31, 35, 0.6);
-}
-
-.markdownBody .blob-num:before {
-  content: attr(data-line-number);
-}
-
-.markdownBody .blob-code {
-  position: relative;
-  padding-right: 10px;
-  padding-left: 10px;
-  line-height: 20px;
-  vertical-align: top;
-}
-
-.markdownBody .blob-code-inner {
-  overflow: visible;
-  font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace;
-  font-size: 12px;
-  color: #24292e;
-  word-wrap: normal;
-  white-space: pre;
-}
-
-.markdownBody .pl-token.active,
-.markdownBody .pl-token:hover {
-  cursor: pointer;
-  background: #ffea7f;
-}
-
-.markdownBody .tab-size[data-tab-size="1"] {
-  -moz-tab-size: 1;
-  tab-size: 1;
-}
-
-.markdownBody .tab-size[data-tab-size="2"] {
-  -moz-tab-size: 2;
-  tab-size: 2;
-}
-
-.markdownBody .tab-size[data-tab-size="3"] {
-  -moz-tab-size: 3;
-  tab-size: 3;
-}
-
-.markdownBody .tab-size[data-tab-size="4"] {
-  -moz-tab-size: 4;
-  tab-size: 4;
-}
-
-.markdownBody .tab-size[data-tab-size="5"] {
-  -moz-tab-size: 5;
-  tab-size: 5;
-}
-
-.markdownBody .tab-size[data-tab-size="6"] {
-  -moz-tab-size: 6;
-  tab-size: 6;
-}
-
-.markdownBody .tab-size[data-tab-size="7"] {
-  -moz-tab-size: 7;
-  tab-size: 7;
-}
-
-.markdownBody .tab-size[data-tab-size="8"] {
-  -moz-tab-size: 8;
-  tab-size: 8;
-}
-
-.markdownBody .tab-size[data-tab-size="9"] {
-  -moz-tab-size: 9;
-  tab-size: 9;
-}
-
-.markdownBody .tab-size[data-tab-size="10"] {
-  -moz-tab-size: 10;
-  tab-size: 10;
-}
-
-.markdownBody .tab-size[data-tab-size="11"] {
-  -moz-tab-size: 11;
-  tab-size: 11;
-}
-
-.markdownBody .tab-size[data-tab-size="12"] {
-  -moz-tab-size: 12;
-  tab-size: 12;
-}
-
-.markdownBody .task-list-item {
-  list-style-type: none;
-}
-
-.markdownBody .task-list-item + .task-list-item {
-  margin-top: 3px;
-}
-
-.markdownBody .task-list-item input {
-  margin: 0 0.2em 0.25em -1.6em;
-  vertical-align: middle;
 }

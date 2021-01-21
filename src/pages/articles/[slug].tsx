@@ -1,17 +1,15 @@
 import { getAllPostSlugs, getArticleData } from "../../lib/posts";
-import Head from "next/head";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { Article as IArticle } from "../../models";
 import { Article } from "../../templates/Article";
+import { SEO } from "../../molecules/SEO";
 
 type Props = { article: IArticle };
 
 export default function Post({ article }: Props) {
   return (
     <>
-      <Head>
-        <title>{article.header.matterData.title}</title>
-      </Head>
+      <SEO title={article.header.matterData.title} description={article.header.excerpt} />
       <Article article={article} />
     </>
   );

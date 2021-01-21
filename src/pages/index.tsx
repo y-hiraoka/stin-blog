@@ -3,6 +3,7 @@ import { getAllArticleTags, getSortedArticleHeaders } from "../lib/posts";
 import { GetStaticProps, NextPage } from "next";
 import { ArticleHeader as IArticleHeader, Tag } from "../models";
 import { Root } from "../templates/Root";
+import { SEO } from "../molecules/SEO";
 
 type Props = {
   articles: IArticleHeader[];
@@ -12,9 +13,7 @@ type Props = {
 const Home: NextPage<Props> = ({ articles, tags }: Props) => {
   return (
     <>
-      <Head>
-        <title>stin's blog</title>
-      </Head>
+      <SEO title="TOP" description="すてぃんの技術ブログ" />
       <Root articles={articles} tags={tags} />
     </>
   );

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArticleHeader } from "../models";
-import { DatetimeWithIcon } from "./DatetimeWithIcon";
+import { CreatedAt } from "./CreatedAt";
+import { UpdatedAt } from "./UpdatedAt";
 import { TagsWithIcon } from "./TagsWithIcon";
 import styles from "./ArticleItem.module.css";
 
@@ -20,7 +21,11 @@ export const ArticleItem: React.VFC<Props> = ({ article }) => {
         </h2>
         <div className={styles.metaInfo}>
           <TagsWithIcon tags={article.matterData.tags} />
-          <DatetimeWithIcon dateString={article.matterData.createdAt} />
+          {!!article.matterData.updatedAt ? (
+            <UpdatedAt updatedAt={article.matterData.updatedAt} />
+          ) : (
+            <CreatedAt createdAt={article.matterData.createdAt} />
+          )}
         </div>
       </div>
     </div>

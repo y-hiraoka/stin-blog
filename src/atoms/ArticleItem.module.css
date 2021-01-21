@@ -1,11 +1,11 @@
 .root {
   display: flex;
-  height: 24rem;
+  height: 20rem;
 }
 
 .image {
-  width: 24rem;
-  height: 24rem;
+  width: 20rem;
+  height: 20rem;
   object-fit: cover;
   margin-right: 3.2rem;
 }
