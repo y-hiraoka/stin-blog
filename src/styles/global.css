@@ -34,3 +34,15 @@ body {
 *:focus {
   outline-color: var(--theme-secondary);
 }
+
+:root {
+  --theme-primary: #f2f2f2;
+  --theme-secondary: #777777;
+  --theme-background: #1c1c1c;
+  --theme-accent: #a47ed8;
+  --theme-link-text: #03a9f4;
+  --theme-inline-code-bg: #444444;
+  --theme-table-bg: #393939;
+  --theme-table-bg-2n: #606060;
+  --theme-table-border: #777777;
+}
