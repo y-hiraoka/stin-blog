@@ -1,6 +1,7 @@
 ---
 title: "Fragment をコンポーネントのトップに置くのはアンチパターンではないかと考える"
 createdAt: "2021-02-05T12:46:41.234Z"
+updatedAt: "2021-02-08T03:22:47.322Z"
 tags: ["react"]
 ---
 
@@ -102,7 +103,7 @@ export const UserList = ({ users }) => {
     <ul className={styles.list}>
       {users.map(user => (
         <li key={user.id}>
-          <UserItem user={user}>
+          <UserInfo user={user}>
         </li>
       ))}
     </ul>
@@ -173,7 +174,7 @@ export const GridContainer = () => {
 `GridItems` のレンダリングの結果、 HTML 要素が間違いなく 4 つならば正しく表示されるでしょう。
 ただ、 `Fragment` をコンポーネントトップに置くことが常態化している場合、HTML 要素がちょうど 4 つであることを保証することに非常に労力をかけなければなりません。
 
-なぜなら `Logo`, `Header`, `SiteMenu`, `Contents` たちもまた、それぞれのトップに `Fragment` を持っている可能性が出てくるからです。
+なぜなら `Logo`, `Header`, `SideMenu`, `Contents` たちもまた、それぞれのトップに `Fragment` を持っている可能性が出てくるからです。
 それらが `Fragment` をトップにもっていたら、 `GridItems` の見かけ上は 4 つの要素を返しているように見えるのに、実際の HTML の要素がちょうど 4 つではなくなります。
 
 上記のコンポーネントはこのようにあるべきでしょう。
@@ -205,7 +206,7 @@ export const GridContainer = () => {
 ```
 
 `GridItems` というコンポーネントは闇に葬りました。そして `GridContainer` に 4 つの `div` を設けて `Logo` や `Header` などを入れています。
-この構成ならば、仮に `SiteMenu` が複数の HTML 要素を生成したとしてもグリッド表示が崩れることはなく、 `GridContainer` の「グリッド表示」という責務を果たすことができます。
+この構成ならば、仮に `SideMenu` が複数の HTML 要素を生成したとしてもグリッド表示が崩れることはなく、 `GridContainer` の「グリッド表示」という責務を果たすことができます。
 
 またグリッドのセルの数が減って `Logo` を表示する必要がなくなった場合でも、下記のように修正すれば対応できます。
 
