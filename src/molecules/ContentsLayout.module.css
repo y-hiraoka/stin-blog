@@ -16,7 +16,7 @@
   max-height: 100vh;
   top: 0;
   right: 0;
-  overflow: scroll;
+  overflow-y: auto;
   position: sticky;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@
 .otherMenu {
   z-index: 0;
   flex: 1;
-  overflow: scroll;
+  overflow-y: auto;
 }
 
 .sidemenuOpenButton {

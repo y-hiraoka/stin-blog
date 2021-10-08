@@ -1,12 +1,10 @@
 .root {
-  width: 100vw;
   min-height: 100vh;
   display: grid;
   grid-template-rows: auto 1fr auto;
 }
 
 .eyeCatchContainer {
-  width: 100vw;
   position: fixed;
   top: 0;
   left: 0;
@@ -14,12 +12,10 @@
 }
 
 .eyeCatch {
-  width: 100vw;
   height: 100vh;
 }
 
 .eyeCatchWrapper {
-  width: 100vw;
   height: 100vh;
   position: relative;
   border-bottom: 1px solid var(--theme-accent);

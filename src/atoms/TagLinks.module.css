@@ -7,10 +7,6 @@
   font-size: 1.6rem;
 }
 
-.tags {
-  overflow: scroll;
-}
-
 .tagLink {
   padding: 0 0.8rem 0 4rem;
   border-bottom: 2px dashed var(--theme-secondary);
