@@ -1,17 +1,16 @@
 import { getAllArticleTags, getSortedArticleHeaders } from "../../lib/posts";
 import Head from "next/head";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
-import { ArticleHeader, Tag } from "../../models";
+import { ArticleHeader } from "../../models";
 import { TaggedArticles } from "../../templates/TaggedArticles";
 import { SEO } from "../../molecules/SEO";
 
 type Props = {
   tagName: string;
   articles: ArticleHeader[];
-  tags: Tag[];
 };
 
-const Post: NextPage<Props> = ({ articles, tagName, tags }) => {
+const Post: NextPage<Props> = ({ articles, tagName }) => {
   return (
     <>
       <Head>
@@ -21,7 +20,7 @@ const Post: NextPage<Props> = ({ articles, tagName, tags }) => {
         title={`tag: ${tagName}`}
         description={`"${tagName}" でタグ付けされた記事一覧`}
       />
-      <TaggedArticles tagName={tagName} tags={tags} articles={articles} />
+      <TaggedArticles tagName={tagName} articles={articles} />
     </>
   );
 };
@@ -43,7 +42,6 @@ export const getStaticProps: GetStaticProps<Props, { tagName: string }> = async 
   if (!params) throw new Error("Component file name must has params.");
 
   const articles = await getSortedArticleHeaders();
-  const tags = await getAllArticleTags();
 
   return {
     props: {
@@ -51,7 +49,6 @@ export const getStaticProps: GetStaticProps<Props, { tagName: string }> = async 
       articles: articles.filter(article =>
         article.matterData.tags.includes(params.tagName),
       ),
-      tags,
     },
   };
 };
