@@ -6,8 +6,9 @@ import { useGoogleAnalytics } from "../lib/gtag";
 const theme = extendTheme({
   styles: {
     global: (props: ThemeComponentProps) => ({
-      "html, body": {
+      body: {
         bgColor: mode("white", "#1C1C1C")(props),
+        color: mode("#474B4B", "#E8EAEA")(props),
       },
     }),
   },

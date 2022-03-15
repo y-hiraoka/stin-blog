@@ -18,7 +18,7 @@ export const Header: VFC = () => {
   return (
     <Box>
       <Container maxW="container.lg">
-        <Flex as="header" py={["4"]} justifyContent="space-between" alignItems="center">
+        <Flex as="header" py="4" justifyContent="space-between" alignItems="center">
           <NextLink href="/">
             <a>
               <Image
