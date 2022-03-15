@@ -1,18 +1,24 @@
-import "../styles/ress.css";
-import "../styles/global.css";
+import { ChakraProvider, extendTheme, ThemeComponentProps } from "@chakra-ui/react";
+import { mode } from "@chakra-ui/theme-tools";
 import { AppProps } from "next/app";
-import { ThemeProvider } from "../organisms/themes";
-import { Layout } from "../organisms/Layout";
 import { useGoogleAnalytics } from "../lib/gtag";
+
+const theme = extendTheme({
+  styles: {
+    global: (props: ThemeComponentProps) => ({
+      "html, body": {
+        bgColor: mode("white", "#1C1C1C")(props),
+      },
+    }),
+  },
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   useGoogleAnalytics();
 
   return (
-    <ThemeProvider>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+    <ChakraProvider theme={theme}>
+      <Component {...pageProps} />
+    </ChakraProvider>
   );
 }

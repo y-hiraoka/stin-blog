@@ -3,6 +3,9 @@ import { ArticleHeader, Tag } from "../models";
 import { ContentsLayout } from "../molecules/ContentsLayout";
 import { TagLinks } from "../atoms/TagLinks";
 import { ArticleList } from "../atoms/ArticleList";
+import { Container } from "@chakra-ui/react";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 
 type Props = {
   articles: ArticleHeader[];
@@ -11,8 +14,12 @@ type Props = {
 
 export const Root: React.VFC<Props> = ({ articles, tags }) => {
   return (
-    <ContentsLayout sidemenu={<TagLinks tags={tags} />}>
-      <ArticleList articles={articles} />
-    </ContentsLayout>
+    <>
+      <Header />
+      <Container maxW="container.lg">
+        <ArticleList articles={articles} />
+      </Container>
+      <Footer />
+    </>
   );
 };
