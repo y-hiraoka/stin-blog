@@ -1,7 +1,6 @@
 import React from "react";
 import { Article as IArticle } from "../models";
 import { ContentsLayout } from "../molecules/ContentsLayout";
-import { Toc } from "../atoms/Toc";
 import { ArticleHeader } from "../atoms/ArticleHeader";
 import styles from "./Article.module.css";
 import { ExternalLink } from "../atoms/ExternalLink";

@@ -26,3 +26,6 @@ yarn-error.log*
 
 # pathpida
 src/utils/$path.ts
+
+# tsc
+tsconfig.tsbuildinfo
