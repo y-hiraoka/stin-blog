@@ -1,10 +1,19 @@
-import { Box, Heading, HStack, Link, Tag, useColorModeValue } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  HStack,
+  Link,
+  useColorModeValue,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
 import NextLink from "next/link";
 import { VFC } from "react";
 import { useSecondaryColor } from "../lib/useSecondaryColor";
 import { ArticleHeader } from "../models";
 import { pagesPath } from "../utils/$path";
 import { Datetime } from "./Datetime";
+import { TagLink } from "./TagLink";
 
 type Props = { article: ArticleHeader };
 
@@ -13,7 +22,8 @@ export const ArticleCard: VFC<Props> = ({ article }) => {
     <Box
       as="article"
       borderRadius="md"
-      p="4"
+      py="4"
+      px="6"
       bgColor={useColorModeValue("gray.100", "gray.700")}
       boxShadow="md">
       <Datetime
@@ -28,13 +38,13 @@ export const ArticleCard: VFC<Props> = ({ article }) => {
         </NextLink>
       </Heading>
       <HStack marginTop="8">
-        {article.matterData.tags.map(tag => (
-          <NextLink key={tag} href={pagesPath.tags._tagName(tag).$url()} passHref>
-            <Link>
-              <Tag colorScheme="purple">{tag}</Tag>
-            </Link>
-          </NextLink>
-        ))}
+        <Wrap>
+          {article.matterData.tags.map(tag => (
+            <WrapItem key={tag}>
+              <TagLink tag={tag} />
+            </WrapItem>
+          ))}
+        </Wrap>
       </HStack>
     </Box>
   );

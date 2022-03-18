@@ -1,0 +1,13 @@
+.markdownRoot > :first-child {
+  margin-top: 0;
+}
+
+.markdownRoot p {
+  line-height: 1.8;
+  white-space: pre-wrap;
+}
+
+.markdownRoot > p {
+  margin-top: var(--chakra-space-6);
+  margin-bottom: var(--chakra-space-6);
+}

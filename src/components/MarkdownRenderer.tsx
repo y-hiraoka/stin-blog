@@ -1,18 +1,35 @@
-import { Heading, Link, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Link,
+  Text,
+  chakra,
+  Code as ChakraCode,
+  useColorModeValue,
+  Table as ChakraTable,
+  Thead as ChakraThead,
+  Tbody as ChakraTbody,
+  Tfoot as ChakraTfoot,
+  Tr as ChakraTr,
+  Th as ChakraTh,
+  Td as ChakraTd,
+  TableCaption as ChakraTableCaption,
+} from "@chakra-ui/react";
 import React from "react";
-import ReactMarkdown, { Components, Options } from "react-markdown";
+import ReactMarkdown, { Components } from "react-markdown";
 import remarkSlug from "remark-slug";
 import remarkGfm from "remark-gfm";
 import { Prism } from "react-syntax-highlighter";
 import { a11yDark as prismStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { ExternalLink } from "../atoms/ExternalLink";
 import { RichLinkCard } from "./RichLinkCard";
+import styles from "./MarkdownRenderer.module.css";
+import { useSecondaryColor } from "../lib/useSecondaryColor";
 
 type Props = { children: string };
 
 export const MarkdownRenderer: React.VFC<Props> = ({ children }) => {
   return (
-    <div>
+    <div className={styles.markdownRoot}>
       <ReactMarkdown
         remarkPlugins={[remarkSlug, remarkGfm]}
         components={{
@@ -25,6 +42,16 @@ export const MarkdownRenderer: React.VFC<Props> = ({ children }) => {
           h6: Heading6,
           code: Code,
           p: Paragraph,
+          ul: UnorderedList,
+          ol: OrderedList,
+          li: ListItem,
+          blockquote: Blockquote,
+          table: Table,
+          thead: Thead,
+          tbody: Tbody,
+          tr: Tr,
+          th: Th,
+          td: Td,
         }}>
         {children}
       </ReactMarkdown>
@@ -33,51 +60,81 @@ export const MarkdownRenderer: React.VFC<Props> = ({ children }) => {
 };
 
 const MDLink: Components["a"] = ({ node, href, ...props }) => {
-  if (!href) return <span>(href 忘れてるかも){props.children}</span>;
+  const color = useColorModeValue("blue.500", "blue.400");
+  const visitedColor = useColorModeValue("purple.500", "purple.300");
 
   // a link to same domain
-  if (href.startsWith("#") || href.startsWith("/") || href.includes("stin.ink")) {
-    return <Link {...props} href={href} />;
+  if (href?.startsWith("#") || href?.startsWith("/") || href?.includes("stin.ink")) {
+    return (
+      <Link {...props} href={href} color={color} _visited={{ color: visitedColor }} />
+    );
   }
 
-  return <Link {...props} href={href} isExternal />;
+  return (
+    <Link
+      {...props}
+      href={href}
+      isExternal
+      color={color}
+      _visited={{ color: visitedColor }}
+    />
+  );
 };
 
 const Heading1: Components["h1"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h1" fontSize="2xl" />;
+  return <Heading {...props} as="h1" fontSize="2xl" my="12" />;
 };
 
 const Heading2: Components["h2"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h2" fontSize="xl" />;
+  return <Heading {...props} as="h2" fontSize="xl" my="8" />;
 };
 
 const Heading3: Components["h3"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h3" fontSize="xl" />;
+  return <Heading {...props} as="h3" fontSize="lg" my="6" />;
 };
 
 const Heading4: Components["h4"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h4" fontSize="xl" />;
+  return <Heading {...props} as="h4" fontSize="md" my="4" />;
 };
 
 const Heading5: Components["h5"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h5" fontSize="xl" />;
+  return <Heading {...props} as="h5" fontSize="sm" my="3" />;
 };
 
 const Heading6: Components["h6"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h6" fontSize="xl" />;
+  return <Heading {...props} as="h6" fontSize="xs" my="2" />;
 };
 
 const Code: Components["code"] = ({ node, inline, className, children, ...props }) => {
+  console.log("inline", inline);
   const match = /language-(\w+)/.exec(className || "");
-  return !inline && match ? (
-    <Prism style={prismStyle} language={match[1]} PreTag="div" {...props}>
-      {String(children).replace(/\n$/, "")}
-    </Prism>
+  return !inline ? (
+    <Box my="4">
+      <Prism style={prismStyle} language={match?.[1]} PreTag="div" {...props}>
+        {String(children).replace(/\n$/, "")}
+      </Prism>
+    </Box>
   ) : (
-    <code className={className} {...props}>
+    <ChakraCode className={className} {...props}>
       {children}
-    </code>
+    </ChakraCode>
   );
+};
+
+const ChakraLi = chakra.li;
+const ChakraUl = chakra.ul;
+const ChakraOl = chakra.ol;
+
+const UnorderedList: Components["ul"] = ({ node, depth, ordered, ...props }) => {
+  return <ChakraUl {...props} paddingLeft="7" my="6" />;
+};
+
+const OrderedList: Components["ol"] = ({ node, depth, ordered, ...props }) => {
+  return <ChakraOl {...props} paddingLeft="7" my="6" />;
+};
+
+const ListItem: Components["li"] = ({ node, checked, index, ordered, ...props }) => {
+  return <ChakraLi {...props} lineHeight="1.8" />;
 };
 
 const Paragraph: Components["p"] = ({ node, ...props }) => {
@@ -90,8 +147,53 @@ const Paragraph: Components["p"] = ({ node, ...props }) => {
     child.children[0].type === "text" &&
     child.properties.href === child.children[0].value
   ) {
-    return <RichLinkCard href={child.properties.href} isExternal />;
+    return (
+      <Box my="4">
+        <RichLinkCard href={child.properties.href} isExternal />
+      </Box>
+    );
   }
 
-  return <Text {...props} />;
+  return <Text {...props} lineHeight="1.8" />;
+};
+
+const Blockquote: Components["blockquote"] = ({ node, ...props }) => {
+  return (
+    <Text
+      as="blockquote"
+      {...props}
+      color={useSecondaryColor()}
+      my="4"
+      paddingLeft="4"
+      paddingY="1"
+      borderLeft="4px solid"
+      borderColor={useColorModeValue("gray.300", "gray.600")}
+    />
+  );
+};
+
+const Table: Components["table"] = ({ node, ...props }) => {
+  return <ChakraTable {...props} />;
+};
+
+const Thead: Components["thead"] = ({ node, ...props }) => {
+  return <ChakraThead {...props} />;
+};
+
+const Tbody: Components["tbody"] = ({ node, ...props }) => {
+  return <ChakraTbody {...props} />;
+};
+
+const Tr: Components["tr"] = ({ node, isHeader, ...props }) => {
+  return <ChakraTr {...props} />;
+};
+
+const Th: Components["th"] = ({ node, isHeader, ...props }) => {
+  // @ts-expect-error
+  return <ChakraTh {...props} />;
+};
+
+const Td: Components["td"] = ({ node, isHeader, ...props }) => {
+  // @ts-expect-error
+  return <ChakraTd {...props} />;
 };

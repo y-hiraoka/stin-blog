@@ -37,10 +37,10 @@
     "react-markdown": "^8.0.1",
     "react-syntax-highlighter": "^15.4.3",
     "react-use": "^17.3.2",
-    "remark": "^13.0.0",
+    "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
     "remark-slug": "^7.0.1",
-    "strip-markdown": "^4.0.0"
+    "strip-markdown": "^5.0.0"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.11",

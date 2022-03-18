@@ -19,6 +19,7 @@ type MetadataState =
     }
   | {
       metadata: SiteMetadata;
+      url: string;
       isLoading: false;
     };
 const useMetadataState = (href: string) => {
@@ -28,11 +29,15 @@ const useMetadataState = (href: string) => {
   });
 
   useEffect(() => {
-    fetch(`/api/site-metadata?url=${encodeURIComponent(href)}`)
+    // 相対パスの場合はURLに変換する
+    const url = /https?/.test(href) ? href : new URL(href, window.location.href).href;
+
+    fetch(`/api/site-metadata?url=${encodeURIComponent(url)}`)
       .then(r => r.json())
       .then(data => {
         setState({
           metadata: data,
+          url: url,
           isLoading: false,
         });
       });
@@ -54,7 +59,7 @@ export const RichLinkCard: VFC<Props> = ({ href, isExternal }) => {
   } else {
     return (
       <RichLinkCardLoaded
-        href={href}
+        href={metadataState.url}
         isExternal={isExternal}
         metadata={metadataState.metadata}
       />
@@ -67,21 +72,26 @@ const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
   isExternal,
   metadata,
 }) => {
+  const hostname = new URL(href).hostname;
+
   const faviconUrl = `http://www.google.com/s2/favicons?domain=${encodeURIComponent(
     href ?? "",
-  )}&size=32`;
+  )}&size=64`;
 
   return (
     <HStack
       as="a"
       href={href}
+      target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener" : undefined}
       w="full"
       h="36"
       borderRadius="lg"
       border="1px solid"
       borderColor={useColorModeValue("gray.200", "gray.700")}
-      overflow="hidden">
+      overflow="hidden"
+      transition="background-color 0.3s"
+      _hover={{ bgColor: useColorModeValue("blackAlpha.50", "whiteAlpha.100") }}>
       <Flex direction="column" flex={1} px="4" py="2" h="full">
         <Text
           as="div"
@@ -104,7 +114,7 @@ const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
         <HStack>
           <Image src={faviconUrl} alt="" w="4" h="4" />
           <Text fontSize="sm" as="div" noOfLines={1}>
-            {metadata.site_name}
+            {hostname}
           </Text>
         </HStack>
       </Flex>

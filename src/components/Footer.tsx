@@ -21,7 +21,7 @@ export const Footer: VFC = () => {
           alignItems="center"
           justifyContent="center"
           gap="4">
-          <Text color={useSecondaryColor()}>
+          <Text color={useSecondaryColor()} fontSize="sm">
             このサイトは{" "}
             <Link
               href="https://policies.google.com/technologies/partner-sites?hl=ja"
@@ -31,7 +31,7 @@ export const Footer: VFC = () => {
             </Link>{" "}
             を使用しています
           </Text>
-          <Text color={useSecondaryColor()}>
+          <Text color={useSecondaryColor()} as="small">
             &copy;{copyrightPeriod}{" "}
             <Link isExternal href="https://twitter.com/stin_factory">
               stin_factory

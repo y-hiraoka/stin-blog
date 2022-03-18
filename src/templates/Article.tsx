@@ -5,24 +5,67 @@ import { ArticleHeader } from "../atoms/ArticleHeader";
 import styles from "./Article.module.css";
 import { ExternalLink } from "../atoms/ExternalLink";
 import { GitHubIcon } from "../atoms/GitHubIcon";
-import { Box, Container, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Divider,
+  Heading,
+  Stack,
+  Text,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { MarkdownRenderer } from "../components/MarkdownRenderer";
+import { useSecondaryColor } from "../lib/useSecondaryColor";
+import { Datetime } from "../components/Datetime";
+import { TagLink } from "../components/TagLink";
 
 type Props = {
   article: IArticle;
 };
 
 export const Article: React.VFC<Props> = ({ article }) => {
+  const secondaryColor = useSecondaryColor();
   return (
     <Box>
       <Header />
       <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
-        <Heading as="h1" marginBottom="4" fontSize="2xl" lineHeight={1.6}>
-          {article.header.matterData.title}
-        </Heading>
-        <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
+        <Stack spacing="8">
+          <Heading as="h1" fontSize="2xl" lineHeight={1.6}>
+            {article.header.matterData.title}
+          </Heading>
+          <Stack spacing="1">
+            <Text fontSize="sm" color={secondaryColor}>
+              公開:{" "}
+              <Datetime
+                format="yyyy年MM月dd日 HH時mm分"
+                datetime={article.header.matterData.createdAt}
+              />
+            </Text>
+            {article.header.matterData.updatedAt && (
+              <Text fontSize="sm" color={secondaryColor}>
+                更新:{" "}
+                <Datetime
+                  format="yyyy年MM月dd日 HH時mm分"
+                  datetime={article.header.matterData.updatedAt}
+                />
+              </Text>
+            )}
+          </Stack>
+          <Wrap>
+            {article.header.matterData.tags.map(tag => (
+              <WrapItem key={tag}>
+                <TagLink tag={tag} />
+              </WrapItem>
+            ))}
+          </Wrap>
+        </Stack>
+        <Divider marginY="8" />
+        <Box as="section">
+          <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
+        </Box>
       </Container>
       <Footer />
     </Box>
