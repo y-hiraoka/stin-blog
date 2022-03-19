@@ -1,18 +1,25 @@
-import React from "react";
-import { ArticleHeader, Tag } from "../models";
-import { ContentsLayout } from "../molecules/ContentsLayout";
-import { TagLinks } from "../atoms/TagLinks";
-import { ArticleList } from "../atoms/ArticleList";
+import { Box, Container, Heading } from "@chakra-ui/react";
+import { VFC } from "react";
+import { ArticleHeader } from "../models";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { Articles } from "../components/Articles";
 
 type Props = {
   articles: ArticleHeader[];
-  tags: Tag[];
 };
 
-export const Root: React.VFC<Props> = ({ articles, tags }) => {
+export const Root: VFC<Props> = ({ articles }) => {
   return (
-    <ContentsLayout sidemenu={<TagLinks tags={tags} />}>
-      <ArticleList articles={articles} />
-    </ContentsLayout>
+    <Box>
+      <Header />
+      <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
+        <Heading as="h1" marginBottom="4">
+          Articles
+        </Heading>
+        <Articles articles={articles} />
+      </Container>
+      <Footer />
+    </Box>
   );
 };

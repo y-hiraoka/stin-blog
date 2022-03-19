@@ -1,31 +1,68 @@
+import {
+  Box,
+  Container,
+  Divider,
+  Heading,
+  Stack,
+  Text,
+  Wrap,
+  WrapItem,
+} from "@chakra-ui/react";
 import React from "react";
 import { Article as IArticle } from "../models";
-import { ContentsLayout } from "../molecules/ContentsLayout";
-import { Toc } from "../atoms/Toc";
-import { MarkdownRenderer } from "../molecules/MarkdownRenderer";
-import { ArticleHeader } from "../atoms/ArticleHeader";
-import styles from "./Article.module.css";
-import { ExternalLink } from "../atoms/ExternalLink";
-import { GitHubIcon } from "../atoms/GitHubIcon";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { MarkdownRenderer } from "../components/MarkdownRenderer";
+import { useSecondaryColor } from "../lib/useSecondaryColor";
+import { Datetime } from "../components/Datetime";
+import { TagLink } from "../components/TagLink";
 
 type Props = {
   article: IArticle;
 };
 
 export const Article: React.VFC<Props> = ({ article }) => {
+  const secondaryColor = useSecondaryColor();
   return (
-    <ContentsLayout sidemenu={<Toc tocMdText={article.tocMdText} />}>
-      <ArticleHeader article={article.header} />
-      <article className={styles.article}>
-        <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
-      </article>
-      <div className={styles.articleFooter}>
-        <ExternalLink
-          className={styles.githubLink}
-          href={`https://github.com/y-hiraoka/stin-blog`}>
-          <GitHubIcon className={styles.githubIcon} /> 質問、修正リクエストはGitHubまで
-        </ExternalLink>
-      </div>
-    </ContentsLayout>
+    <Box>
+      <Header />
+      <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
+        <Stack spacing="8">
+          <Heading as="h1" fontSize="2xl" lineHeight={1.6}>
+            {article.header.matterData.title}
+          </Heading>
+          <Stack spacing="1">
+            <Text fontSize="sm" color={secondaryColor}>
+              公開:{" "}
+              <Datetime
+                format="yyyy年MM月dd日 HH時mm分"
+                datetime={article.header.matterData.createdAt}
+              />
+            </Text>
+            {article.header.matterData.updatedAt && (
+              <Text fontSize="sm" color={secondaryColor}>
+                更新:{" "}
+                <Datetime
+                  format="yyyy年MM月dd日 HH時mm分"
+                  datetime={article.header.matterData.updatedAt}
+                />
+              </Text>
+            )}
+          </Stack>
+          <Wrap>
+            {article.header.matterData.tags.map(tag => (
+              <WrapItem key={tag}>
+                <TagLink tag={tag} />
+              </WrapItem>
+            ))}
+          </Wrap>
+        </Stack>
+        <Divider marginY="8" />
+        <Box as="section">
+          <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
+        </Box>
+      </Container>
+      <Footer />
+    </Box>
   );
 };
