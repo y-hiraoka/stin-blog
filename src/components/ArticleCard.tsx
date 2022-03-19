@@ -11,7 +11,7 @@ import NextLink from "next/link";
 import { VFC } from "react";
 import { useSecondaryColor } from "../lib/useSecondaryColor";
 import { ArticleHeader } from "../models";
-import { pagesPath } from "../utils/$path";
+import { pagesPath } from "../lib/$path";
 import { Datetime } from "./Datetime";
 import { TagLink } from "./TagLink";
 

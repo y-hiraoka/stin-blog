@@ -25,7 +25,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # pathpida
-src/utils/$path.ts
+src/lib/$path.ts
 
 # tsc
 tsconfig.tsbuildinfo
