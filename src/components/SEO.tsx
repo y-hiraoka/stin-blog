@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { config } from "../config";
+import { staticPath } from "../lib/$path";
 
 type Props = {
   title: string;
@@ -17,10 +18,7 @@ export const SEO: React.VFC<Props> = ({ title, description }) => {
       <meta property="og:title" content={title} />
       {description && <meta property="og:description" content={description} />}
       <meta property="og:site_name" content={siteTitle} />
-      <meta property="twitter:card" content="summary" />
-      <meta property="twitter:creator" content={config.social.twitter} />
-      <meta property="twitter:title" content={title} />
-      {description && <meta property="twitter:description" content={description} />}
+      <meta property="og:image" content={staticPath.images.ogimage_png} />
     </Head>
   );
 };
