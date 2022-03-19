@@ -3,7 +3,7 @@ import Head from "next/head";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { ArticleHeader } from "../../models";
 import { TaggedArticles } from "../../templates/TaggedArticles";
-import { SEO } from "../../molecules/SEO";
+import { SEO } from "../../components/SEO";
 
 type Props = {
   tagName: string;

@@ -2,7 +2,7 @@ import { getSortedArticleHeaders } from "../lib/posts";
 import { GetStaticProps, NextPage } from "next";
 import { ArticleHeader as IArticleHeader } from "../models";
 import { Root } from "../templates/Root";
-import { SEO } from "../molecules/SEO";
+import { SEO } from "../components/SEO";
 
 type Props = {
   articles: IArticleHeader[];
