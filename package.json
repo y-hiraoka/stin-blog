@@ -8,7 +8,6 @@
     "dev:path": "pathpida --enableStatic --ignorePath .gitignore --watch",
     "build": "pathpida --enableStatic --ignorePath .gitignore && next build",
     "start": "next start",
-    "export": "next export",
     "create": "node scripts/createBlogArticle.js",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
