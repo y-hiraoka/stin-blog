@@ -93,14 +93,15 @@ const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
       transition="background-color 0.3s"
       _hover={{ bgColor: useColorModeValue("blackAlpha.50", "whiteAlpha.100") }}>
       <Flex direction="column" flex={1} px="4" py="2" h="full">
-        <Text
-          as="div"
-          fontWeight="bold"
-          fontSize="md"
-          noOfLines={2}
-          wordBreak="break-all">
-          {metadata.title}
-        </Text>
+        {metadata.title ? (
+          <Text as="div" fontWeight="bold" noOfLines={2} wordBreak="break-all">
+            {metadata.title}
+          </Text>
+        ) : (
+          <Text as="div" noOfLines={2} wordBreak="break-all">
+            {href}
+          </Text>
+        )}
         <Box flex={1} marginTop="2">
           <Text
             as="div"
@@ -118,15 +119,17 @@ const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
           </Text>
         </HStack>
       </Flex>
-      <Box maxW="40%" h="full">
-        <Image
-          src={metadata.image}
-          alt={metadata.title}
-          w="full"
-          h="full"
-          objectFit="cover"
-        />
-      </Box>
+      {metadata.image && (
+        <Box maxW="40%" h="36">
+          <Image
+            src={metadata.image}
+            alt={metadata.title}
+            w="full"
+            h="full"
+            objectFit="cover"
+          />
+        </Box>
+      )}
     </HStack>
   );
 };

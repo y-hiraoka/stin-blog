@@ -1,10 +1,3 @@
-import React from "react";
-import { Article as IArticle } from "../models";
-import { ContentsLayout } from "../molecules/ContentsLayout";
-import { ArticleHeader } from "../atoms/ArticleHeader";
-import styles from "./Article.module.css";
-import { ExternalLink } from "../atoms/ExternalLink";
-import { GitHubIcon } from "../atoms/GitHubIcon";
 import {
   Box,
   Container,
@@ -15,6 +8,8 @@ import {
   Wrap,
   WrapItem,
 } from "@chakra-ui/react";
+import React from "react";
+import { Article as IArticle } from "../models";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { MarkdownRenderer } from "../components/MarkdownRenderer";

@@ -28,6 +28,10 @@ const handler: NextApiHandler = async (req, res) => {
   const html = await response.text();
   const metadata: SiteMetadata = {};
   const jsdom = new JSDOM(html);
+
+  const title = jsdom.window.document.title;
+  metadata.title = title;
+
   const metaTags = jsdom.window.document.getElementsByTagName("meta");
 
   for (const meta of metaTags) {
@@ -40,7 +44,7 @@ const handler: NextApiHandler = async (req, res) => {
       metadata.site_name = meta.getAttribute("content") ?? undefined;
     }
     if (property === "og:title") {
-      metadata.title = meta.getAttribute("content") ?? undefined;
+      metadata.title = meta.getAttribute("content") ?? title;
     }
     if (property === "og:description") {
       metadata.description = meta.getAttribute("content") ?? undefined;
@@ -50,6 +54,14 @@ const handler: NextApiHandler = async (req, res) => {
     }
     if (property === "og:type") {
       metadata.type = meta.getAttribute("content") ?? undefined;
+    }
+
+    const metaName = meta.getAttribute("name");
+
+    if (metaName === "description") {
+      // og:description 優先
+      metadata.description =
+        metadata.description || meta.getAttribute("content") || undefined;
     }
   }
 

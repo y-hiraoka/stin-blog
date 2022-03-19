@@ -106,7 +106,6 @@ const Heading6: Components["h6"] = ({ level, node, ...props }) => {
 };
 
 const Code: Components["code"] = ({ node, inline, className, children, ...props }) => {
-  console.log("inline", inline);
   const match = /language-(\w+)/.exec(className || "");
   return !inline ? (
     <Box my="4">
