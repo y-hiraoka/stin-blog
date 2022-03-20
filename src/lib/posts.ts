@@ -82,10 +82,11 @@ async function getAllArticlesRawData() {
 export async function getSortedArticleHeaders(): Promise<ArticleHeader[]> {
   const rawData = await getAllArticlesRawData();
 
-  const headerPromises = rawData.map(async data => {
+  const headerPromises = rawData.map<Promise<ArticleHeader>>(async data => {
     const { frontMatter, content } = getFrontMatter(data.slug, data.content);
 
     return {
+      type: "stin-blog",
       slug: data.slug,
       matterData: frontMatter,
       excerpt: await getArticleExcerpt(content),
@@ -109,6 +110,7 @@ export async function getArticleData(slug: string): Promise<Article> {
 
   return {
     header: {
+      type: "stin-blog",
       slug,
       matterData: frontMatter,
       excerpt,

@@ -9,6 +9,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useEffect, useState, VFC } from "react";
+import { getFaviconUrl } from "../lib/getFaviconUrl";
 import { useSecondaryColor } from "../lib/useSecondaryColor";
 import { SiteMetadata } from "../pages/api/site-metadata";
 
@@ -74,10 +75,6 @@ const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
 }) => {
   const hostname = new URL(href).hostname;
 
-  const faviconUrl = `http://www.google.com/s2/favicons?domain=${encodeURIComponent(
-    href ?? "",
-  )}&size=64`;
-
   return (
     <HStack
       as="a"
@@ -105,7 +102,7 @@ const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
         <Box flex={1} marginTop="2">
           <Text
             as="div"
-            fontSize="xs"
+            fontSize={["xs", "xs", "sm"]}
             color={useSecondaryColor()}
             noOfLines={2}
             wordBreak="break-all">
@@ -113,7 +110,7 @@ const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
           </Text>
         </Box>
         <HStack>
-          <Image src={faviconUrl} alt="" w="4" h="4" />
+          <Image src={getFaviconUrl(href)} alt="" w="4" h="4" />
           <Text fontSize="sm" as="div" noOfLines={1}>
             {hostname}
           </Text>

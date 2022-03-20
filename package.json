@@ -33,6 +33,7 @@
     "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
     "remark-slug": "^7.0.1",
+    "rss-parser": "^3.12.0",
     "strip-markdown": "^5.0.0"
   },
   "devDependencies": {
