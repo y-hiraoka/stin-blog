@@ -1,9 +1,9 @@
 import { Box, Container, Heading, Tag } from "@chakra-ui/react";
 import { VFC } from "react";
-import { ArticleHeader } from "../models";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import { ArticleList } from "../components/ArticleList";
+import { ArticleList } from "../shared/ArticleList";
+import { Footer } from "../shared/Footer";
+import { Header } from "../shared/Header";
+import { ArticleHeader } from "../../models";
 
 type Props = {
   tagName: string;

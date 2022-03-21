@@ -3,7 +3,7 @@ import { VFC } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { UrlObject } from "url";
-import { pagesPath } from "../lib/$path";
+import { pagesPath } from "../../lib/$path";
 
 export const ArticlesNavigation: VFC = () => {
   return (

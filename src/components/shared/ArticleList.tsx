@@ -1,6 +1,6 @@
 import { Grid } from "@chakra-ui/react";
 import { VFC } from "react";
-import { ArticleHeader } from "../models";
+import { ArticleHeader } from "../../models";
 import { ArticleCard } from "./ArticleCard";
 
 type Props = { articles: ArticleHeader[] };

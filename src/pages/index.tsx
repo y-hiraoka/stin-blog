@@ -1,23 +1,23 @@
 import { getSortedArticleHeaders, getZennArticleHeaders } from "../lib/posts";
 import { GetStaticProps, NextPage } from "next";
 import { ArticleHeader } from "../models";
-import { Root } from "../templates/Root";
-import { SEO } from "../components/SEO";
+import { Home } from "../components/pages/Home";
+import { SEO } from "../components/shared/SEO";
 
 type Props = {
   articles: ArticleHeader[];
 };
 
-const Home: NextPage<Props> = ({ articles }) => {
+const HomePage: NextPage<Props> = ({ articles }) => {
   return (
     <>
       <SEO title="Home" description="すてぃんの技術ブログ" />
-      <Root articles={articles} />
+      <Home articles={articles} />
     </>
   );
 };
 
-export default Home;
+export default HomePage;
 
 export const getStaticProps: GetStaticProps<Props> = async () => {
   const articles = await getSortedArticleHeaders();

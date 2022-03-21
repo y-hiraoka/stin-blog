@@ -9,9 +9,9 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { useEffect, useState, VFC } from "react";
-import { getFaviconUrl } from "../lib/getFaviconUrl";
-import { useSecondaryColor } from "../lib/useSecondaryColor";
-import { SiteMetadata } from "../pages/api/site-metadata";
+import { getFaviconUrl } from "../../lib/getFaviconUrl";
+import { useSecondaryColor } from "../../lib/useSecondaryColor";
+import { SiteMetadata } from "../../pages/api/site-metadata";
 
 type MetadataState =
   | {

@@ -1,13 +1,13 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
 import { VFC } from "react";
-import { ArticleHeader, ZennArticleHeader } from "../models";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import { ArticleList } from "../components/ArticleList";
-import { ArticlesNavigation } from "../components/ArticlesNavigation";
+import { ArticleList } from "../shared/ArticleList";
+import { ArticlesNavigation } from "../shared/ArticlesNavigation";
+import { Footer } from "../shared/Footer";
+import { Header } from "../shared/Header";
+import { ArticleHeader } from "../../models";
 
 type Props = {
-  articles: (ArticleHeader | ZennArticleHeader)[];
+  articles: ArticleHeader[];
 };
 
 export const ZennArticles: VFC<Props> = ({ articles }) => {

@@ -1,6 +1,6 @@
 import Head from "next/head";
-import { config } from "../config";
-import { staticPath } from "../lib/$path";
+import { config } from "../../config";
+import { staticPath } from "../../lib/$path";
 
 type Props = {
   title: string;

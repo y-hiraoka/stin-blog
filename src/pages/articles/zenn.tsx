@@ -1,8 +1,8 @@
 import { GetStaticProps, NextPage } from "next";
-import { SEO } from "../../components/SEO";
+import { SEO } from "../../components/shared/SEO";
 import { getZennArticleHeaders } from "../../lib/posts";
 import { ArticleHeader } from "../../models";
-import { ZennArticles } from "../../templates/ZennArticles";
+import { ZennArticles } from "../../components/pages/ZennArticles";
 
 type Props = {
   articles: ArticleHeader[];

@@ -1,8 +1,8 @@
 import { GetStaticProps, NextPage } from "next";
-import { SEO } from "../../components/SEO";
+import { SEO } from "../../components/shared/SEO";
 import { getSortedArticleHeaders } from "../../lib/posts";
 import { ArticleHeader } from "../../models";
-import { Articles } from "../../templates/Articles";
+import { Articles } from "../../components/pages/Articles";
 
 type Props = {
   articles: ArticleHeader[];

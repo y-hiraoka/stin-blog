@@ -23,7 +23,7 @@ import { Prism } from "react-syntax-highlighter";
 import { a11yDark as prismStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { RichLinkCard } from "./RichLinkCard";
 import styles from "./MarkdownRenderer.module.css";
-import { useSecondaryColor } from "../lib/useSecondaryColor";
+import { useSecondaryColor } from "../../lib/useSecondaryColor";
 
 type Props = { children: string };
 

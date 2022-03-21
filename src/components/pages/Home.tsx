@@ -2,17 +2,17 @@ import { Box, Center, Container, Heading, Icon, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { VFC } from "react";
 import { MdArrowForward } from "react-icons/md";
-import { ArticleHeader, ZennArticleHeader } from "../models";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import { ArticleList } from "../components/ArticleList";
-import { pagesPath } from "../lib/$path";
+import { ArticleList } from "../shared/ArticleList";
+import { Footer } from "../shared/Footer";
+import { Header } from "../shared/Header";
+import { pagesPath } from "../../lib/$path";
+import { ArticleHeader } from "../../models";
 
 type Props = {
-  articles: (ArticleHeader | ZennArticleHeader)[];
+  articles: ArticleHeader[];
 };
 
-export const Root: VFC<Props> = ({ articles }) => {
+export const Home: VFC<Props> = ({ articles }) => {
   return (
     <Box>
       <Header />
@@ -30,7 +30,7 @@ export const Root: VFC<Props> = ({ articles }) => {
               p="4"
               textDecoration="underline"
               _hover={{ color: "purple.300" }}>
-              <span>記事一覧へ</span>
+              <span>すべての記事一覧へ</span>
               <Icon as={MdArrowForward} />
             </Link>
           </NextLink>

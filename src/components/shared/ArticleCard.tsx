@@ -11,13 +11,13 @@ import {
 } from "@chakra-ui/react";
 import NextLink from "next/link";
 import { VFC } from "react";
-import { useSecondaryColor } from "../lib/useSecondaryColor";
-import { ArticleHeader } from "../models";
-import { pagesPath } from "../lib/$path";
+import { config } from "../../config";
+import { pagesPath } from "../../lib/$path";
+import { getFaviconUrl } from "../../lib/getFaviconUrl";
+import { useSecondaryColor } from "../../lib/useSecondaryColor";
+import { ArticleHeader } from "../../models";
 import { Datetime } from "./Datetime";
 import { TagLink } from "./TagLink";
-import { getFaviconUrl } from "../lib/getFaviconUrl";
-import { config } from "../config";
 
 type Props = { article: ArticleHeader };
 

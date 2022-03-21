@@ -9,13 +9,13 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import React from "react";
-import { Article as IArticle } from "../models";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import { MarkdownRenderer } from "../components/MarkdownRenderer";
-import { useSecondaryColor } from "../lib/useSecondaryColor";
-import { Datetime } from "../components/Datetime";
-import { TagLink } from "../components/TagLink";
+import { Datetime } from "../shared/Datetime";
+import { Footer } from "../shared/Footer";
+import { Header } from "../shared/Header";
+import { MarkdownRenderer } from "../shared/MarkdownRenderer";
+import { TagLink } from "../shared/TagLink";
+import { useSecondaryColor } from "../../lib/useSecondaryColor";
+import { Article as IArticle } from "../../models";
 
 type Props = {
   article: IArticle;

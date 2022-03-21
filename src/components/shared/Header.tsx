@@ -11,7 +11,7 @@ import {
 import { VFC } from "react";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import NextLink from "next/link";
-import { staticPath } from "../lib/$path";
+import { staticPath } from "../../lib/$path";
 
 export const Header: VFC = () => {
   const { toggleColorMode } = useColorMode();

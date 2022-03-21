@@ -1,9 +1,8 @@
 import { getAllArticleTags, getSortedArticleHeaders } from "../../lib/posts";
-import Head from "next/head";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import { ArticleHeader } from "../../models";
-import { TaggedArticles } from "../../templates/TaggedArticles";
-import { SEO } from "../../components/SEO";
+import { TaggedArticles } from "../../components/pages/TaggedArticles";
+import { SEO } from "../../components/shared/SEO";
 
 type Props = {
   tagName: string;
@@ -13,9 +12,6 @@ type Props = {
 const Post: NextPage<Props> = ({ articles, tagName }) => {
   return (
     <>
-      <Head>
-        <title>tag: {tagName}</title>
-      </Head>
       <SEO
         title={`tag: ${tagName}`}
         description={`"${tagName}" でタグ付けされた記事一覧`}

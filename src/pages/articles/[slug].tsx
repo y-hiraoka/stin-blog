@@ -1,8 +1,8 @@
 import { getAllPostSlugs, getArticleData } from "../../lib/posts";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { Article as IArticle } from "../../models";
-import { Article } from "../../templates/Article";
-import { SEO } from "../../components/SEO";
+import { Article } from "../../components/pages/Article";
+import { SEO } from "../../components/shared/SEO";
 
 type Props = { article: IArticle };
 
