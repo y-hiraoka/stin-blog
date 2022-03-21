@@ -9,11 +9,9 @@ import {
   Table as ChakraTable,
   Thead as ChakraThead,
   Tbody as ChakraTbody,
-  Tfoot as ChakraTfoot,
   Tr as ChakraTr,
   Th as ChakraTh,
   Td as ChakraTd,
-  TableCaption as ChakraTableCaption,
 } from "@chakra-ui/react";
 import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
