@@ -8,10 +8,10 @@ type Props = {
   articles: ArticleHeader[];
 };
 
-const Home: NextPage<Props> = ({ articles }: Props) => {
+const Home: NextPage<Props> = ({ articles }) => {
   return (
     <>
-      <SEO title="TOP" description="すてぃんの技術ブログ" />
+      <SEO title="Home" description="すてぃんの技術ブログ" />
       <Root articles={articles} />
     </>
   );
@@ -26,9 +26,11 @@ export const getStaticProps: GetStaticProps<Props> = async () => {
   const result = ([] as ArticleHeader[])
     .concat(articles)
     .concat(zennArticles)
-    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1));
+    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
+    .slice(0, 10);
 
   return {
     props: { articles: result },
+    revalidate: 60 * 60 * 24,
   };
 };

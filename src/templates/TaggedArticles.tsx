@@ -3,7 +3,7 @@ import { VFC } from "react";
 import { ArticleHeader } from "../models";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import { Articles } from "../components/Articles";
+import { ArticleList } from "../components/ArticleList";
 
 type Props = {
   tagName: string;
@@ -17,14 +17,14 @@ export const TaggedArticles: VFC<Props> = ({ tagName, articles }) => {
       <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
         <Heading
           as="h1"
-          marginBottom="4"
+          marginBottom="8"
           display="flex"
           alignItems="center"
           gap="4"
           fontSize="2xl">
           Tagged with <Tag size="lg">{tagName}</Tag>
         </Heading>
-        <Articles articles={articles} />
+        <ArticleList articles={articles} />
       </Container>
       <Footer />
     </Box>

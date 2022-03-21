@@ -33,7 +33,7 @@ export const ArticleCard: VFC<Props> = ({ article }) => {
       boxShadow="md">
       <Datetime
         datetime={article.createdAt}
-        format="yyyy年M月d日 H時m分"
+        format="yyyy年MM月dd日 HH時mm分"
         color={useSecondaryColor()}
         fontSize={["sm"]}
         letterSpacing="wider"
