@@ -9,7 +9,7 @@ type Props = { article: IArticle };
 export default function Post({ article }: Props) {
   return (
     <>
-      <SEO title={article.header.matterData.title} description={article.header.excerpt} />
+      <SEO title={article.header.title} description={article.header.excerpt} />
       <Article article={article} />
     </>
   );

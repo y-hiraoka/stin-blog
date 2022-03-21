@@ -46,9 +46,7 @@ export const getStaticProps: GetStaticProps<Props, { tagName: string }> = async 
   return {
     props: {
       tagName: params.tagName,
-      articles: articles.filter(article =>
-        article.matterData.tags.includes(params.tagName),
-      ),
+      articles: articles.filter(article => article.tags.includes(params.tagName)),
     },
   };
 };

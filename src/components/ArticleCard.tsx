@@ -1,5 +1,5 @@
 import {
-  Box,
+  Flex,
   Heading,
   HStack,
   Image,
@@ -12,35 +12,41 @@ import {
 import NextLink from "next/link";
 import { VFC } from "react";
 import { useSecondaryColor } from "../lib/useSecondaryColor";
-import { ArticleHeader, ZennArticleHeader } from "../models";
+import { ArticleHeader } from "../models";
 import { pagesPath } from "../lib/$path";
 import { Datetime } from "./Datetime";
 import { TagLink } from "./TagLink";
 import { getFaviconUrl } from "../lib/getFaviconUrl";
+import { config } from "../config";
 
-type Props = { article: ArticleHeader | ZennArticleHeader };
+type Props = { article: ArticleHeader };
 
 export const ArticleCard: VFC<Props> = ({ article }) => {
   return (
-    <Box
+    <Flex
       as="article"
       borderRadius="md"
+      flexDirection="column"
       py="4"
       px="6"
       bgColor={useColorModeValue("gray.100", "gray.700")}
       boxShadow="md">
       <Datetime
-        datetime={
-          article.type === "stin-blog" ? article.matterData.createdAt : article.pubDate
-        }
+        datetime={article.createdAt}
         format="yyyy年M月d日 H時m分"
         color={useSecondaryColor()}
         fontSize={["sm"]}
+        letterSpacing="wider"
       />
-      <Heading as="h3" fontSize={["lg", "lg", "xl"]} lineHeight={1.6} marginTop="4">
+      <Heading
+        as="h3"
+        fontSize={["lg", "lg", "xl"]}
+        lineHeight={1.6}
+        marginTop="4"
+        flex={1}>
         {article.type === "stin-blog" ? (
           <NextLink href={pagesPath.articles._slug(article.slug).$url()} passHref>
-            <Link>{article.matterData.title}</Link>
+            <Link>{article.title}</Link>
           </NextLink>
         ) : (
           <Link isExternal href={article.url}>
@@ -50,20 +56,26 @@ export const ArticleCard: VFC<Props> = ({ article }) => {
       </Heading>
       {article.type === "stin-blog" ? (
         <Wrap marginTop="8">
-          {article.matterData.tags.map(tag => (
+          {article.tags.map(tag => (
             <WrapItem key={tag}>
               <TagLink tag={tag} />
             </WrapItem>
           ))}
         </Wrap>
       ) : (
-        <HStack>
-          <Image src={getFaviconUrl("zenn.dev")} alt="" w="4" h="4" />
-          <Text fontSize="sm" as="div">
-            Zenn
-          </Text>
-        </HStack>
+        <Link
+          href={`https://zenn.dev/${config.social.zenn}`}
+          isExternal
+          w="fit-content"
+          marginTop="8">
+          <HStack>
+            <Image src={getFaviconUrl("zenn.dev")} alt="" w="4" h="4" />
+            <Text fontSize="md" as="div">
+              Zenn
+            </Text>
+          </HStack>
+        </Link>
       )}
-    </Box>
+    </Flex>
   );
 };

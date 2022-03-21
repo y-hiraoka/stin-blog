@@ -1,29 +1,27 @@
 export type Tag = { name: string; itemCount: number };
 
-export type FrontMatter = {
+type ArticleHeaderBase = {
   title: string;
-  tags: string[];
   createdAt: string;
-  updatedAt?: string;
-  imageUrl?: string;
 };
 
-export type ArticleHeader = {
+export type BlogArticleHeader = ArticleHeaderBase & {
   type: "stin-blog";
   slug: string;
-  matterData: FrontMatter;
+  tags: string[];
   excerpt: string;
+  updatedAt: string | null;
 };
 
-export type Article = {
-  header: ArticleHeader;
-  bodyMdText: string;
-  tocMdText: string;
-};
-
-export type ZennArticleHeader = {
+export type ZennArticleHeader = ArticleHeaderBase & {
   type: "zenn";
   url: string;
-  title: string;
-  pubDate: string;
+};
+
+export type ArticleHeader = BlogArticleHeader | ZennArticleHeader;
+
+export type Article = {
+  header: BlogArticleHeader;
+  bodyMdText: string;
+  tocMdText: string;
 };

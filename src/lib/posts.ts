@@ -2,9 +2,11 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { remark } from "remark";
+import RssParser from "rss-parser";
 import strip from "strip-markdown";
 import markdownToc from "markdown-toc";
-import { Article, ArticleHeader, FrontMatter, Tag } from "../models";
+import { z } from "zod";
+import { Article, BlogArticleHeader, Tag, ZennArticleHeader } from "../models";
 import { config } from "../config";
 
 const postsDirectory = path.join(process.cwd(), "contents");
@@ -16,33 +18,22 @@ async function getArticleRawData(fileName: string) {
   return fileContent;
 }
 
-function getFrontMatter(
-  slug: string,
-  rawData: string,
+const frontMatterSchema = z.object({
+  title: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string().optional(),
+  tags: z.array(z.string()),
+});
+type FrontMatter = z.infer<typeof frontMatterSchema>;
+function divideFrontMatterAndContent(
+  markdown: string,
 ): { frontMatter: FrontMatter; content: string } {
-  const matterResult = matter(rawData);
+  const matterResult = matter(markdown);
 
-  const matterData = matterResult.data as Partial<FrontMatter>;
-
-  if (!matterData.title) {
-    throw new Error(`${slug}: title is required in front-matter`);
-  }
-
-  if (!matterData.createdAt) {
-    throw new Error(`${slug}: createdAt is required in front-matter`);
-  }
-
-  if (!matterData.tags) {
-    throw new Error(`${slug}: tags is required in front-matter`);
-  }
+  const matterData = frontMatterSchema.parse(matterResult.data);
 
   return {
-    frontMatter: {
-      ...matterData,
-      title: matterData.title,
-      createdAt: matterData.createdAt,
-      tags: matterData.tags,
-    },
+    frontMatter: matterData,
     content: matterResult.content,
   };
 }
@@ -79,54 +70,82 @@ async function getAllArticlesRawData() {
   );
 }
 
-export async function getSortedArticleHeaders(): Promise<ArticleHeader[]> {
+export async function getSortedArticleHeaders(): Promise<BlogArticleHeader[]> {
   const rawData = await getAllArticlesRawData();
 
-  const headerPromises = rawData.map<Promise<ArticleHeader>>(async data => {
-    const { frontMatter, content } = getFrontMatter(data.slug, data.content);
+  const headerPromises = rawData.map<Promise<BlogArticleHeader>>(async data => {
+    try {
+      const { frontMatter, content } = divideFrontMatterAndContent(data.content);
 
-    return {
-      type: "stin-blog",
-      slug: data.slug,
-      matterData: frontMatter,
-      excerpt: await getArticleExcerpt(content),
-    };
+      return {
+        type: "stin-blog",
+        slug: data.slug,
+        tags: frontMatter.tags,
+        title: frontMatter.title,
+        excerpt: await getArticleExcerpt(content),
+        createdAt: new Date(frontMatter.createdAt).toISOString(),
+        updatedAt: frontMatter.updatedAt
+          ? new Date(frontMatter.updatedAt).toISOString()
+          : null,
+      };
+    } catch (error) {
+      console.error(`Error occured in ${data.slug}.`);
+      console.error(error);
+      throw error;
+    }
   });
 
   // Sort posts by date
-  return (await Promise.all(headerPromises)).sort((a, b) =>
-    a.matterData.createdAt < b.matterData.createdAt ? 1 : -1,
+  return await Promise.all(headerPromises).then(headers =>
+    headers.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
   );
 }
 
 export async function getArticleData(slug: string): Promise<Article> {
   const rawData = await getArticleRawData(`${slug}.md`);
 
-  const { content, frontMatter } = getFrontMatter(slug, rawData);
+  try {
+    const { content, frontMatter } = divideFrontMatterAndContent(rawData);
 
-  const tocMdText = markdownToc(content).content;
+    const tocMdText = markdownToc(content).content;
 
-  const excerpt = await getArticleExcerpt(content);
+    const excerpt = await getArticleExcerpt(content);
 
-  return {
-    header: {
-      type: "stin-blog",
-      slug,
-      matterData: frontMatter,
-      excerpt,
-    },
-    bodyMdText: content,
-    tocMdText,
-  };
+    return {
+      header: {
+        type: "stin-blog",
+        slug: slug,
+        excerpt,
+        tags: frontMatter.tags,
+        createdAt: new Date(frontMatter.createdAt).toISOString(),
+        title: frontMatter.title,
+        updatedAt: frontMatter.updatedAt
+          ? new Date(frontMatter.updatedAt).toISOString()
+          : null,
+      },
+      bodyMdText: content,
+      tocMdText,
+    };
+  } catch (error) {
+    console.error(`Error occured in ${slug}.`);
+    console.error(error);
+    throw error;
+  }
 }
 
 export async function getAllArticleTags(): Promise<Tag[]> {
   const articles = await getAllArticlesRawData();
 
   const tagsList = articles.map(article => {
-    const { frontMatter } = getFrontMatter(article.slug, article.content);
+    try {
+      const { frontMatter } = divideFrontMatterAndContent(article.content);
 
-    return frontMatter.tags;
+      return frontMatter.tags;
+    } catch (error) {
+      console.error(`Error occured in ${article.slug}.`);
+      console.error(error);
+      throw error;
+    }
   });
 
   const tagsCount = {} as Record<string, number>;
@@ -140,5 +159,19 @@ export async function getAllArticleTags(): Promise<Tag[]> {
   return Object.entries(tagsCount).map(([key, count]) => ({
     name: key,
     itemCount: count,
+  }));
+}
+
+export async function getZennArticleHeaders(): Promise<ZennArticleHeader[]> {
+  const parser = new RssParser();
+  const feed = await parser.parseURL(`https://zenn.dev/${config.social.zenn}/feed`);
+
+  return feed.items.map(item => ({
+    type: "zenn",
+    title: item.title ?? "",
+    createdAt: item.pubDate
+      ? new Date(item.pubDate).toISOString()
+      : new Date().toISOString(),
+    url: item.link ?? "",
   }));
 }
