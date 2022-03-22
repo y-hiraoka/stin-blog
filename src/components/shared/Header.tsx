@@ -44,15 +44,15 @@ export const Header: VFC = () => {
               }
               onClick={toggleColorMode}
             />
-            <Link
-              isExternal
-              href="https://github.com/y-hiraoka/stin-blog"
+            <IconButton
               aria-label="GitHub へ"
               title="GitHub へ"
-              display="inline-flex"
-              alignItems="center">
-              <Icon fontSize="2xl" as={FaGithub} />
-            </Link>
+              variant="ghost"
+              as={Link}
+              icon={<Icon fontSize="2xl" as={FaGithub} />}
+              isExternal
+              href="https://github.com/y-hiraoka/stin-blog"
+            />
           </HStack>
         </Flex>
       </Container>
