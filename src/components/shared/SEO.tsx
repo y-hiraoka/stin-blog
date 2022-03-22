@@ -18,7 +18,10 @@ export const SEO: React.VFC<Props> = ({ title, description }) => {
       <meta property="og:title" content={title} />
       {description && <meta property="og:description" content={description} />}
       <meta property="og:site_name" content={siteTitle} />
-      <meta property="og:image" content={staticPath.images.ogimage_png} />
+      <meta
+        property="og:image"
+        content={config.siteUrl + staticPath.images.ogimage_png}
+      />
     </Head>
   );
 };
