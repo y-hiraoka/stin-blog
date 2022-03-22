@@ -2,13 +2,16 @@ import {
   Box,
   Container,
   Flex,
+  HStack,
   Icon,
   IconButton,
   Image,
+  Link,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { VFC } from "react";
+import { FaGithub } from "react-icons/fa";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import NextLink from "next/link";
 import { staticPath } from "../../lib/$path";
@@ -32,12 +35,25 @@ export const Header: VFC = () => {
               />
             </a>
           </NextLink>
-          <IconButton
-            aria-label="toggle theme"
-            variant="ghost"
-            icon={<Icon fontSize="2xl" as={useColorModeValue(MdDarkMode, MdLightMode)} />}
-            onClick={toggleColorMode}
-          />
+          <HStack spacing="4">
+            <IconButton
+              aria-label="toggle theme"
+              variant="ghost"
+              icon={
+                <Icon fontSize="2xl" as={useColorModeValue(MdDarkMode, MdLightMode)} />
+              }
+              onClick={toggleColorMode}
+            />
+            <Link
+              isExternal
+              href="https://github.com/y-hiraoka/stin-blog"
+              aria-label="GitHub へ"
+              title="GitHub へ"
+              display="inline-flex"
+              alignItems="center">
+              <Icon fontSize="2xl" as={FaGithub} />
+            </Link>
+          </HStack>
         </Flex>
       </Container>
     </Box>
