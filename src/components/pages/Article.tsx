@@ -1,5 +1,6 @@
 import {
   Box,
+  Center,
   Container,
   Divider,
   Heading,
@@ -16,6 +17,7 @@ import { MarkdownRenderer } from "../shared/MarkdownRenderer";
 import { TagLink } from "../shared/TagLink";
 import { useSecondaryColor } from "../../lib/useSecondaryColor";
 import { Article as IArticle } from "../../models";
+import { LinkToArticles } from "../shared/LinkToArticles";
 
 type Props = {
   article: IArticle;
@@ -61,6 +63,9 @@ export const Article: React.VFC<Props> = ({ article }) => {
         <Box as="section">
           <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
         </Box>
+        <Center marginTop="12">
+          <LinkToArticles />
+        </Center>
       </Container>
       <Footer />
     </Box>

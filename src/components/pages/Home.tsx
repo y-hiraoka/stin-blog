@@ -1,11 +1,9 @@
-import { Box, Center, Container, Heading, Icon, Link } from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Box, Center, Container, Heading } from "@chakra-ui/react";
 import { VFC } from "react";
-import { MdArrowForward } from "react-icons/md";
 import { ArticleList } from "../shared/ArticleList";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
-import { pagesPath } from "../../lib/$path";
+import { LinkToArticles } from "../shared/LinkToArticles";
 import { ArticleHeader } from "../../models";
 
 type Props = {
@@ -22,18 +20,7 @@ export const Home: VFC<Props> = ({ articles }) => {
         </Heading>
         <ArticleList articles={articles} />
         <Center marginTop="12">
-          <NextLink href={pagesPath.articles.$url()} passHref>
-            <Link
-              display="flex"
-              alignItems="center"
-              gap="2"
-              p="4"
-              textDecoration="underline"
-              _hover={{ color: "purple.300" }}>
-              <span>すべての記事一覧へ</span>
-              <Icon as={MdArrowForward} />
-            </Link>
-          </NextLink>
+          <LinkToArticles />
         </Center>
       </Container>
       <Footer />
