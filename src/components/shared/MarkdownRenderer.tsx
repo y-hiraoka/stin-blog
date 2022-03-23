@@ -12,6 +12,7 @@ import {
   Tr as ChakraTr,
   Th as ChakraTh,
   Td as ChakraTd,
+  useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
@@ -136,6 +137,8 @@ const ListItem: Components["li"] = ({ node, checked, index, ordered, ...props })
 };
 
 const Paragraph: Components["p"] = ({ node, ...props }) => {
+  const { colorMode } = useColorMode();
+
   const child = node.children[0];
   if (
     node.children.length === 1 &&
@@ -151,7 +154,7 @@ const Paragraph: Components["p"] = ({ node, ...props }) => {
     ) {
       return (
         <Box my="6">
-          <EmbeddedTweet url={child.properties.href} />
+          <EmbeddedTweet url={child.properties.href} theme={colorMode} lang="ja" />
         </Box>
       );
     }

@@ -44,7 +44,9 @@ export const EmbeddedTweet: VFC<Props> = props => {
         data-align={props.align}
         data-lang={props.lang}
         data-dnt={props.dnt}>
-        <a href={props.url} />
+        <a href={props.url} target="_blank" rel="noreferrer noopener">
+          {props.url}
+        </a>
       </blockquote>
     </div>
   );
