@@ -22,6 +22,7 @@ import { a11yDark as prismStyle } from "react-syntax-highlighter/dist/cjs/styles
 import { RichLinkCard } from "./RichLinkCard";
 import styles from "./MarkdownRenderer.module.css";
 import { useSecondaryColor } from "../../lib/useSecondaryColor";
+import { EmbeddedTweet } from "./EmbeddedTweet";
 
 type Props = { children: string };
 
@@ -144,8 +145,19 @@ const Paragraph: Components["p"] = ({ node, ...props }) => {
     child.children[0].type === "text" &&
     child.properties.href === child.children[0].value
   ) {
+    if (
+      // Twitter の Tweet URL
+      /https?:\/\/(www\.)?twitter.com\/\w{1,15}\/status\/.*/.test(child.properties.href)
+    ) {
+      return (
+        <Box my="6">
+          <EmbeddedTweet url={child.properties.href} />
+        </Box>
+      );
+    }
+
     return (
-      <Box my="4">
+      <Box my="6">
         <RichLinkCard href={child.properties.href} isExternal />
       </Box>
     );
