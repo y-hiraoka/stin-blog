@@ -20,7 +20,6 @@ type MetadataState =
     }
   | {
       metadata: SiteMetadata;
-      url: string;
       isLoading: false;
     };
 const useMetadataState = (href: string) => {
@@ -38,7 +37,6 @@ const useMetadataState = (href: string) => {
       .then(data => {
         setState({
           metadata: data,
-          url: url,
           isLoading: false,
         });
       });
@@ -58,29 +56,19 @@ export const RichLinkCard: VFC<Props> = ({ href, isExternal }) => {
   if (metadataState.isLoading) {
     return <RichLinkCardSkeleton />;
   } else {
-    return (
-      <RichLinkCardLoaded
-        href={metadataState.url}
-        isExternal={isExternal}
-        metadata={metadataState.metadata}
-      />
-    );
+    return <RichLinkCardLoaded metadata={metadataState.metadata} />;
   }
 };
 
-const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
-  href,
-  isExternal,
-  metadata,
-}) => {
-  const hostname = new URL(href).hostname;
+const RichLinkCardLoaded: VFC<{ metadata: SiteMetadata }> = ({ metadata }) => {
+  const hostname = new URL(metadata.url).hostname;
 
   return (
     <HStack
       as="a"
-      href={href}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener" : undefined}
+      href={metadata.url}
+      target="_blank"
+      rel="noopener"
       w="full"
       h="36"
       borderRadius="lg"
@@ -96,7 +84,7 @@ const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
           </Text>
         ) : (
           <Text as="div" noOfLines={2} wordBreak="break-all">
-            {href}
+            {metadata.url}
           </Text>
         )}
         <Box flex={1} marginTop="2">
@@ -110,7 +98,7 @@ const RichLinkCardLoaded: VFC<Props & { metadata: SiteMetadata }> = ({
           </Text>
         </Box>
         <HStack>
-          <Image src={getFaviconUrl(href)} alt="" w="4" h="4" />
+          <Image src={getFaviconUrl(hostname)} alt="" w="4" h="4" />
           <Text fontSize="sm" as="div" noOfLines={1}>
             {hostname}
           </Text>
