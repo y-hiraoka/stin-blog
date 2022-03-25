@@ -12,6 +12,7 @@ import {
   Tr as ChakraTr,
   Th as ChakraTh,
   Td as ChakraTd,
+  useColorMode,
 } from "@chakra-ui/react";
 import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
@@ -22,6 +23,7 @@ import { a11yDark as prismStyle } from "react-syntax-highlighter/dist/cjs/styles
 import { RichLinkCard } from "./RichLinkCard";
 import styles from "./MarkdownRenderer.module.css";
 import { useSecondaryColor } from "../../lib/useSecondaryColor";
+import { EmbeddedTweet } from "./EmbeddedTweet";
 
 type Props = { children: string };
 
@@ -135,6 +137,8 @@ const ListItem: Components["li"] = ({ node, checked, index, ordered, ...props })
 };
 
 const Paragraph: Components["p"] = ({ node, ...props }) => {
+  const { colorMode } = useColorMode();
+
   const child = node.children[0];
   if (
     node.children.length === 1 &&
@@ -144,8 +148,19 @@ const Paragraph: Components["p"] = ({ node, ...props }) => {
     child.children[0].type === "text" &&
     child.properties.href === child.children[0].value
   ) {
+    if (
+      // Twitter の Tweet URL
+      /https?:\/\/(www\.)?twitter.com\/\w{1,15}\/status\/.*/.test(child.properties.href)
+    ) {
+      return (
+        <Box my="6">
+          <EmbeddedTweet url={child.properties.href} theme={colorMode} lang="ja" />
+        </Box>
+      );
+    }
+
     return (
-      <Box my="4">
+      <Box my="6">
         <RichLinkCard href={child.properties.href} isExternal />
       </Box>
     );

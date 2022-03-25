@@ -1,6 +1,7 @@
 import { ChakraProvider, extendTheme, ThemeComponentProps } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 import { AppProps } from "next/app";
+import { EmbeddedTweetScript } from "../components/shared/EmbeddedTweet";
 import { useGoogleAnalytics } from "../lib/gtag";
 
 const theme = extendTheme({
@@ -19,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <ChakraProvider theme={theme}>
+      <EmbeddedTweetScript />
       <Component {...pageProps} />
     </ChakraProvider>
   );
