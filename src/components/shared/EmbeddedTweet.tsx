@@ -8,7 +8,7 @@ declare const twttr: {
   };
 };
 
-type Props = {
+type EmbeddedTweetProps = {
   url: string;
   id?: number;
   cards?: "hidden";
@@ -21,7 +21,7 @@ type Props = {
   dnt?: true;
 };
 
-export const EmbeddedTweet: VFC<Props> = props => {
+export const EmbeddedTweet: VFC<EmbeddedTweetProps> = props => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const key = JSON.stringify(props);
