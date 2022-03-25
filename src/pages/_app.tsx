@@ -1,7 +1,7 @@
 import { ChakraProvider, extendTheme, ThemeComponentProps } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 import { AppProps } from "next/app";
-import { EmbeddedTweetScript } from "../components/shared/EmbeddedTweet";
+import Script from "next/script";
 import { useGoogleAnalytics } from "../lib/gtag";
 
 const theme = extendTheme({
@@ -19,9 +19,15 @@ export default function App({ Component, pageProps }: AppProps) {
   useGoogleAnalytics();
 
   return (
-    <ChakraProvider theme={theme}>
-      <EmbeddedTweetScript />
-      <Component {...pageProps} />
-    </ChakraProvider>
+    <>
+      <Script
+        id="twitter-embed-script"
+        src="https://platform.twitter.com/widgets.js"
+        strategy="beforeInteractive"
+      />
+      <ChakraProvider theme={theme}>
+        <Component {...pageProps} />
+      </ChakraProvider>
+    </>
   );
 }

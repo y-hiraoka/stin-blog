@@ -164,7 +164,29 @@ export const EmbeddedTweetScript: VFC = () => {
 };
 ```
 
-公式が提供してくれている効率化版のスクリプトをまるっと `script` タグの `dangerouslySetInnerHTML` にぶち込みます。React では通常の HTML のように `<script>console.log("foo")</script>` と書いてもスクリプトは実行されませんが、 `dangerouslySetInnerHTML` に文字列のスクリプトを渡すと実行してくれます(用法用量に注意)。これをアプリのルート位置 (このブログサイトは Next.js なので \_app.tsx) に差し込みます。
+~~公式が提供してくれている効率化版のスクリプトをまるっと `script` タグの `dangerouslySetInnerHTML` にぶち込みます。React では通常の HTML のように `<script>console.log("foo")</script>` と書いてもスクリプトは実行されませんが、 `dangerouslySetInnerHTML` に文字列のスクリプトを渡すと実行してくれます(用法用量に注意)。これをアプリのルート位置 (このブログサイトは Next.js なので \_app.tsx) に差し込みます。~~
+
+#### 追記修正
+
+Next.js 環境では上記のコンポーネントを差し込むだけではだめでした(Chrome がよしなにやってくれていたっぽく、開発中と執筆中はまったく気づかなかった)。
+
+次の節で紹介する React コンポーネントには「ツイートを埋め込む」でコピペする HTML とは違いスクリプトタグを含まないため、上記コードのように 1 度だけ widgets.js が読み込まれることを保証する必要なんてなかった。
+
+Next.js 環境の場合は次のような Next.js 提供の `Script` コンポーネントを \_app.tsx に差し込むことで解決しました。
+
+```tsx
+import Script from "next/script";
+
+<Script
+  id="twitter-embed-script"
+  src="https://platform.twitter.com/widgets.js"
+  strategy="beforeInteractive"
+/>;
+```
+
+`strategy="beforeInteractive` によってページが操作可能になる前にスクリプトを読み込むことを指定します([参照](https://nextjs.org/docs/api-reference/next/script))。
+
+完全に理解したと宣言した人らしく、全然理解していませんでした。（追記終わり）
 
 ### `iframe` になるコンポーネント
 
