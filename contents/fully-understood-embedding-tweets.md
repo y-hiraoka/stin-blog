@@ -22,7 +22,7 @@ https://twitter.com/jack/status/20
 
 React コンポーネントの実装を見たい人 ↓
 
-https://github.com/y-hiraoka/stin-blog/blob/986d9623d2364beb67decec7a432bf0fcc34eb4b/src/components/shared/EmbeddedTweet.tsx
+https://github.com/y-hiraoka/stin-blog/blob/5c95bd1c452b79966b9d3a6a163724e44728b453/src/components/shared/EmbeddedTweet.tsx
 
 Twitter の埋め込みツイートについて知りたい人 ↓
 
