@@ -164,7 +164,7 @@ export async function getAllArticleTags(): Promise<Tag[]> {
 
 export async function getZennArticleHeaders(): Promise<ZennArticleHeader[]> {
   const parser = new RssParser();
-  const feed = await parser.parseURL(`https://zenn.dev/${config.social.zenn}/feed`);
+  const feed = await parser.parseURL(`https://zenn.dev/${config.social.zenn}/feed?all=1`);
 
   return feed.items.map(item => ({
     type: "zenn",
