@@ -32,6 +32,9 @@ export const Header: VFC = () => {
                 alt="stin's blog logo"
                 title="stin's blog"
                 h={["12", "14", "16"]}
+                w="auto"
+                htmlWidth={982}
+                htmlHeight={298}
               />
             </a>
           </NextLink>

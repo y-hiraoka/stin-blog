@@ -69,7 +69,14 @@ export const ArticleCard: VFC<Props> = ({ article }) => {
           w="fit-content"
           marginTop="8">
           <HStack>
-            <Image src={getFaviconUrl("zenn.dev")} alt="" w="4" h="4" />
+            <Image
+              src={getFaviconUrl("zenn.dev", 16)}
+              alt=""
+              htmlWidth={16}
+              htmlHeight={16}
+              w="4"
+              h="4"
+            />
             <Text fontSize="md" as="div">
               Zenn
             </Text>
