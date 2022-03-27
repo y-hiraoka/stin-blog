@@ -82,27 +82,81 @@ const MDLink: Components["a"] = ({ node, href, ...props }) => {
 };
 
 const Heading1: Components["h1"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h1" fontSize="2xl" mb="8" mt="24" />;
+  return (
+    <Heading
+      {...props}
+      as="h1"
+      fontSize="2xl"
+      mb="8"
+      mt="24"
+      _before={{ content: "'# '", color: "purple.300" }}
+    />
+  );
 };
 
 const Heading2: Components["h2"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h2" fontSize="xl" mb="6" mt="16" />;
+  return (
+    <Heading
+      {...props}
+      as="h2"
+      fontSize="xl"
+      mb="6"
+      mt="16"
+      _before={{ content: "'## '", color: "purple.300" }}
+    />
+  );
 };
 
 const Heading3: Components["h3"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h3" fontSize="lg" mb="4" mt="12" />;
+  return (
+    <Heading
+      {...props}
+      as="h3"
+      fontSize="lg"
+      mb="4"
+      mt="12"
+      _before={{ content: "'### '", color: "purple.300" }}
+    />
+  );
 };
 
 const Heading4: Components["h4"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h4" fontSize="md" mb="3" mt="8" />;
+  return (
+    <Heading
+      {...props}
+      as="h4"
+      fontSize="md"
+      mb="3"
+      mt="8"
+      _before={{ content: "'#### '", color: "purple.300" }}
+    />
+  );
 };
 
 const Heading5: Components["h5"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h5" fontSize="sm" mb="3" mt="6" />;
+  return (
+    <Heading
+      {...props}
+      as="h5"
+      fontSize="sm"
+      mb="3"
+      mt="6"
+      _before={{ content: "'##### '", color: "purple.300" }}
+    />
+  );
 };
 
 const Heading6: Components["h6"] = ({ level, node, ...props }) => {
-  return <Heading {...props} as="h6" fontSize="xs" mb="3" mt="4" />;
+  return (
+    <Heading
+      {...props}
+      as="h6"
+      fontSize="xs"
+      mb="3"
+      mt="4"
+      _before={{ content: "'###### '", color: "purple.300" }}
+    />
+  );
 };
 
 const Code: Components["code"] = ({ node, inline, className, children, ...props }) => {
