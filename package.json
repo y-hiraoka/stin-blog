@@ -20,7 +20,7 @@
     "@types/jsdom": "^16.2.14",
     "date-fns": "^2.16.1",
     "framer-motion": "^6.2.8",
-    "gray-matter": "^4.0.2",
+    "gray-matter": "^4.0.3",
     "jsdom": "^19.0.0",
     "markdown-toc": "^1.2.0",
     "next": "^12.1.0",
