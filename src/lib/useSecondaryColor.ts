@@ -1,5 +1,5 @@
 import { useColorModeValue } from "@chakra-ui/react";
 
 export function useSecondaryColor() {
-  return useColorModeValue("gray.600", "whiteAlpha.700");
+  return useColorModeValue("blackAlpha.600", "whiteAlpha.700");
 }

@@ -1,9 +1,14 @@
 import {
   Box,
+  Button,
   Center,
   Container,
   Divider,
+  Flex,
   Heading,
+  Icon,
+  Image,
+  Link,
   Stack,
   Text,
   Wrap,
@@ -18,6 +23,9 @@ import { TagLink } from "../shared/TagLink";
 import { useSecondaryColor } from "../../lib/useSecondaryColor";
 import { Article as IArticle } from "../../models";
 import { LinkToArticles } from "../shared/LinkToArticles";
+import { TwitterIntentTweet } from "../shared/TwitterIntentTweet";
+import { config } from "../../config";
+import { FaGithub, FaTwitter } from "react-icons/fa";
 
 type Props = {
   article: IArticle;
@@ -60,10 +68,46 @@ export const Article: React.VFC<Props> = ({ article }) => {
           </Wrap>
         </Stack>
         <Divider marginY="8" />
-        <Box as="section">
+        <Box as="section" marginBottom="32">
           <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
         </Box>
-        <Center marginTop="12">
+        <Box as="section" mb="16">
+          <Flex wrap="wrap" gap="2">
+            <Button
+              as={TwitterIntentTweet}
+              text={article.header.title}
+              url={`${config.siteUrl}/articles/${article.header.slug}`}
+              hashtags={article.header.tags}
+              via={config.social.twitter}
+              colorScheme="twitter"
+              leftIcon={<Icon as={FaTwitter} />}>
+              記事をシェア
+            </Button>
+            <a
+              href="https://www.buymeacoffee.com/stin"
+              target="_blank"
+              rel="noopener noreferrer">
+              <Image
+                src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+                alt="Buy Me A Coffee"
+                h="10"
+                htmlHeight="40"
+              />
+            </a>
+          </Flex>
+          <Link
+            href={`${config.repository}/tree/main/contents/${article.header.slug}.md`}
+            isExternal
+            mt="6"
+            display="inline-flex"
+            alignItems="center"
+            gap="2"
+            color={useSecondaryColor()}>
+            <Icon as={FaGithub} fontSize="2xl" />
+            GitHub で修正をリクエストする
+          </Link>
+        </Box>
+        <Center>
           <LinkToArticles />
         </Center>
       </Container>
