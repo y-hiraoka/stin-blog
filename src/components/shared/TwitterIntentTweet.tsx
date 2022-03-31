@@ -16,24 +16,19 @@ export const TwitterIntentTweet = forwardRef<HTMLAnchorElement, TwitterIntentTwe
     { text, url, hashtags, via, related, in_reply_to, ...intrinsicProps },
     forwardedRef,
   ) => {
-    const baseURL = `https://twitter.com/intent/tweet`;
+    const _url = new URL("https://twitter.com/intent/tweet");
 
-    const searchParams = new URLSearchParams();
-    if (text !== undefined) searchParams.set("text", text);
-    if (url !== undefined) searchParams.set("url", url);
-    if (hashtags !== undefined) searchParams.set("hashtags", hashtags.join(","));
-    if (via !== undefined) searchParams.set("via", via);
-    if (related !== undefined) searchParams.set("related", related.join(","));
-    if (in_reply_to !== undefined) searchParams.set("in_reply_to", in_reply_to);
-
-    const queryString = searchParams.toString();
-
-    const href = queryString !== "" ? `${baseURL}?${queryString}` : baseURL;
+    if (text !== undefined) _url.searchParams.set("text", text);
+    if (url !== undefined) _url.searchParams.set("url", url);
+    if (hashtags !== undefined) _url.searchParams.set("hashtags", hashtags.join(","));
+    if (via !== undefined) _url.searchParams.set("via", via);
+    if (related !== undefined) _url.searchParams.set("related", related.join(","));
+    if (in_reply_to !== undefined) _url.searchParams.set("in_reply_to", in_reply_to);
 
     return (
       <a
         ref={forwardedRef}
-        href={href}
+        href={_url.toString()}
         target="_blank"
         rel="noopener noreferrer"
         {...intrinsicProps}
