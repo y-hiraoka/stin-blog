@@ -5,6 +5,7 @@ import {
   Image,
   Skeleton,
   SkeletonText,
+  Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -21,6 +22,11 @@ type MetadataState =
   | {
       metadata: SiteMetadata;
       isLoading: false;
+      isError: false;
+    }
+  | {
+      isLoading: false;
+      isError: true;
     };
 const useMetadataState = (href: string) => {
   const [state, setState] = useState<MetadataState>({
@@ -33,11 +39,21 @@ const useMetadataState = (href: string) => {
     const url = /https?/.test(href) ? href : new URL(href, window.location.href).href;
 
     fetch(`/api/site-metadata?url=${encodeURIComponent(url)}`)
-      .then(r => r.json())
+      .then(r => {
+        if (r.ok) return r.json();
+        else throw new Error("error");
+      })
       .then(data => {
         setState({
           metadata: data,
           isLoading: false,
+          isError: false,
+        });
+      })
+      .catch(error => {
+        setState({
+          isLoading: false,
+          isError: true,
         });
       });
   }, [href]);
@@ -53,11 +69,13 @@ type Props = {
 export const RichLinkCard: VFC<Props> = ({ href, isExternal }) => {
   const metadataState = useMetadataState(href);
 
-  if (metadataState.isLoading) {
-    return <RichLinkCardSkeleton />;
-  } else {
-    return <RichLinkCardLoaded metadata={metadataState.metadata} />;
-  }
+  return metadataState.isLoading ? (
+    <RichLinkCardSkeleton />
+  ) : metadataState.isError ? (
+    <RichLinkCardError href={href} />
+  ) : (
+    <RichLinkCardLoaded metadata={metadataState.metadata} />
+  );
 };
 
 const RichLinkCardLoaded: VFC<{ metadata: SiteMetadata }> = ({ metadata }) => {
@@ -116,6 +134,25 @@ const RichLinkCardLoaded: VFC<{ metadata: SiteMetadata }> = ({ metadata }) => {
         </Box>
       )}
     </HStack>
+  );
+};
+
+const RichLinkCardError: VFC<{ href: string }> = ({ href }) => {
+  return (
+    <Stack
+      p="4"
+      as="a"
+      href={href}
+      borderRadius="lg"
+      border="1px solid"
+      borderColor={useColorModeValue("gray.200", "gray.700")}
+      transition="background-color 0.3s"
+      _hover={{ bgColor: useColorModeValue("blackAlpha.50", "whiteAlpha.100") }}>
+      <Text fontWeight="bold">ページを読み込めませんでした</Text>
+      <Text fontSize="sm" color={useSecondaryColor()}>
+        {href}
+      </Text>
+    </Stack>
   );
 };
 
