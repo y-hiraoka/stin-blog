@@ -2,7 +2,7 @@ import { NextSeo } from "next-seo";
 import { config } from "../../config";
 import { staticPath } from "../../lib/$path";
 
-type Props = {
+type BaseProps = {
   pagePath: string;
   title?: string;
   description?: string;
@@ -23,7 +23,7 @@ type ForArticleProps = {
   tags: string[];
 };
 
-export const SEO: React.VFC<Props & (ForWebsiteProps | ForArticleProps)> = ({
+export const SEO: React.VFC<BaseProps & (ForWebsiteProps | ForArticleProps)> = ({
   type,
   pagePath,
   title,
