@@ -12,6 +12,8 @@ const ZennArticlesPage: NextPage<Props> = ({ articles }) => {
   return (
     <>
       <SEO
+        type="website"
+        pagePath="/articles/zenn"
         title="Zennの記事一覧"
         description="すてぃんが Zenn に投稿した記事一覧ページです"
       />
