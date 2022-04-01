@@ -9,7 +9,15 @@ type Props = { article: IArticle };
 export default function Post({ article }: Props) {
   return (
     <>
-      <SEO title={article.header.title} description={article.header.excerpt} />
+      <SEO
+        type="article"
+        pagePath={`/articles/${article.header.slug}`}
+        publishedTime={article.header.createdAt}
+        modifiedTime={article.header.updatedAt ?? undefined}
+        tags={article.header.tags}
+        title={article.header.title}
+        description={article.header.excerpt}
+      />
       <Article article={article} />
     </>
   );

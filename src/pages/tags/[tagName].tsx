@@ -13,6 +13,8 @@ const Post: NextPage<Props> = ({ articles, tagName }) => {
   return (
     <>
       <SEO
+        type="website"
+        pagePath={`/tags/${tagName}`}
         title={`tag: ${tagName}`}
         description={`"${tagName}" でタグ付けされた記事一覧`}
       />

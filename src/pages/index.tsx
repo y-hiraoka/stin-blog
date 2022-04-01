@@ -11,7 +11,7 @@ type Props = {
 const HomePage: NextPage<Props> = ({ articles }) => {
   return (
     <>
-      <SEO title="Home" description="すてぃんの技術ブログ" />
+      <SEO type="website" pagePath="/" title="Home" description="すてぃんの技術ブログ" />
       <Home articles={articles} />
     </>
   );
