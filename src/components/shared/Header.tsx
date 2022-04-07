@@ -15,6 +15,7 @@ import { FaGithub } from "react-icons/fa";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 import NextLink from "next/link";
 import { staticPath } from "../../lib/$path";
+import { config } from "../../config";
 
 export const Header: VFC = () => {
   const { toggleColorMode } = useColorMode();
@@ -22,8 +23,8 @@ export const Header: VFC = () => {
     <Box>
       <Container maxW="container.lg">
         <Flex as="header" py="4" justifyContent="space-between" alignItems="center">
-          <NextLink href="/">
-            <a>
+          <NextLink href="/" passHref>
+            <Link>
               <Image
                 src={useColorModeValue(
                   staticPath.images.logo_black_png,
@@ -36,9 +37,9 @@ export const Header: VFC = () => {
                 htmlWidth={982}
                 htmlHeight={298}
               />
-            </a>
+            </Link>
           </NextLink>
-          <HStack spacing="4">
+          <HStack>
             <IconButton
               aria-label="toggle theme"
               variant="ghost"
@@ -54,7 +55,7 @@ export const Header: VFC = () => {
               as={Link}
               icon={<Icon fontSize="2xl" as={FaGithub} />}
               isExternal
-              href="https://github.com/y-hiraoka/stin-blog"
+              href={config.repository}
             />
           </HStack>
         </Flex>

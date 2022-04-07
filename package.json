@@ -24,6 +24,7 @@
     "@types/prosemirror-transform": "^1.1.6",
     "@types/prosemirror-view": "^1.23.1",
     "date-fns": "^2.16.1",
+    "feed": "^4.2.2",
     "framer-motion": "^6.2.8",
     "gray-matter": "^4.0.3",
     "jsdom": "^19.0.0",
