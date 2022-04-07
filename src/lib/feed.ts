@@ -19,7 +19,7 @@ export const generateFeed = async () => {
   posts.forEach(post => {
     feed.addItem({
       title: post.title,
-      id: post.slug,
+      id: `${config.siteUrl}/articles/${post.slug}`,
       link: `${config.siteUrl}/articles/${post.slug}`,
       description: post.excerpt,
       date: new Date(post.createdAt),
