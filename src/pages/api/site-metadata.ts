@@ -41,9 +41,6 @@ const handler: NextApiHandler<SiteMetadata | SiteMetadataError> = async (req, re
   for (const meta of metaTags) {
     const property = meta.getAttribute("property");
 
-    if (property === "og:url") {
-      metadata.url = meta.getAttribute("content") ?? url;
-    }
     if (property === "og:site_name") {
       metadata.site_name = meta.getAttribute("content") ?? undefined;
     }
