@@ -7,18 +7,24 @@ import {
   IconButton,
   Image,
   Link,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  useBreakpointValue,
   useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { VFC } from "react";
-import { FaGithub } from "react-icons/fa";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { MdDarkMode, MdLightMode, MdMenu } from "react-icons/md";
 import NextLink from "next/link";
-import { staticPath } from "../../lib/$path";
+import { pagesPath, staticPath } from "../../lib/$path";
 import { config } from "../../config";
 
 export const Header: VFC = () => {
   const { toggleColorMode } = useColorMode();
+  const screenIsWider = useBreakpointValue([false, false, true], "sm");
+
   return (
     <Box>
       <Container maxW="container.lg">
@@ -39,7 +45,7 @@ export const Header: VFC = () => {
               />
             </Link>
           </NextLink>
-          <HStack>
+          <HStack spacing="3">
             <IconButton
               aria-label="toggle theme"
               variant="ghost"
@@ -48,18 +54,57 @@ export const Header: VFC = () => {
               }
               onClick={toggleColorMode}
             />
-            <IconButton
-              aria-label="GitHub へ"
-              title="GitHub へ"
-              variant="ghost"
-              as={Link}
-              icon={<Icon fontSize="2xl" as={FaGithub} />}
-              isExternal
-              href={config.repository}
-            />
+            {screenIsWider ? <NavLinks /> : <CollapsedNavLinks />}
           </HStack>
         </Flex>
       </Container>
     </Box>
+  );
+};
+
+const NavLinks: VFC = () => {
+  return (
+    <>
+      <NextLink href={pagesPath.articles.$url()} passHref>
+        <Link fontWeight="bold">Articles</Link>
+      </NextLink>
+      <Link href="https://stin.ink" fontWeight="bold">
+        About
+      </Link>
+      <Link
+        isExternal
+        href={config.repository}
+        display="flex"
+        alignItems="center"
+        gap="2"
+        fontWeight="bold"
+      >
+        GitHub
+      </Link>
+    </>
+  );
+};
+
+const CollapsedNavLinks: VFC = () => {
+  return (
+    <Menu>
+      <MenuButton
+        as={IconButton}
+        aria-label="ナビゲーションリンクを開閉する"
+        icon={<Icon as={MdMenu} />}
+        variant="outline"
+      />
+      <MenuList>
+        <NextLink href={pagesPath.articles.$url()} passHref>
+          <MenuItem as="a">Articles</MenuItem>
+        </NextLink>
+        <MenuItem as="a" href="https://stin.ink">
+          About
+        </MenuItem>
+        <MenuItem as="a" target="_blank" rel="noreferer" href={config.repository}>
+          GitHub
+        </MenuItem>
+      </MenuList>
+    </Menu>
   );
 };
