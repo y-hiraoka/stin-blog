@@ -45,7 +45,7 @@ export const Header: VFC = () => {
               />
             </Link>
           </NextLink>
-          <HStack spacing="3">
+          <HStack as="nav" spacing="3">
             <IconButton
               aria-label="toggle theme"
               variant="ghost"
