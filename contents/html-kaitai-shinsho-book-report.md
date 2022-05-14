@@ -54,4 +54,4 @@ Web サイトを作成するために HTML を書く人のうち、自分で HTM
 
 **<strong>全員買うべし！</strong>**
 
-https://www.amazon.co.jp/dp/4862465277
+https://amzn.to/3wuvhR1
