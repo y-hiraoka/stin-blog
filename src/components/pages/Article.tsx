@@ -26,6 +26,7 @@ import { LinkToArticles } from "../shared/LinkToArticles";
 import { TwitterIntentTweet } from "../shared/TwitterIntentTweet";
 import { config } from "../../config";
 import { FaGithub, FaTwitter } from "react-icons/fa";
+import { AdSense } from "../shared/AdSense";
 
 type Props = {
   article: IArticle;
@@ -67,11 +68,17 @@ export const Article: React.VFC<Props> = ({ article }) => {
             ))}
           </Wrap>
         </Stack>
+        <Box as="section" marginY="8">
+          <AdSense />
+        </Box>
         <Divider marginY="8" />
-        <Box as="section" marginBottom="32">
+        <Box as="section" marginBottom="16">
           <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
         </Box>
-        <Box as="section" mb="16">
+        <Box as="section" marginBottom="16">
+          <AdSense />
+        </Box>
+        <Box as="section" marginBottom="16">
           <Flex wrap="wrap" gap="2">
             <Button
               as={TwitterIntentTweet}
@@ -80,13 +87,15 @@ export const Article: React.VFC<Props> = ({ article }) => {
               hashtags={article.header.tags}
               via={config.social.twitter}
               colorScheme="twitter"
-              leftIcon={<Icon as={FaTwitter} />}>
+              leftIcon={<Icon as={FaTwitter} />}
+            >
               記事をシェア
             </Button>
             <a
               href="https://www.buymeacoffee.com/stin"
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               <Image
                 src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
                 alt="Buy Me A Coffee"
@@ -102,7 +111,8 @@ export const Article: React.VFC<Props> = ({ article }) => {
             display="inline-flex"
             alignItems="center"
             gap="2"
-            color={useSecondaryColor()}>
+            color={useSecondaryColor()}
+          >
             <Icon as={FaGithub} fontSize="2xl" />
             GitHub で修正をリクエストする
           </Link>
