@@ -68,9 +68,6 @@ export const Article: React.VFC<Props> = ({ article }) => {
             ))}
           </Wrap>
         </Stack>
-        <Box as="section" marginY="8">
-          <AdSense />
-        </Box>
         <Divider marginY="8" />
         <Box as="section" marginBottom="16">
           <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
