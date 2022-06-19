@@ -52,7 +52,9 @@ export const MarkdownRenderer: React.VFC<Props> = ({ children }) => {
           tr: Tr,
           th: Th,
           td: Td,
-        }}>
+          hr: Hr,
+        }}
+      >
         {children}
       </ReactMarkdown>
     </div>
@@ -262,4 +264,22 @@ const Th: Components["th"] = ({ node, isHeader, ...props }) => {
 const Td: Components["td"] = ({ node, isHeader, ...props }) => {
   // @ts-expect-error
   return <ChakraTd {...props} />;
+};
+
+const Hr: Components["hr"] = ({ node, ...props }) => {
+  return (
+    <Box
+      as="hr"
+      {...props}
+      height="auto"
+      border="none"
+      _before={{
+        content: "'＊＊＊'",
+        display: "block",
+        color: useSecondaryColor(),
+        marginY: "6",
+        textAlign: "center",
+      }}
+    />
+  );
 };
