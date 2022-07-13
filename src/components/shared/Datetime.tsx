@@ -11,6 +11,7 @@ export const Datetime: VFC<Props> = ({ datetime, format, ...rest }) => {
   const date = useMemo(() => parseISO(datetime), [datetime]);
 
   return (
+    // @ts-expect-error div と推論されてしまう
     <Box as="time" dateTime={datetime} {...rest}>
       {formatter(date, format)}
     </Box>
