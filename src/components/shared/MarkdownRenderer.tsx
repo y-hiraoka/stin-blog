@@ -165,6 +165,7 @@ const Code: Components["code"] = ({ node, inline, className, children, ...props 
   const match = /language-(\w+)/.exec(className || "");
   return !inline ? (
     <Box my="4">
+      {/* @ts-expect-error 原因不明のエラー */}
       <Prism style={prismStyle} language={match?.[1]} PreTag="div" {...props}>
         {String(children).replace(/\n$/, "")}
       </Prism>
@@ -227,6 +228,7 @@ const Paragraph: Components["p"] = ({ node, ...props }) => {
 
 const Blockquote: Components["blockquote"] = ({ node, ...props }) => {
   return (
+    // @ts-expect-error
     <Text
       as="blockquote"
       {...props}
