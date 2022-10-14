@@ -77,8 +77,7 @@ const NavLinks: VFC = () => {
         display="flex"
         alignItems="center"
         gap="2"
-        fontWeight="bold"
-      >
+        fontWeight="bold">
         GitHub
       </Link>
     </>

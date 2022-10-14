@@ -53,8 +53,7 @@ export const MarkdownRenderer: React.VFC<Props> = ({ children }) => {
           th: Th,
           td: Td,
           hr: Hr,
-        }}
-      >
+        }}>
         {children}
       </ReactMarkdown>
     </div>

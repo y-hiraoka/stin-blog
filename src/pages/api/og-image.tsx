@@ -19,8 +19,7 @@ const handler: NextApiHandler = async req => {
           height: "100%",
           display: "flex",
           position: "relative",
-        }}
-      >
+        }}>
         {/*eslint-disable-next-line @next/next/no-img-element*/}
         <img
           alt=""
@@ -37,8 +36,7 @@ const handler: NextApiHandler = async req => {
             top: 0,
             left: 0,
             padding: 96,
-          }}
-        >
+          }}>
           <div
             style={{
               display: "flex",
@@ -48,8 +46,7 @@ const handler: NextApiHandler = async req => {
               width: "100%",
               height: "100%",
               overflow: "hidden",
-            }}
-          >
+            }}>
             {title}
           </div>
         </div>

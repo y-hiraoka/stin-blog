@@ -25,9 +25,10 @@ const frontMatterSchema = z.object({
   tags: z.array(z.string()),
 });
 type FrontMatter = z.infer<typeof frontMatterSchema>;
-function divideFrontMatterAndContent(
-  markdown: string,
-): { frontMatter: FrontMatter; content: string } {
+function divideFrontMatterAndContent(markdown: string): {
+  frontMatter: FrontMatter;
+  content: string;
+} {
   const matterResult = matter(markdown);
 
   const matterData = frontMatterSchema.parse(matterResult.data);

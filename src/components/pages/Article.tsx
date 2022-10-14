@@ -84,15 +84,13 @@ export const Article: React.VFC<Props> = ({ article }) => {
               hashtags={article.header.tags}
               via={config.social.twitter}
               colorScheme="twitter"
-              leftIcon={<Icon as={FaTwitter} />}
-            >
+              leftIcon={<Icon as={FaTwitter} />}>
               記事をシェア
             </Button>
             <a
               href="https://www.buymeacoffee.com/stin"
               target="_blank"
-              rel="noopener noreferrer"
-            >
+              rel="noopener noreferrer">
               <Image
                 src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
                 alt="Buy Me A Coffee"
@@ -108,8 +106,7 @@ export const Article: React.VFC<Props> = ({ article }) => {
             display="inline-flex"
             alignItems="center"
             gap="2"
-            color={useSecondaryColor()}
-          >
+            color={useSecondaryColor()}>
             <Icon as={FaGithub} fontSize="2xl" />
             GitHub で修正をリクエストする
           </Link>
