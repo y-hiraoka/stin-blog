@@ -53,7 +53,11 @@ export const SEO: React.VFC<BaseProps & (ForWebsiteProps | ForArticleProps)> = (
         site_name: siteTitle,
         images: [
           {
-            url: config.siteUrl + staticPath.images.ogimage_png,
+            url:
+              type === "article"
+                ? config.siteUrl +
+                  `/api/og-image?title=${encodeURIComponent(title ?? "")}`
+                : config.siteUrl + staticPath.images.ogimage_png,
             width: 1200,
             height: 630,
           },
