@@ -45,7 +45,10 @@ export const ArticleCard: VFC<Props> = ({ article }) => {
         marginTop="4"
         flex={1}>
         {article.type === "stin-blog" ? (
-          <NextLink href={pagesPath.articles._slug(article.slug).$url()} passHref>
+          <NextLink
+            href={pagesPath.articles._slug(article.slug).$url()}
+            passHref
+            legacyBehavior>
             <Link>{article.title}</Link>
           </NextLink>
         ) : (

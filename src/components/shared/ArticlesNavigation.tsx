@@ -30,7 +30,7 @@ const NavigationLink: VFC<{
   const activeBorderColor = useColorModeValue("gray.800", "gray.300");
 
   return (
-    <NextLink href={href} passHref>
+    <NextLink href={href} passHref legacyBehavior>
       <Link
         fontWeight="bold"
         display="flex"

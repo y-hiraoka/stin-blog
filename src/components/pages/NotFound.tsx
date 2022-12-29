@@ -17,7 +17,7 @@ export const NotFound: VFC = () => {
           </Heading>
         </Center>
         <Center marginTop="12">
-          <NextLink href={pagesPath.$url()} passHref>
+          <NextLink href={pagesPath.$url()} passHref legacyBehavior>
             <Link
               display="flex"
               alignItems="center"

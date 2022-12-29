@@ -6,7 +6,7 @@ import { pagesPath } from "../../lib/$path";
 
 export const LinkToArticles: VFC = () => {
   return (
-    <NextLink href={pagesPath.articles.$url()} passHref>
+    <NextLink href={pagesPath.articles.$url()} passHref legacyBehavior>
       <Link
         display="flex"
         alignItems="center"

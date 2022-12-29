@@ -29,7 +29,7 @@ export const Header: VFC = () => {
     <Box>
       <Container maxW="container.lg">
         <Flex as="header" py="4" justifyContent="space-between" alignItems="center">
-          <NextLink href="/" passHref>
+          <NextLink href="/" passHref legacyBehavior>
             <Link>
               <Image
                 src={useColorModeValue(
@@ -65,7 +65,7 @@ export const Header: VFC = () => {
 const NavLinks: VFC = () => {
   return (
     <>
-      <NextLink href={pagesPath.articles.$url()} passHref>
+      <NextLink href={pagesPath.articles.$url()} passHref legacyBehavior>
         <Link fontWeight="bold">Articles</Link>
       </NextLink>
       <Link href="https://stin.ink" fontWeight="bold">
@@ -94,7 +94,7 @@ const CollapsedNavLinks: VFC = () => {
         variant="outline"
       />
       <MenuList>
-        <NextLink href={pagesPath.articles.$url()} passHref>
+        <NextLink href={pagesPath.articles.$url()} passHref legacyBehavior>
           <MenuItem as="a">Articles</MenuItem>
         </NextLink>
         <MenuItem as="a" href="https://stin.ink">
