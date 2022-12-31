@@ -36,7 +36,7 @@ export const Header: VFC = () => {
                   staticPath.images.logo_black_png,
                   staticPath.images.logo_white_png,
                 )}
-                alt="stin's blog logo"
+                alt="stin's blog"
                 title="stin's blog"
                 h={["12", "14", "16"]}
                 w="auto"
