@@ -3,6 +3,7 @@ import { mode } from "@chakra-ui/theme-tools";
 import { AppProps } from "next/app";
 import Script from "next/script";
 import { useGoogleAnalytics } from "../lib/gtag";
+import { ColorModeProvider } from "../lib/useColorMode";
 
 const theme = extendTheme({
   styles: {
@@ -26,7 +27,9 @@ export default function App({ Component, pageProps }: AppProps) {
         strategy="beforeInteractive"
       />
       <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
+        <ColorModeProvider>
+          <Component {...pageProps} />
+        </ColorModeProvider>
       </ChakraProvider>
     </>
   );
