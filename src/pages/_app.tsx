@@ -1,9 +1,11 @@
+import "ress";
+import "../styles/global.css";
 import { ChakraProvider, extendTheme, ThemeComponentProps } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
 import { AppProps } from "next/app";
 import Script from "next/script";
 import { useGoogleAnalytics } from "../lib/gtag";
-import { ColorModeProvider } from "../lib/useColorMode";
+import { ColorModeProvider } from "../lib/colorMode";
 
 const theme = extendTheme({
   styles: {

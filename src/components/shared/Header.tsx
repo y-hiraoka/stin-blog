@@ -1,109 +1,107 @@
-import {
-  Box,
-  Container,
-  Flex,
-  HStack,
-  Icon,
-  IconButton,
-  Image,
-  Link,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuList,
-  useBreakpointValue,
-  useColorMode,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { VFC } from "react";
+import { FC } from "react";
 import { MdDarkMode, MdLightMode, MdMenu } from "react-icons/md";
 import NextLink from "next/link";
-import { pagesPath, staticPath } from "../../lib/$path";
+import { pagesPath } from "../../lib/$path";
 import { config } from "../../config";
+import { useColorMode, useColorModeValue } from "../../lib/colorMode";
+import { headerStyles } from "./Header.css";
+import { IconButton } from "../system/IconButton";
+import { Container } from "../system/Container";
+import Image from "next/image";
+import logoBlack from "./logo_black.png";
+import logoWhite from "./logo_white.png";
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
-export const Header: VFC = () => {
+export const Header: FC = () => {
   const { toggleColorMode } = useColorMode();
-  const screenIsWider = useBreakpointValue([false, false, true], "sm");
 
   return (
-    <Box>
-      <Container maxW="container.lg">
-        <Flex as="header" py="4" justifyContent="space-between" alignItems="center">
-          <NextLink href="/" passHref legacyBehavior>
-            <Link>
-              <Image
-                src={useColorModeValue(
-                  staticPath.images.logo_black_png,
-                  staticPath.images.logo_white_png,
-                )}
-                alt="stin's blog"
-                title="stin's blog"
-                h={["12", "14", "16"]}
-                w="auto"
-                htmlWidth={982}
-                htmlHeight={298}
-              />
-            </Link>
+    <div>
+      <Container>
+        <header className={headerStyles.header}>
+          <NextLink href={pagesPath.$url()} className={headerStyles.logoLink}>
+            <Image
+              className={headerStyles.logoLinkImage}
+              src={useColorModeValue(logoBlack, logoWhite)}
+              alt="stin's blog"
+              title="stin's blog"
+              priority
+            />
           </NextLink>
-          <HStack as="nav" spacing="3">
+          <nav className={headerStyles.navigations}>
             <IconButton
               aria-label="toggle theme"
               variant="ghost"
-              icon={
-                <Icon fontSize="2xl" as={useColorModeValue(MdDarkMode, MdLightMode)} />
-              }
+              icon={useColorModeValue(<MdDarkMode />, <MdLightMode />)}
               onClick={toggleColorMode}
             />
-            {screenIsWider ? <NavLinks /> : <CollapsedNavLinks />}
-          </HStack>
-        </Flex>
+            <NavLinks />
+            <CollapsedNavLinks />
+          </nav>
+        </header>
       </Container>
-    </Box>
+    </div>
   );
 };
 
-const NavLinks: VFC = () => {
+const NavLinks: FC = () => {
   return (
     <>
-      <NextLink href={pagesPath.articles.$url()} passHref legacyBehavior>
-        <Link fontWeight="bold">Articles</Link>
+      <NextLink href={pagesPath.articles.$url()} className={headerStyles.navigationLink}>
+        Articles
       </NextLink>
-      <Link href="https://stin.ink" fontWeight="bold">
+      <a href="https://stin.ink" className={headerStyles.navigationLink}>
         About
-      </Link>
-      <Link
-        isExternal
+      </a>
+      <a
         href={config.repository}
-        display="flex"
-        alignItems="center"
-        gap="2"
-        fontWeight="bold">
+        target="_blank"
+        rel="noreferrer"
+        className={headerStyles.navigationLink}>
         GitHub
-      </Link>
+      </a>
     </>
   );
 };
 
-const CollapsedNavLinks: VFC = () => {
+const CollapsedNavLinks: FC = () => {
   return (
-    <Menu>
-      <MenuButton
-        as={IconButton}
-        aria-label="ナビゲーションリンクを開閉する"
-        icon={<Icon as={MdMenu} />}
-        variant="outline"
-      />
-      <MenuList>
-        <NextLink href={pagesPath.articles.$url()} passHref legacyBehavior>
-          <MenuItem as="a">Articles</MenuItem>
-        </NextLink>
-        <MenuItem as="a" href="https://stin.ink">
-          About
-        </MenuItem>
-        <MenuItem as="a" target="_blank" rel="noreferer" href={config.repository}>
-          GitHub
-        </MenuItem>
-      </MenuList>
-    </Menu>
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <IconButton
+          aria-label="ナビゲーションリンクを開閉する"
+          variant="outlined"
+          icon={<MdMenu />}
+          className={headerStyles.collapsedNavigationTrigger}
+        />
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content
+          align="end"
+          className={headerStyles.collapsedNavigationContent}>
+          <DropdownMenu.Item asChild>
+            <NextLink
+              href={pagesPath.articles.$url()}
+              className={headerStyles.collapsedNavigationLink}>
+              Articles
+            </NextLink>
+          </DropdownMenu.Item>
+          <DropdownMenu.Item asChild>
+            <a href="https://stin.ink" className={headerStyles.collapsedNavigationLink}>
+              About
+            </a>
+          </DropdownMenu.Item>
+          <DropdownMenu.Item asChild>
+            <a
+              href={config.repository}
+              target="_blank"
+              rel="noreferrer"
+              className={headerStyles.collapsedNavigationLink}>
+              GitHub
+            </a>
+          </DropdownMenu.Item>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   );
 };

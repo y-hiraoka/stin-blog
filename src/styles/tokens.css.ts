@@ -120,6 +120,18 @@ export const tokens = createGlobalTheme(":root", {
       800: "rgba(0, 0, 0, 0.8)",
       900: "rgba(0, 0, 0, 0.92)",
     },
+    gray: {
+      50: "#f7fafc",
+      100: "#edf2f7",
+      200: "#e2e8f0",
+      300: "#cbd5e0",
+      400: "#a0aec0",
+      500: "#718096",
+      600: "#4a5568",
+      700: "#2d3748",
+      800: "#1a202c",
+      900: "#171923",
+    },
     facebook: {
       50: "#e8f4f9",
       100: "#d9dee9",
@@ -162,6 +174,7 @@ export const tokens = createGlobalTheme(":root", {
     },
     background: "white",
   },
+  containerMaxWidth: "1024px",
 });
 
 globalStyle(DARK_MODE_SELECTOR, {

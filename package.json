@@ -17,8 +17,10 @@
     "@emotion/styled": "^11.10.5",
     "@mdx-js/loader": "^2.2.1",
     "@next/mdx": "^13.1.1",
+    "@radix-ui/react-dropdown-menu": "^2.0.1",
     "@types/jsdom": "^20.0.1",
     "@vanilla-extract/css": "^1.9.2",
+    "@vanilla-extract/recipes": "^0.3.0",
     "@vercel/og": "^0.0.21",
     "date-fns": "^2.29.3",
     "feed": "^4.2.2",
@@ -37,6 +39,7 @@
     "remark": "^14.0.2",
     "remark-gfm": "^3.0.1",
     "remark-slug": "^7.0.1",
+    "ress": "^5.0.2",
     "rss-parser": "^3.12.0",
     "strip-markdown": "^5.0.0",
     "zod": "^3.20.2"
