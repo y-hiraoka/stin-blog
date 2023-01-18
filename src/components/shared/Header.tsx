@@ -67,14 +67,15 @@ const NavLinks: FC = () => {
 const CollapsedNavLinks: FC = () => {
   return (
     <DropdownMenu.Root>
-      <DropdownMenu.Trigger asChild>
-        <IconButton
-          aria-label="ナビゲーションリンクを開閉する"
-          variant="outlined"
-          icon={<MdMenu />}
-          className={headerStyles.collapsedNavigationTrigger}
-        />
-      </DropdownMenu.Trigger>
+      <div className={headerStyles.collapsedNavigationTrigger}>
+        <DropdownMenu.Trigger asChild>
+          <IconButton
+            aria-label="ナビゲーションリンクを開閉する"
+            variant="outlined"
+            icon={<MdMenu />}
+          />
+        </DropdownMenu.Trigger>
+      </div>
       <DropdownMenu.Portal>
         <DropdownMenu.Content
           align="end"
