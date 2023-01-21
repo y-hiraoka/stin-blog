@@ -169,12 +169,17 @@ export const tokens = createGlobalTheme(":root", {
       900: "#322659",
     },
     text: {
-      primary: "#474B4B",
-      secondary: "blackAlpha.600",
+      primary: "",
+      secondary: "",
     },
     background: "white",
   },
   containerMaxWidth: "1024px",
+});
+
+createGlobalTheme(":root", tokens.colors.text, {
+  primary: "#474B4B",
+  secondary: tokens.colors.blackAlpha[600],
 });
 
 globalStyle(DARK_MODE_SELECTOR, {

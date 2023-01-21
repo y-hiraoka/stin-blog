@@ -9,6 +9,9 @@ const withMDX = require("@next/mdx")({
 const nextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
   reactStrictMode: true,
+  images: {
+    domains: ["www.google.com"],
+  },
 };
 
 module.exports = withVanillaExtract(withMDX(nextConfig));

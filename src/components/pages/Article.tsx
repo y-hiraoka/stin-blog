@@ -15,7 +15,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import React from "react";
-import { Datetime } from "../shared/Datetime";
+import { Datetime2 } from "../shared/Datetime2";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { MarkdownRenderer } from "../shared/MarkdownRenderer";
@@ -45,7 +45,7 @@ export const Article: React.FC<Props> = ({ article }) => {
           <Stack spacing="1">
             <Text fontSize="sm" color={secondaryColor}>
               公開:{" "}
-              <Datetime
+              <Datetime2
                 format="yyyy年MM月dd日 HH時mm分"
                 datetime={article.header.createdAt}
               />
@@ -53,7 +53,7 @@ export const Article: React.FC<Props> = ({ article }) => {
             {article.header.updatedAt && (
               <Text fontSize="sm" color={secondaryColor}>
                 更新:{" "}
-                <Datetime
+                <Datetime2
                   format="yyyy年MM月dd日 HH時mm分"
                   datetime={article.header.updatedAt}
                 />
