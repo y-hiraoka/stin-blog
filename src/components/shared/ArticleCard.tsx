@@ -10,7 +10,7 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { VFC } from "react";
+import { FC } from "react";
 import { config } from "../../config";
 import { pagesPath } from "../../lib/$path";
 import { getFaviconUrl } from "../../lib/getFaviconUrl";
@@ -21,7 +21,7 @@ import { TagLink } from "./TagLink";
 
 type Props = { article: ArticleHeader };
 
-export const ArticleCard: VFC<Props> = ({ article }) => {
+export const ArticleCard: FC<Props> = ({ article }) => {
   return (
     <Flex
       as="article"

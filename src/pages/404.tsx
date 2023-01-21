@@ -1,7 +1,7 @@
 import { NotFound } from "../components/pages/NotFound";
 import { SEO } from "../components/shared/SEO";
 
-const Custom404: React.VFC = () => {
+const Custom404: React.FC = () => {
   return (
     <>
       <SEO

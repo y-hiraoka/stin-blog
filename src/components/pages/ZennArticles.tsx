@@ -1,5 +1,5 @@
 import { Box, Container, Heading } from "@chakra-ui/react";
-import { VFC } from "react";
+import { FC } from "react";
 import { ArticleList } from "../shared/ArticleList";
 import { ArticlesNavigation } from "../shared/ArticlesNavigation";
 import { Footer } from "../shared/Footer";
@@ -10,7 +10,7 @@ type Props = {
   articles: ArticleHeader[];
 };
 
-export const ZennArticles: VFC<Props> = ({ articles }) => {
+export const ZennArticles: FC<Props> = ({ articles }) => {
   return (
     <Box>
       <Header />

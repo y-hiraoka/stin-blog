@@ -9,7 +9,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { useEffect, useState, VFC } from "react";
+import { useEffect, useState, FC } from "react";
 import { getFaviconUrl } from "../../lib/getFaviconUrl";
 import { useSecondaryColor } from "../../lib/useSecondaryColor";
 import { SiteMetadata } from "../../pages/api/site-metadata";
@@ -66,7 +66,7 @@ type Props = {
   isExternal: boolean;
 };
 
-export const RichLinkCard: VFC<Props> = ({ href, isExternal }) => {
+export const RichLinkCard: FC<Props> = ({ href, isExternal }) => {
   const metadataState = useMetadataState(href);
 
   return metadataState.isLoading ? (
@@ -78,7 +78,7 @@ export const RichLinkCard: VFC<Props> = ({ href, isExternal }) => {
   );
 };
 
-const RichLinkCardLoaded: VFC<{ metadata: SiteMetadata }> = ({ metadata }) => {
+const RichLinkCardLoaded: FC<{ metadata: SiteMetadata }> = ({ metadata }) => {
   const hostname = new URL(metadata.url).hostname;
 
   return (
@@ -137,7 +137,7 @@ const RichLinkCardLoaded: VFC<{ metadata: SiteMetadata }> = ({ metadata }) => {
   );
 };
 
-const RichLinkCardError: VFC<{ href: string }> = ({ href }) => {
+const RichLinkCardError: FC<{ href: string }> = ({ href }) => {
   return (
     <Stack
       p="4"
@@ -156,7 +156,7 @@ const RichLinkCardError: VFC<{ href: string }> = ({ href }) => {
   );
 };
 
-const RichLinkCardSkeleton: VFC = () => {
+const RichLinkCardSkeleton: FC = () => {
   return (
     <HStack
       w="full"

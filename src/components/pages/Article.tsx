@@ -32,7 +32,7 @@ type Props = {
   article: IArticle;
 };
 
-export const Article: React.VFC<Props> = ({ article }) => {
+export const Article: React.FC<Props> = ({ article }) => {
   const secondaryColor = useSecondaryColor();
   return (
     <Box>

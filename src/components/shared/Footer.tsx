@@ -1,9 +1,9 @@
 import { Box, Container, Flex, Link, Text } from "@chakra-ui/react";
-import { useState, VFC } from "react";
+import { useState, FC } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
 import { useSecondaryColor } from "../../lib/useSecondaryColor";
 
-export const Footer: VFC = () => {
+export const Footer: FC = () => {
   const [copyrightPeriod, setCopyrightPeriod] = useState("");
 
   useIsomorphicLayoutEffect(() => {

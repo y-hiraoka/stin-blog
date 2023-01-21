@@ -1,4 +1,4 @@
-import { useEffect, useRef, VFC } from "react";
+import { useEffect, useRef, FC } from "react";
 
 // グローバル変数なので `declare global {}` のほうが適切だが、
 // 他ファイルで呼び出すことがないので `declare const` で十分
@@ -21,7 +21,7 @@ type EmbeddedTweetProps = {
   dnt?: true;
 };
 
-export const EmbeddedTweet: VFC<EmbeddedTweetProps> = props => {
+export const EmbeddedTweet: FC<EmbeddedTweetProps> = props => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const key = JSON.stringify(props);

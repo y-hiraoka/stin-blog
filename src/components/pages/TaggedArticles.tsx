@@ -1,5 +1,5 @@
 import { Box, Container, Heading, Tag } from "@chakra-ui/react";
-import { VFC } from "react";
+import { FC } from "react";
 import { ArticleList } from "../shared/ArticleList";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
@@ -10,7 +10,7 @@ type Props = {
   articles: ArticleHeader[];
 };
 
-export const TaggedArticles: VFC<Props> = ({ tagName, articles }) => {
+export const TaggedArticles: FC<Props> = ({ tagName, articles }) => {
   return (
     <Box>
       <Header />

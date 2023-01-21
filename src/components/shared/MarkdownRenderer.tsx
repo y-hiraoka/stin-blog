@@ -27,7 +27,7 @@ import { EmbeddedTweet } from "./EmbeddedTweet";
 
 type Props = { children: string };
 
-export const MarkdownRenderer: React.VFC<Props> = ({ children }) => {
+export const MarkdownRenderer: React.FC<Props> = ({ children }) => {
   return (
     <div className={styles.markdownRoot}>
       <ReactMarkdown
@@ -258,12 +258,10 @@ const Tr: Components["tr"] = ({ node, isHeader, ...props }) => {
 };
 
 const Th: Components["th"] = ({ node, isHeader, ...props }) => {
-  // @ts-expect-error
   return <ChakraTh {...props} />;
 };
 
 const Td: Components["td"] = ({ node, isHeader, ...props }) => {
-  // @ts-expect-error
   return <ChakraTd {...props} />;
 };
 

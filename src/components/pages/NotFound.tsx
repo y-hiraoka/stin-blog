@@ -1,11 +1,11 @@
 import { Box, Center, Container, Heading, Link } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { VFC } from "react";
+import { FC } from "react";
 import { pagesPath } from "../../lib/$path";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 
-export const NotFound: VFC = () => {
+export const NotFound: FC = () => {
   return (
     <Box>
       <Header />

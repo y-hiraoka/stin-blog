@@ -1,11 +1,11 @@
 import { Flex, Link, useColorModeValue } from "@chakra-ui/react";
-import { VFC } from "react";
+import { FC } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { UrlObject } from "url";
 import { pagesPath } from "../../lib/$path";
 
-export const ArticlesNavigation: VFC = () => {
+export const ArticlesNavigation: FC = () => {
   return (
     <Flex
       as="nav"
@@ -19,7 +19,7 @@ export const ArticlesNavigation: VFC = () => {
   );
 };
 
-const NavigationLink: VFC<{
+const NavigationLink: FC<{
   href: UrlObject;
   children: string;
 }> = ({ href, children }) => {
