@@ -22,8 +22,13 @@ export const footerStyles = {
   }),
 
   textLink: style({
+    boxShadow: tokens.focusRingShadow.before,
+    transition: "box-shadow 0.2s",
     ":hover": {
       textDecoration: "underline",
+    },
+    ":focus-visible": {
+      boxShadow: tokens.focusRingShadow.after,
     },
   }),
 };
