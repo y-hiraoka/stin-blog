@@ -35,8 +35,14 @@ export const articleCardStyles = {
     fontSize: tokens.fontSizes.lg,
     fontWeight: "bold",
     color: tokens.colors.text.primary,
+    boxShadow: tokens.focusRingShadow.before,
+    transition: "box-shadow 0.2s",
+
     ":hover": {
       textDecoration: "underline",
+    },
+    ":focus-visible": {
+      boxShadow: tokens.focusRingShadow.after,
     },
     "@media": {
       [mediaQueries.largerThan("md")]: {
@@ -59,8 +65,13 @@ export const articleCardStyles = {
     marginTop: tokens.spacing[8],
     alignItems: "center",
     gap: tokens.spacing[2],
+    boxShadow: tokens.focusRingShadow.before,
+    transition: "box-shadow 0.2s",
     ":hover": {
       textDecoration: "underline",
+    },
+    ":focus-visible": {
+      boxShadow: tokens.focusRingShadow.after,
     },
   }),
 };

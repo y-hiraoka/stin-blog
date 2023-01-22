@@ -17,6 +17,7 @@ export const tagLinkstyle = style({
   lineHeight: 1.2,
   verticalAlign: "top",
   boxShadow: tokens.focusRingShadow.before,
+  transition: "box-shadow 0.2s",
   ":focus-visible": {
     boxShadow: tokens.focusRingShadow.after,
   },

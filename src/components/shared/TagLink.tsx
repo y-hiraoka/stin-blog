@@ -5,8 +5,11 @@ import { tagLinkstyle } from "./TagLink.css";
 
 export const TagLink: FC<{ tag: string }> = ({ tag }) => {
   return (
-    <NextLink key={tag} href={pagesPath.tags._tagName(tag).$url()}>
-      <span className={tagLinkstyle}>{tag}</span>
+    <NextLink
+      className={tagLinkstyle}
+      key={tag}
+      href={pagesPath.tags._tagName(tag).$url()}>
+      {tag}
     </NextLink>
   );
 };
