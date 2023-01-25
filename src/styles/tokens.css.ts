@@ -173,21 +173,34 @@ export const tokens = createGlobalTheme(":root", {
     text: {
       primary: "",
       secondary: "",
+      link: "",
+      linkVisited: "",
     },
     background: "white",
   },
   containerMaxWidth: "1024px",
+  fontFamilies: {
+    heading: `-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"`,
+    mono: `SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace`,
+  },
 });
 
 createGlobalTheme(":root", tokens.colors.text, {
   primary: "#474B4B",
   secondary: tokens.colors.blackAlpha[600],
+  link: "#3182ce",
+  linkVisited: "#805AD5",
+});
+
+createGlobalTheme(DARK_MODE_SELECTOR, tokens.colors.text, {
+  primary: "#E8EAEA",
+  secondary: tokens.colors.whiteAlpha[700],
+  link: "#4299e1",
+  linkVisited: "#B794F4",
 });
 
 globalStyle(DARK_MODE_SELECTOR, {
   vars: {
-    [tokens.colors.text.primary]: "#E8EAEA",
-    [tokens.colors.text.secondary]: tokens.colors.whiteAlpha[700],
     [tokens.colors.background]: "#1C1C1C",
   },
 });
