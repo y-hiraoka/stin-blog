@@ -1,6 +1,36 @@
 import { createVar, keyframes, style } from "@vanilla-extract/css";
 import { tokens } from "./tokens.css";
 
+export const appContainer = style({
+  maxWidth: tokens.containerMaxWidth,
+  margin: "auto",
+  paddingLeft: tokens.spacing[4],
+  paddingRight: tokens.spacing[4],
+});
+
+export const wrapItems = style({
+  display: "flex",
+  flexWrap: "wrap",
+  gap: tokens.spacing[2],
+});
+
+export const vStack = style({
+  display: "flex",
+  flexDirection: "column",
+  gap: tokens.spacing[2],
+});
+
+export const hStack = style({
+  display: "flex",
+  flexDirection: "row",
+  gap: tokens.spacing[2],
+});
+
+export const center = style({
+  display: "flex",
+  justifyContent: "center",
+});
+
 const noOfLines = createVar();
 
 export const lineClamp = {

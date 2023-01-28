@@ -1,12 +1,14 @@
 import { style } from "@vanilla-extract/css";
+import { appContainer } from "../../styles/system.css";
 import { tokens } from "../../styles/tokens.css";
 
 export const notFoundStyles = {
-  container: style({
-    maxWidth: tokens.containerMaxWidth,
-    textAlign: "center",
-    margin: "auto",
-  }),
+  container: style([
+    appContainer,
+    {
+      textAlign: "center",
+    },
+  ]),
 
   heading: style({
     margin: tokens.spacing[16],

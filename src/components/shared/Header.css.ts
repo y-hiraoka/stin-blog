@@ -2,6 +2,7 @@ import { keyframes, style } from "@vanilla-extract/css";
 import { DARK_MODE_SELECTOR } from "../../styles/constant";
 import { mediaQueries } from "../../styles/mediaQueries";
 import { tokens } from "../../styles/tokens.css";
+import { appContainer } from "../../styles/system.css";
 
 const uncollapse = keyframes({
   from: {
@@ -17,13 +18,16 @@ const uncollapse = keyframes({
 });
 
 export const headerStyles = {
-  header: style({
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    paddingTop: tokens.spacing[4],
-    paddingBottom: tokens.spacing[4],
-  }),
+  header: style([
+    appContainer,
+    {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      paddingTop: tokens.spacing[4],
+      paddingBottom: tokens.spacing[4],
+    },
+  ]),
 
   logoLink: style({
     boxShadow: tokens.focusRingShadow.before,

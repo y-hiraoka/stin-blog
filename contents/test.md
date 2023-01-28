@@ -1,6 +1,7 @@
 ---
 title: "Test1"
 createdAt: "2025-05-15T15:55:30.780Z"
+updatedAt: "2025-05-15T15:55:30.780Z"
 tags: ["nextjs", "adsense"]
 ---
 

@@ -6,7 +6,6 @@ import { config } from "../../config";
 import { useColorMode, useColorModeValue } from "../../lib/colorMode";
 import { headerStyles } from "./Header.css";
 import { IconButton } from "../system/IconButton";
-import { Container } from "../system/Container";
 import Image from "next/image";
 import logoBlack from "./logo_black.png";
 import logoWhite from "./logo_white.png";
@@ -17,29 +16,27 @@ export const Header: FC = () => {
 
   return (
     <div>
-      <Container>
-        <header className={headerStyles.header}>
-          <NextLink href={pagesPath.$url()} className={headerStyles.logoLink}>
-            <Image
-              className={headerStyles.logoLinkImage}
-              src={useColorModeValue(logoBlack, logoWhite)}
-              alt="stin's blog"
-              title="stin's blog"
-              priority
-            />
-          </NextLink>
-          <nav className={headerStyles.navigations}>
-            <IconButton
-              aria-label="toggle theme"
-              variant="ghost"
-              icon={useColorModeValue(<MdDarkMode />, <MdLightMode />)}
-              onClick={toggleColorMode}
-            />
-            <NavLinks />
-            <CollapsedNavLinks />
-          </nav>
-        </header>
-      </Container>
+      <header className={headerStyles.header}>
+        <NextLink href={pagesPath.$url()} className={headerStyles.logoLink}>
+          <Image
+            className={headerStyles.logoLinkImage}
+            src={useColorModeValue(logoBlack, logoWhite)}
+            alt="stin's blog"
+            title="stin's blog"
+            priority
+          />
+        </NextLink>
+        <nav className={headerStyles.navigations}>
+          <IconButton
+            aria-label="toggle theme"
+            variant="ghost"
+            icon={useColorModeValue(<MdDarkMode />, <MdLightMode />)}
+            onClick={toggleColorMode}
+          />
+          <NavLinks />
+          <CollapsedNavLinks />
+        </nav>
+      </header>
     </div>
   );
 };

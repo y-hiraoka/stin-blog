@@ -2,7 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { DARK_MODE_SELECTOR } from "../../styles/constant";
 import { mediaQueries } from "../../styles/mediaQueries";
 import { tokens } from "../../styles/tokens.css";
-import { lineClamp, skeletonBase, skeletonText } from "../../styles/utils.css";
+import { lineClamp, skeletonBase, skeletonText } from "../../styles/system.css";
 
 export const richLinkCardStyles = {
   cardRoot: style({
