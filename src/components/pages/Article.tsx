@@ -11,6 +11,7 @@ import { config } from "../../config";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { AdSense } from "../shared/AdSense";
 import { articleStyles } from "./Article.css";
+import { PageTitle } from "../shared/PageTitle";
 
 type Props = {
   article: IArticle;
@@ -22,7 +23,7 @@ export const Article: FC<Props> = ({ article }) => {
       <Header />
       <main className={articleStyles.container}>
         <div className={articleStyles.articleHeader}>
-          <h1 className={articleStyles.articleTitle}>{article.header.title}</h1>
+          <PageTitle>{article.header.title}</PageTitle>
           <div className={articleStyles.datetimes}>
             <p className={articleStyles.datetime}>
               公開:{" "}
