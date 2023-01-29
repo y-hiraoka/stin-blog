@@ -28,7 +28,7 @@ export const EmbeddedTweet: FC<EmbeddedTweetProps> = props => {
 
   useEffect(() => {
     if (rootRef.current !== null) {
-      twttr.widgets.load(rootRef.current);
+      typeof twttr !== "undefined" && twttr.widgets.load(rootRef.current);
     }
   }, [key]);
 

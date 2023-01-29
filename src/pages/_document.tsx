@@ -7,6 +7,12 @@ export default class MyDocument extends Document {
     return (
       <Html lang="ja">
         <Head>
+          <Script
+            id="twitter-embed-script"
+            src="https://platform.twitter.com/widgets.js"
+            strategy="lazyOnload"
+          />
+          {/* <EmbeddedTweetScript /> */}
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
             rel="stylesheet"
