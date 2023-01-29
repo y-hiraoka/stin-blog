@@ -36,6 +36,7 @@ export const headerStyles = {
   ]),
 
   logoLink: style({
+    lineHeight: 0,
     boxShadow: tokens.focusRingShadow.before,
     ":focus-visible": {
       boxShadow: tokens.focusRingShadow.after,
