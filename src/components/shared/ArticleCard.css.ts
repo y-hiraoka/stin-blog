@@ -33,7 +33,7 @@ export const articleCardStyles = {
     display: "block",
     lineHeight: 1.6,
     fontSize: tokens.fontSizes.lg,
-    fontWeight: "bold",
+    fontWeight: 500,
     color: tokens.colors.text.primary,
     boxShadow: tokens.focusRingShadow.before,
     transition: "box-shadow 0.2s",

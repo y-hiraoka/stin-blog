@@ -1,6 +1,7 @@
 import { createContext, FC, ReactNode, useCallback, useContext, useMemo } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
-import { useColorMode as useChakraColorMode } from "@chakra-ui/react";
+import { useLocalStorage } from "./useLocalStorage";
+import { useMatchMedia } from "./useMatchMedia";
 
 const COLOR_MODE_VALUE = ["light", "dark"] as const;
 export type ColorMode = typeof COLOR_MODE_VALUE[number];
@@ -16,38 +17,32 @@ const ColorModeContext = createContext<ColorModeContextValue>({
 });
 
 export const ColorModeProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const {
-    colorMode: chakraColorMode,
-    setColorMode: setChakraColorMode,
-    toggleColorMode: toggleChakraColorMode,
-  } = useChakraColorMode(); // 移行期間のみ chakra の colorMode を参照する
+  const [appColorMode, setColorMode] = useLocalStorage<ColorMode>({
+    storageKey: "stin-blog-color-mode",
+    initialState: "light",
+    isValidValue: (value: unknown): value is ColorMode =>
+      COLOR_MODE_VALUE.includes(value as any),
+  });
+  const preferColorSchemeIsDark = useMatchMedia("(prefers-color-scheme: dark)");
+  const toggleColorMode = useCallback(
+    () => (appColorMode === "dark" ? setColorMode("light") : setColorMode("dark")),
+    [appColorMode, setColorMode],
+  );
 
-  // const [appColorMode, setColorMode] = useLocalStorage<ColorMode>({
-  //   storageKey: "stin-blog-color-mode",
-  //   initialState: "light",
-  //   isValidValue: (value: unknown): value is ColorMode =>
-  //     COLOR_MODE_VALUE.includes(value as any),
-  // });
-  // const preferColorSchemeIsDark = useMatchMedia("(prefers-color-scheme: dark)");
-  // const toggleColorMode = useCallback(
-  //   () => (appColorMode === "dark" ? setColorMode("light") : setColorMode("dark")),
-  //   [appColorMode, setColorMode],
-  // );
-
-  // const colorMode = preferColorSchemeIsDark ? "dark" : appColorMode;
+  const colorMode = preferColorSchemeIsDark ? "dark" : appColorMode;
 
   const value: ColorModeContextValue = useMemo(
     () => ({
-      colorMode: chakraColorMode,
-      setColorMode: setChakraColorMode,
-      toggleColorMode: toggleChakraColorMode,
+      colorMode,
+      setColorMode,
+      toggleColorMode,
     }),
-    [chakraColorMode, setChakraColorMode, toggleChakraColorMode],
+    [colorMode, setColorMode, toggleColorMode],
   );
 
   useIsomorphicLayoutEffect(() => {
-    document.querySelector("html")?.setAttribute("data-color-mode", chakraColorMode);
-  }, [chakraColorMode]);
+    document.querySelector("html")?.setAttribute("data-color-mode", colorMode);
+  }, [colorMode]);
 
   return <ColorModeContext.Provider value={value}>{children}</ColorModeContext.Provider>;
 };

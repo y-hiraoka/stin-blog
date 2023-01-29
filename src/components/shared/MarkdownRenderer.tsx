@@ -5,7 +5,6 @@ import remarkGfm from "remark-gfm";
 import { Prism } from "react-syntax-highlighter";
 import { a11yDark as prismStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { RichLinkCard } from "./RichLinkCard";
-import styles from "./MarkdownRenderer.module.css";
 import { EmbeddedTweet } from "./EmbeddedTweet";
 import Link from "next/link";
 import { markdownRendererStyles } from "./MarkdownRenderer.css";
@@ -15,7 +14,7 @@ type Props = { children: string };
 
 export const MarkdownRenderer: React.FC<Props> = ({ children }) => {
   return (
-    <div className={styles.markdownRoot}>
+    <div className={markdownRendererStyles.root}>
       <ReactMarkdown
         remarkPlugins={[remarkSlug, remarkGfm]}
         components={{

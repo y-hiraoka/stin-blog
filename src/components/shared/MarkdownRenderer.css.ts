@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 import { DARK_MODE_SELECTOR } from "../../styles/constant";
 import { tokens } from "../../styles/tokens.css";
 
@@ -187,3 +187,14 @@ export const markdownRendererStyles = {
     borderColor: tokens.colors.gray[100],
   }),
 };
+
+globalStyle(`${markdownRendererStyles.paragraph} + ${markdownRendererStyles.paragraph}`, {
+  marginTop: tokens.spacing[6],
+});
+
+globalStyle(
+  `${markdownRendererStyles.listItem} > ${markdownRendererStyles.paragraph} + ${markdownRendererStyles.paragraph}`,
+  {
+    marginTop: tokens.spacing[2],
+  },
+);
