@@ -4,9 +4,6 @@ import { tokens } from "../../styles/tokens.css";
 
 export const markdownRendererStyles = {
   root: style({
-    ":first-child": {
-      marginTop: 0,
-    },
     wordBreak: "break-all",
   }),
 
@@ -195,6 +192,10 @@ export const markdownRendererStyles = {
     borderColor: tokens.colors.gray[100],
   }),
 };
+
+globalStyle(`${markdownRendererStyles.root} > :first-child`, {
+  marginTop: 0,
+});
 
 globalStyle(`${markdownRendererStyles.paragraph} + ${markdownRendererStyles.paragraph}`, {
   marginTop: tokens.spacing[6],
