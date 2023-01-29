@@ -111,6 +111,11 @@ export const articleStyles = {
     gap: tokens.spacing[2],
     color: tokens.colors.text.secondary,
     marginTop: tokens.spacing[6],
+    boxShadow: tokens.focusRingShadow.before,
+    transition: "box-shadow 0.2s",
+    ":focus-visible": {
+      boxShadow: tokens.focusRingShadow.after,
+    },
   }),
 
   githubIcon: style({

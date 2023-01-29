@@ -9,6 +9,7 @@ import { EmbeddedTweet } from "./EmbeddedTweet";
 import Link from "next/link";
 import { markdownRendererStyles } from "./MarkdownRenderer.css";
 import { useColorMode } from "../../lib/colorMode";
+import { staticPath } from "../../lib/$path";
 
 type Props = { children: string };
 
@@ -38,6 +39,7 @@ export const MarkdownRenderer: React.FC<Props> = ({ children }) => {
           th: Th,
           td: Td,
           hr: Hr,
+          img: Img,
         }}>
         {children}
       </ReactMarkdown>
@@ -175,4 +177,13 @@ const Td: Components["td"] = ({ node, isHeader, ...props }) => {
 
 const Hr: Components["hr"] = ({ node, ...props }) => {
   return <hr {...props} className={markdownRendererStyles.hr} />;
+};
+
+const Img: Components["img"] = ({ src, alt }) => {
+  return (
+    <a href={src} target="_blank" rel="noreferrer">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src ?? staticPath.images.no_image_png} alt={alt ?? ""} />
+    </a>
+  );
 };

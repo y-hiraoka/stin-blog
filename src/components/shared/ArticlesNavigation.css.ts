@@ -27,8 +27,13 @@ export const articlesNavigationStyles = {
     borderBottom: tokens.borders[2],
     borderColor: "transparent",
     marginBottom: "-2px",
+    boxShadow: tokens.focusRingShadow.before,
+    transition: "box-shadow 0.2s",
     ":hover": {
       backgroundColor: tokens.colors.blackAlpha[100],
+    },
+    ":focus-visible": {
+      boxShadow: tokens.focusRingShadow.after,
     },
     selectors: {
       "&[data-is-active='true']": {

@@ -7,6 +7,7 @@ export const markdownRendererStyles = {
     ":first-child": {
       marginTop: 0,
     },
+    wordBreak: "break-all",
   }),
 
   textLink: style({

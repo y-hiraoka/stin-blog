@@ -12,3 +12,8 @@ globalStyle("a", {
   color: "inherit",
   textDecoration: "inherit",
 });
+
+globalStyle("img", {
+  maxWidth: "100%",
+  height: "auto",
+});
