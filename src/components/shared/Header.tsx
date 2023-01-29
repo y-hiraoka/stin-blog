@@ -15,7 +15,7 @@ export const Header: FC = () => {
   const { toggleColorMode } = useColorMode();
 
   return (
-    <div>
+    <div className={headerStyles.root}>
       <header className={headerStyles.header}>
         <NextLink href={pagesPath.$url()} className={headerStyles.logoLink}>
           <Image

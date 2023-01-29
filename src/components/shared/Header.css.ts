@@ -18,6 +18,12 @@ const uncollapse = keyframes({
 });
 
 export const headerStyles = {
+  root: style({
+    position: "sticky",
+    top: 0,
+    backdropFilter: "blur(8px)",
+  }),
+
   header: style([
     appContainer,
     {

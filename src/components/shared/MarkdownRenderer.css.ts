@@ -96,6 +96,13 @@ export const markdownRendererStyles = {
     fontFamily: tokens.fontFamilies.mono,
     fontSize: tokens.fontSizes.sm,
     display: "inline-block",
+
+    selectors: {
+      [`${DARK_MODE_SELECTOR} &`]: {
+        backgroundColor: tokens.colors.gray[700],
+        color: tokens.colors.gray[200],
+      },
+    },
   }),
 
   list: style({
