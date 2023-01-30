@@ -1,88 +1,59 @@
-import {
-  Flex,
-  Heading,
-  HStack,
-  Image,
-  Link,
-  Text,
-  useColorModeValue,
-  Wrap,
-  WrapItem,
-} from "@chakra-ui/react";
+import Image from "next/image";
 import NextLink from "next/link";
-import { VFC } from "react";
+import { FC } from "react";
 import { config } from "../../config";
 import { pagesPath } from "../../lib/$path";
 import { getFaviconUrl } from "../../lib/getFaviconUrl";
-import { useSecondaryColor } from "../../lib/useSecondaryColor";
 import { ArticleHeader } from "../../models";
+import { articleCardStyles } from "./ArticleCard.css";
 import { Datetime } from "./Datetime";
 import { TagLink } from "./TagLink";
 
 type Props = { article: ArticleHeader };
 
-export const ArticleCard: VFC<Props> = ({ article }) => {
+export const ArticleCard: FC<Props> = ({ article }) => {
   return (
-    <Flex
-      as="article"
-      borderRadius="md"
-      flexDirection="column"
-      py="4"
-      px="6"
-      bgColor={useColorModeValue("gray.100", "gray.700")}
-      boxShadow="md">
+    <article className={articleCardStyles.card}>
       <Datetime
+        className={articleCardStyles.publishedAt}
         datetime={article.createdAt}
         format="yyyy年MM月dd日 HH時mm分"
-        color={useSecondaryColor()}
-        fontSize={["sm"]}
-        letterSpacing="wider"
       />
-      <Heading
-        as="h3"
-        fontSize={["lg", "lg", "xl"]}
-        lineHeight={1.6}
-        marginTop="4"
-        flex={1}>
+      <h3 className={articleCardStyles.title}>
         {article.type === "stin-blog" ? (
-          <NextLink href={pagesPath.articles._slug(article.slug).$url()} passHref>
-            <Link>{article.title}</Link>
+          <NextLink
+            className={articleCardStyles.titleLink}
+            href={pagesPath.articles._slug(article.slug).$url()}>
+            {article.title}
           </NextLink>
         ) : (
-          <Link isExternal href={article.url}>
+          <a
+            className={articleCardStyles.titleLink}
+            href={article.url}
+            target="_blank"
+            rel="noreferrer">
             {article.title}
-          </Link>
+          </a>
         )}
-      </Heading>
+      </h3>
       {article.type === "stin-blog" ? (
-        <Wrap marginTop="8">
+        <ul className={articleCardStyles.tags}>
           {article.tags.map(tag => (
-            <WrapItem key={tag}>
+            <li key={tag}>
               <TagLink tag={tag} />
-            </WrapItem>
+            </li>
           ))}
-        </Wrap>
+        </ul>
       ) : (
-        <Link
+        <a
+          className={articleCardStyles.zennLink}
           href={`https://zenn.dev/${config.social.zenn}`}
-          isExternal
-          w="fit-content"
-          marginTop="8">
-          <HStack>
-            <Image
-              src={getFaviconUrl("zenn.dev", 16)}
-              alt=""
-              htmlWidth={16}
-              htmlHeight={16}
-              w="4"
-              h="4"
-            />
-            <Text fontSize="md" as="div">
-              Zenn
-            </Text>
-          </HStack>
-        </Link>
+          target="_blank"
+          rel="noreferrer">
+          <Image src={getFaviconUrl("zenn.dev", 16)} alt="" width={16} height={16} />
+          <span>Zenn</span>
+        </a>
       )}
-    </Flex>
+    </article>
   );
 };

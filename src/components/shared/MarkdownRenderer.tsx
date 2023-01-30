@@ -1,19 +1,3 @@
-import {
-  Box,
-  Heading,
-  Link,
-  Text,
-  chakra,
-  Code as ChakraCode,
-  useColorModeValue,
-  Table as ChakraTable,
-  Thead as ChakraThead,
-  Tbody as ChakraTbody,
-  Tr as ChakraTr,
-  Th as ChakraTh,
-  Td as ChakraTd,
-  useColorMode,
-} from "@chakra-ui/react";
 import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkSlug from "remark-slug";
@@ -21,15 +5,17 @@ import remarkGfm from "remark-gfm";
 import { Prism } from "react-syntax-highlighter";
 import { a11yDark as prismStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { RichLinkCard } from "./RichLinkCard";
-import styles from "./MarkdownRenderer.module.css";
-import { useSecondaryColor } from "../../lib/useSecondaryColor";
 import { EmbeddedTweet } from "./EmbeddedTweet";
+import Link from "next/link";
+import { markdownRendererStyles } from "./MarkdownRenderer.css";
+import { useColorMode } from "../../lib/colorMode";
+import { staticPath } from "../../lib/$path";
 
 type Props = { children: string };
 
-export const MarkdownRenderer: React.VFC<Props> = ({ children }) => {
+export const MarkdownRenderer: React.FC<Props> = ({ children }) => {
   return (
-    <div className={styles.markdownRoot}>
+    <div className={markdownRendererStyles.root}>
       <ReactMarkdown
         remarkPlugins={[remarkSlug, remarkGfm]}
         components={{
@@ -53,6 +39,7 @@ export const MarkdownRenderer: React.VFC<Props> = ({ children }) => {
           th: Th,
           td: Td,
           hr: Hr,
+          img: Img,
         }}>
         {children}
       </ReactMarkdown>
@@ -61,135 +48,70 @@ export const MarkdownRenderer: React.VFC<Props> = ({ children }) => {
 };
 
 const MDLink: Components["a"] = ({ node, href, ...props }) => {
-  const color = useColorModeValue("blue.500", "blue.400");
-  const visitedColor = useColorModeValue("purple.500", "purple.300");
-
   // a link to same domain
   if (href?.startsWith("#") || href?.startsWith("/") || href?.includes("stin.ink")) {
-    return (
-      <Link {...props} href={href} color={color} _visited={{ color: visitedColor }} />
-    );
+    return <Link {...props} href={href} className={markdownRendererStyles.textLink} />;
   }
 
   return (
-    <Link
+    <a
       {...props}
       href={href}
-      isExternal
-      color={color}
-      _visited={{ color: visitedColor }}
+      className={markdownRendererStyles.textLink}
+      target="_blank"
+      rel="noreferrer"
     />
   );
 };
 
 const Heading1: Components["h1"] = ({ level, node, ...props }) => {
-  return (
-    <Heading
-      {...props}
-      as="h1"
-      fontSize="2xl"
-      mb="8"
-      mt="24"
-      _before={{ content: "'# '", color: "purple.300" }}
-    />
-  );
+  return <h1 {...props} className={markdownRendererStyles.h1} />;
 };
 
 const Heading2: Components["h2"] = ({ level, node, ...props }) => {
-  return (
-    <Heading
-      {...props}
-      as="h2"
-      fontSize="xl"
-      mb="6"
-      mt="16"
-      _before={{ content: "'## '", color: "purple.300" }}
-    />
-  );
+  return <h2 {...props} className={markdownRendererStyles.h2} />;
 };
 
 const Heading3: Components["h3"] = ({ level, node, ...props }) => {
-  return (
-    <Heading
-      {...props}
-      as="h3"
-      fontSize="lg"
-      mb="4"
-      mt="12"
-      _before={{ content: "'### '", color: "purple.300" }}
-    />
-  );
+  return <h3 {...props} className={markdownRendererStyles.h3} />;
 };
 
 const Heading4: Components["h4"] = ({ level, node, ...props }) => {
-  return (
-    <Heading
-      {...props}
-      as="h4"
-      fontSize="md"
-      mb="3"
-      mt="8"
-      _before={{ content: "'#### '", color: "purple.300" }}
-    />
-  );
+  return <h4 {...props} className={markdownRendererStyles.h4} />;
 };
 
 const Heading5: Components["h5"] = ({ level, node, ...props }) => {
-  return (
-    <Heading
-      {...props}
-      as="h5"
-      fontSize="sm"
-      mb="3"
-      mt="6"
-      _before={{ content: "'##### '", color: "purple.300" }}
-    />
-  );
+  return <h5 {...props} className={markdownRendererStyles.h5} />;
 };
 
 const Heading6: Components["h6"] = ({ level, node, ...props }) => {
-  return (
-    <Heading
-      {...props}
-      as="h6"
-      fontSize="xs"
-      mb="3"
-      mt="4"
-      _before={{ content: "'###### '", color: "purple.300" }}
-    />
-  );
+  return <h6 {...props} className={markdownRendererStyles.h6} />;
 };
 
 const Code: Components["code"] = ({ node, inline, className, children, ...props }) => {
   const match = /language-(\w+)/.exec(className || "");
   return !inline ? (
-    <Box my="4">
+    <div className={markdownRendererStyles.codeBlock}>
       {/* @ts-expect-error 原因不明のエラー */}
-      <Prism style={prismStyle} language={match?.[1]} PreTag="div" {...props}>
+      <Prism style={prismStyle} language={match?.[1]} {...props}>
         {String(children).replace(/\n$/, "")}
       </Prism>
-    </Box>
+    </div>
   ) : (
-    <ChakraCode className={className} {...props} px="1">
-      {children}
-    </ChakraCode>
+    <code className={markdownRendererStyles.inlineCode}>{children}</code>
   );
 };
 
-const ChakraLi = chakra.li;
-const ChakraUl = chakra.ul;
-const ChakraOl = chakra.ol;
-
 const UnorderedList: Components["ul"] = ({ node, depth, ordered, ...props }) => {
-  return <ChakraUl {...props} paddingLeft="7" my="4" />;
+  return <ul {...props} className={markdownRendererStyles.list} />;
 };
 
 const OrderedList: Components["ol"] = ({ node, depth, ordered, ...props }) => {
-  return <ChakraOl {...props} paddingLeft="7" my="4" />;
+  return <ol {...props} className={markdownRendererStyles.list} />;
 };
 
 const ListItem: Components["li"] = ({ node, checked, index, ordered, ...props }) => {
-  return <ChakraLi {...props} lineHeight="1.8" my="2" />;
+  return <li {...props} className={markdownRendererStyles.listItem} />;
 };
 
 const Paragraph: Components["p"] = ({ node, ...props }) => {
@@ -209,78 +131,59 @@ const Paragraph: Components["p"] = ({ node, ...props }) => {
       /https?:\/\/(www\.)?twitter.com\/\w{1,15}\/status\/.*/.test(child.properties.href)
     ) {
       return (
-        <Box my="6">
+        <div className={markdownRendererStyles.embeded}>
           <EmbeddedTweet url={child.properties.href} theme={colorMode} lang="ja" />
-        </Box>
+        </div>
       );
     }
 
     return (
-      <Box my="6">
+      <div className={markdownRendererStyles.embeded}>
         <RichLinkCard href={child.properties.href} isExternal />
-      </Box>
+      </div>
     );
   }
 
-  return <Text {...props} lineHeight="1.8" />;
+  return <p {...props} className={markdownRendererStyles.paragraph} />;
 };
 
 const Blockquote: Components["blockquote"] = ({ node, ...props }) => {
-  return (
-    // @ts-expect-error
-    <Text
-      as="blockquote"
-      {...props}
-      color={useSecondaryColor()}
-      my="4"
-      paddingLeft="4"
-      paddingY="1"
-      borderLeft="4px solid"
-      borderColor={useColorModeValue("gray.300", "gray.600")}
-    />
-  );
+  return <blockquote {...props} className={markdownRendererStyles.blockquote} />;
 };
 
 const Table: Components["table"] = ({ node, ...props }) => {
-  return <ChakraTable {...props} my="6" />;
+  return <table {...props} className={markdownRendererStyles.table} />;
 };
 
 const Thead: Components["thead"] = ({ node, ...props }) => {
-  return <ChakraThead {...props} />;
+  return <thead {...props} />;
 };
 
 const Tbody: Components["tbody"] = ({ node, ...props }) => {
-  return <ChakraTbody {...props} />;
+  return <tbody {...props} />;
 };
 
 const Tr: Components["tr"] = ({ node, isHeader, ...props }) => {
-  return <ChakraTr {...props} />;
+  return <tr {...props} />;
 };
 
 const Th: Components["th"] = ({ node, isHeader, ...props }) => {
-  // @ts-expect-error
-  return <ChakraTh {...props} />;
+  return <th {...props} className={markdownRendererStyles.th} />;
 };
 
 const Td: Components["td"] = ({ node, isHeader, ...props }) => {
-  // @ts-expect-error
-  return <ChakraTd {...props} />;
+  return <td {...props} className={markdownRendererStyles.td} />;
 };
 
 const Hr: Components["hr"] = ({ node, ...props }) => {
+  return <hr {...props} className={markdownRendererStyles.hr} />;
+};
+
+const Img: Components["img"] = ({ src, alt }) => {
   return (
-    <Box
-      as="hr"
-      {...props}
-      height="auto"
-      border="none"
-      _before={{
-        content: "'＊＊＊'",
-        display: "block",
-        color: useSecondaryColor(),
-        marginY: "6",
-        textAlign: "center",
-      }}
-    />
+    <a href={src} target="_blank" rel="noreferrer">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src ?? staticPath.images.no_image_png} alt={alt ?? ""} />
+    </a>
   );
 };

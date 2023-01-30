@@ -1,18 +1,8 @@
-import {
-  Box,
-  Flex,
-  HStack,
-  Image,
-  Skeleton,
-  SkeletonText,
-  Stack,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
-import { useEffect, useState, VFC } from "react";
+import Image from "next/image";
+import { useEffect, useState, FC } from "react";
 import { getFaviconUrl } from "../../lib/getFaviconUrl";
-import { useSecondaryColor } from "../../lib/useSecondaryColor";
 import { SiteMetadata } from "../../pages/api/site-metadata";
+import { richLinkCardStyles } from "./RichLinkCard.css";
 
 type MetadataState =
   | {
@@ -66,7 +56,7 @@ type Props = {
   isExternal: boolean;
 };
 
-export const RichLinkCard: VFC<Props> = ({ href, isExternal }) => {
+export const RichLinkCard: FC<Props> = ({ href, isExternal }) => {
   const metadataState = useMetadataState(href);
 
   return metadataState.isLoading ? (
@@ -78,106 +68,67 @@ export const RichLinkCard: VFC<Props> = ({ href, isExternal }) => {
   );
 };
 
-const RichLinkCardLoaded: VFC<{ metadata: SiteMetadata }> = ({ metadata }) => {
+const RichLinkCardLoaded: FC<{ metadata: SiteMetadata }> = ({ metadata }) => {
   const hostname = new URL(metadata.url).hostname;
 
   return (
-    <HStack
-      as="a"
+    <a
+      className={richLinkCardStyles.cardRoot}
       href={metadata.url}
       target="_blank"
-      rel="noopener"
-      w="full"
-      h="36"
-      borderRadius="lg"
-      border="1px solid"
-      borderColor={useColorModeValue("gray.200", "gray.700")}
-      overflow="hidden"
-      transition="background-color 0.3s"
-      _hover={{ bgColor: useColorModeValue("blackAlpha.50", "whiteAlpha.100") }}>
-      <Flex direction="column" flex={1} px="4" py="2" h="full">
-        {metadata.title ? (
-          <Text as="div" fontWeight="bold" noOfLines={2} wordBreak="break-all">
-            {metadata.title}
-          </Text>
-        ) : (
-          <Text as="div" noOfLines={2} wordBreak="break-all">
-            {metadata.url}
-          </Text>
-        )}
-        <Box flex={1} marginTop="2">
-          <Text
-            as="div"
-            fontSize={["xs", "xs", "sm"]}
-            color={useSecondaryColor()}
-            noOfLines={2}
-            wordBreak="break-all">
+      rel="noreferrer">
+      <div className={richLinkCardStyles.loadedMetadata}>
+        <div className={richLinkCardStyles.loadedMetadataTitle}>
+          {metadata.title ? metadata.title : metadata.url}
+        </div>
+        <div className={richLinkCardStyles.loadedMetadataDescriptionContainer}>
+          <div className={richLinkCardStyles.loadedMetadataDescription}>
             {metadata.description}
-          </Text>
-        </Box>
-        <HStack>
-          <Image src={getFaviconUrl(hostname)} alt="" w="4" h="4" />
-          <Text fontSize="sm" as="div" noOfLines={1}>
-            {hostname}
-          </Text>
-        </HStack>
-      </Flex>
+          </div>
+        </div>
+        <div className={richLinkCardStyles.loadedMetadataSite}>
+          <Image src={getFaviconUrl(hostname)} alt="" width={16} height={16} />
+          <span className={richLinkCardStyles.loadedMetadataSiteName}>{hostname}</span>
+        </div>
+      </div>
       {metadata.image && (
-        <Box maxW="40%" h="36">
-          <Image
+        <div className={richLinkCardStyles.loadedMetadataImageContainer}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            className={richLinkCardStyles.loadedMetadataImage}
             src={metadata.image}
-            alt={metadata.title}
-            w="full"
-            h="full"
-            objectFit="cover"
+            alt=""
           />
-        </Box>
+        </div>
       )}
-    </HStack>
+    </a>
   );
 };
 
-const RichLinkCardError: VFC<{ href: string }> = ({ href }) => {
+const RichLinkCardError: FC<{ href: string }> = ({ href }) => {
   return (
-    <Stack
-      p="4"
-      as="a"
-      href={href}
-      borderRadius="lg"
-      border="1px solid"
-      borderColor={useColorModeValue("gray.200", "gray.700")}
-      transition="background-color 0.3s"
-      _hover={{ bgColor: useColorModeValue("blackAlpha.50", "whiteAlpha.100") }}>
-      <Text fontWeight="bold">ページを読み込めませんでした</Text>
-      <Text fontSize="sm" color={useSecondaryColor()}>
-        {href}
-      </Text>
-    </Stack>
+    <a className={richLinkCardStyles.error} href={href} target="_blank" rel="noreferrer">
+      <p className={richLinkCardStyles.errorTitle}>ページを読み込めませんでした</p>
+      <div className={richLinkCardStyles.errorDescription}>{href}</div>
+    </a>
   );
 };
 
-const RichLinkCardSkeleton: VFC = () => {
+const RichLinkCardSkeleton: FC = () => {
   return (
-    <HStack
-      w="full"
-      h="36"
-      borderRadius="lg"
-      border="1px solid"
-      borderColor={useColorModeValue("gray.300", "gray.700")}
-      overflow="hidden">
-      <Flex direction="column" flex={1} px="4" py="2" h="full">
-        <SkeletonText noOfLines={2} />
-        <Box flex={1} marginTop="6">
-          <SkeletonText noOfLines={2} />
-        </Box>
-        <HStack>
-          <Skeleton w="4" h="4" />
-          <SkeletonText noOfLines={1} />
-        </HStack>
-      </Flex>
-      <Box maxW="40%" h="full">
-        <Skeleton w="64" h="36" />
-      </Box>
-    </HStack>
+    <div className={richLinkCardStyles.cardRoot}>
+      <div className={richLinkCardStyles.skeletonMetadata}>
+        <div className={richLinkCardStyles.skeletonTextContainer}>
+          <div className={richLinkCardStyles.skeletonText} />
+          <div className={richLinkCardStyles.skeletonTextShorter} />
+        </div>
+        <div className={richLinkCardStyles.skeletonTextContainer}>
+          <div className={richLinkCardStyles.skeletonText} />
+          <div className={richLinkCardStyles.skeletonTextShorter} />
+        </div>
+        <div className={richLinkCardStyles.skeletonSiteIcon} />
+      </div>
+      <div className={richLinkCardStyles.skeletonImage} />
+    </div>
   );
 };

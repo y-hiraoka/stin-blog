@@ -1,29 +1,30 @@
-import { Box, Center, Container, Heading } from "@chakra-ui/react";
-import { VFC } from "react";
+import { FC } from "react";
 import { ArticleList } from "../shared/ArticleList";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { LinkToArticles } from "../shared/LinkToArticles";
 import { ArticleHeader } from "../../models";
+import { PageTitle } from "../shared/PageTitle";
+import { homeStyles } from "./Home.css";
 
 type Props = {
   articles: ArticleHeader[];
 };
 
-export const Home: VFC<Props> = ({ articles }) => {
+export const Home: FC<Props> = ({ articles }) => {
   return (
-    <Box>
+    <div>
       <Header />
-      <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
-        <Heading as="h1" marginBottom="8" fontSize="2xl">
-          Home
-        </Heading>
+      <main className={homeStyles.container}>
+        <div className={homeStyles.title}>
+          <PageTitle>Home</PageTitle>
+        </div>
         <ArticleList articles={articles} />
-        <Center marginTop="12">
+        <div className={homeStyles.linkToArticles}>
           <LinkToArticles />
-        </Center>
-      </Container>
+        </div>
+      </main>
       <Footer />
-    </Box>
+    </div>
   );
 };

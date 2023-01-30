@@ -23,7 +23,7 @@ type ForArticleProps = {
   tags: string[];
 };
 
-export const SEO: React.VFC<BaseProps & (ForWebsiteProps | ForArticleProps)> = ({
+export const SEO: React.FC<BaseProps & (ForWebsiteProps | ForArticleProps)> = ({
   type,
   pagePath,
   title,

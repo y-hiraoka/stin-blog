@@ -1,121 +1,87 @@
-import {
-  Box,
-  Button,
-  Center,
-  Container,
-  Divider,
-  Flex,
-  Heading,
-  Icon,
-  Image,
-  Link,
-  Stack,
-  Text,
-  Wrap,
-  WrapItem,
-} from "@chakra-ui/react";
-import React from "react";
+import { FC } from "react";
 import { Datetime } from "../shared/Datetime";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { MarkdownRenderer } from "../shared/MarkdownRenderer";
 import { TagLink } from "../shared/TagLink";
-import { useSecondaryColor } from "../../lib/useSecondaryColor";
 import { Article as IArticle } from "../../models";
 import { LinkToArticles } from "../shared/LinkToArticles";
 import { TwitterIntentTweet } from "../shared/TwitterIntentTweet";
 import { config } from "../../config";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { AdSense } from "../shared/AdSense";
+import { articleStyles } from "./Article.css";
+import { PageTitle } from "../shared/PageTitle";
 
 type Props = {
   article: IArticle;
 };
 
-export const Article: React.VFC<Props> = ({ article }) => {
-  const secondaryColor = useSecondaryColor();
+export const Article: FC<Props> = ({ article }) => {
   return (
-    <Box>
+    <div>
       <Header />
-      <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
-        <Stack spacing="8">
-          <Heading as="h1" fontSize="2xl" lineHeight={1.6}>
-            {article.header.title}
-          </Heading>
-          <Stack spacing="1">
-            <Text fontSize="sm" color={secondaryColor}>
+      <main className={articleStyles.container}>
+        <div className={articleStyles.articleHeader}>
+          <PageTitle>{article.header.title}</PageTitle>
+          <div className={articleStyles.datetimes}>
+            <p className={articleStyles.datetime}>
               公開:{" "}
               <Datetime
                 format="yyyy年MM月dd日 HH時mm分"
                 datetime={article.header.createdAt}
               />
-            </Text>
+            </p>
             {article.header.updatedAt && (
-              <Text fontSize="sm" color={secondaryColor}>
+              <p className={articleStyles.datetime}>
                 更新:{" "}
                 <Datetime
                   format="yyyy年MM月dd日 HH時mm分"
                   datetime={article.header.updatedAt}
                 />
-              </Text>
+              </p>
             )}
-          </Stack>
-          <Wrap>
+          </div>
+          <ul className={articleStyles.tags}>
             {article.header.tags.map(tag => (
-              <WrapItem key={tag}>
+              <li key={tag}>
                 <TagLink tag={tag} />
-              </WrapItem>
+              </li>
             ))}
-          </Wrap>
-        </Stack>
-        <Divider marginY="8" />
-        <Box as="section" marginBottom="16">
+          </ul>
+        </div>
+        <hr className={articleStyles.contentDivider} />
+        <section className={articleStyles.articleContent}>
           <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
-        </Box>
-        <Box as="section" marginBottom="16">
+        </section>
+        <section className={articleStyles.adsense}>
           <AdSense />
-        </Box>
-        <Box as="section" marginBottom="16">
-          <Flex wrap="wrap" gap="2">
-            <Button
-              as={TwitterIntentTweet}
+        </section>
+        <section className={articleStyles.externalLinks}>
+          <div className={articleStyles.shareButtons}>
+            <TwitterIntentTweet
+              className={articleStyles.twitterButton}
               text={article.header.title}
               url={`${config.siteUrl}/articles/${article.header.slug}`}
               hashtags={article.header.tags}
-              via={config.social.twitter}
-              colorScheme="twitter"
-              leftIcon={<Icon as={FaTwitter} />}>
+              via={config.social.twitter}>
+              <FaTwitter />
               記事をシェア
-            </Button>
-            <a
-              href="https://www.buymeacoffee.com/stin"
-              target="_blank"
-              rel="noopener noreferrer">
-              <Image
-                src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-                alt="Buy Me A Coffee"
-                h="10"
-                htmlHeight="40"
-              />
-            </a>
-          </Flex>
-          <Link
+            </TwitterIntentTweet>
+          </div>
+          <a
+            className={articleStyles.githubLink}
             href={`${config.repository}/tree/main/contents/${article.header.slug}.md`}
-            isExternal
-            mt="6"
-            display="inline-flex"
-            alignItems="center"
-            gap="2"
-            color={useSecondaryColor()}>
-            <Icon as={FaGithub} fontSize="2xl" />
+            rel="noreferrer">
+            <FaGithub className={articleStyles.githubIcon} />
             GitHub で修正をリクエストする
-          </Link>
-        </Box>
-        <Center>
+          </a>
+        </section>
+        <div className={articleStyles.linkToArticles}>
           <LinkToArticles />
-        </Center>
-      </Container>
+        </div>
+      </main>
       <Footer />
-    </Box>
+    </div>
   );
 };

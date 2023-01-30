@@ -1,11 +1,11 @@
 import { useRouter } from "next/router";
-import { useEffect, VFC } from "react";
+import { useEffect, FC } from "react";
 
 declare global {
   var adsbygoogle: unknown[];
 }
 
-export const AdSense: VFC = () => {
+export const AdSense: FC = () => {
   const { asPath } = useRouter();
 
   useEffect(() => {

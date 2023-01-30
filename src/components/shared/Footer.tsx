@@ -1,9 +1,8 @@
-import { Box, Container, Flex, Link, Text } from "@chakra-ui/react";
-import { useState, VFC } from "react";
+import { useState, FC } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
-import { useSecondaryColor } from "../../lib/useSecondaryColor";
+import { footerStyles } from "./Footer.css";
 
-export const Footer: VFC = () => {
+export const Footer: FC = () => {
   const [copyrightPeriod, setCopyrightPeriod] = useState("");
 
   useIsomorphicLayoutEffect(() => {
@@ -12,33 +11,31 @@ export const Footer: VFC = () => {
   }, []);
 
   return (
-    <Box>
-      <Container maxW="container.lg">
-        <Flex
-          as="footer"
-          py="8"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          gap="4">
-          <Text color={useSecondaryColor()} fontSize="sm">
-            このサイトは{" "}
-            <Link
-              href="https://policies.google.com/technologies/partner-sites?hl=ja"
-              isExternal>
-              {" "}
-              Google Analytics
-            </Link>{" "}
-            を使用しています
-          </Text>
-          <Text color={useSecondaryColor()} as="small">
-            &copy;{copyrightPeriod}{" "}
-            <Link isExternal href="https://twitter.com/stin_factory">
-              stin_factory
-            </Link>
-          </Text>
-        </Flex>
-      </Container>
-    </Box>
+    <div>
+      <footer className={footerStyles.footer}>
+        <p className={footerStyles.description}>
+          このサイトは{" "}
+          <a
+            className={footerStyles.textLink}
+            href="https://policies.google.com/technologies/partner-sites?hl=ja"
+            target="_blank"
+            rel="noreferrer">
+            {" "}
+            Google Analytics
+          </a>{" "}
+          を使用しています
+        </p>
+        <small>
+          &copy;{copyrightPeriod}{" "}
+          <a
+            className={footerStyles.textLink}
+            href="https://twitter.com/stin_factory"
+            target="_blank"
+            rel="noreferrer">
+            stin_factory
+          </a>
+        </small>
+      </footer>
+    </div>
   );
 };

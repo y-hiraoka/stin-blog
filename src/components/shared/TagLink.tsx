@@ -1,14 +1,15 @@
-import { Link, Tag } from "@chakra-ui/react";
 import NextLink from "next/link";
-import { VFC } from "react";
+import { FC } from "react";
 import { pagesPath } from "../../lib/$path";
+import { tagLinkstyle } from "./TagLink.css";
 
-export const TagLink: VFC<{ tag: string }> = ({ tag }) => {
+export const TagLink: FC<{ tag: string }> = ({ tag }) => {
   return (
-    <NextLink key={tag} href={pagesPath.tags._tagName(tag).$url()} passHref>
-      <Link>
-        <Tag colorScheme="purple">{tag}</Tag>
-      </Link>
+    <NextLink
+      className={tagLinkstyle}
+      key={tag}
+      href={pagesPath.tags._tagName(tag).$url()}>
+      {tag}
     </NextLink>
   );
 };
