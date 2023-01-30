@@ -14,6 +14,7 @@ const handler: NextApiHandler = async req => {
   return new ImageResponse(
     (
       <div
+        lang="ja-JP"
         style={{
           width: "100%",
           height: "100%",
