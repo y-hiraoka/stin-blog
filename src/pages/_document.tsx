@@ -16,8 +16,8 @@ export default class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
             rel="stylesheet"
           />
-          <script
-            async
+          <Script
+            strategy="afterInteractive"
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4010956213409647"
             crossOrigin="anonymous"
           />
