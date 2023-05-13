@@ -4,7 +4,7 @@ import { useLocalStorage } from "./useLocalStorage";
 import { useMatchMedia } from "./useMatchMedia";
 
 const COLOR_MODE_VALUE = ["light", "dark"] as const;
-export type ColorMode = typeof COLOR_MODE_VALUE[number];
+export type ColorMode = (typeof COLOR_MODE_VALUE)[number];
 type ColorModeContextValue = {
   colorMode: ColorMode;
   setColorMode: (color: ColorMode) => void;
