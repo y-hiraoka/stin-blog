@@ -1,24 +1,25 @@
+"use client";
+
 import { FC } from "react";
 import NextLink from "next/link";
-import { useRouter } from "next/router";
-import { pagesPath } from "../../lib/$path";
 import classes from "./ArticlesNavigation.module.scss";
+import { usePathname } from "next/navigation";
 
 export const ArticlesNavigation: FC = () => {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
 
   return (
     <nav className={classes.root}>
       <NextLink
-        href={pagesPath.articles.$url()}
+        href="/articles"
         className={classes.link}
-        data-is-active={pathname === "/articles"}>
+        aria-current={pathname === "/articles" ? "page" : false}>
         Blog
       </NextLink>
       <NextLink
-        href={pagesPath.articles.zenn.$url()}
+        href="/articles/zenn"
         className={classes.link}
-        data-is-active={pathname === "/articles/zenn"}>
+        aria-current={pathname === "/articles/zenn" ? "page" : false}>
         Zenn
       </NextLink>
     </nav>

@@ -1,7 +1,3 @@
-const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/,
-});
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
@@ -10,9 +6,14 @@ const nextConfig = {
     domains: ["www.google.com"],
   },
   experimental: {
-    appDir: false,
     typedRoutes: true,
   },
+  rewrites: async () => [
+    {
+      source: "/feed",
+      destination: "/api/feed",
+    },
+  ],
 };
 
-module.exports = withMDX(nextConfig);
+module.exports = nextConfig;

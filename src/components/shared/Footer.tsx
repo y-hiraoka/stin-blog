@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, FC } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
 import classes from "./Footer.module.scss";

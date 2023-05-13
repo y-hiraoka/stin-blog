@@ -2,7 +2,6 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { FC } from "react";
 import { config } from "../../config";
-import { pagesPath } from "../../lib/$path";
 import { getFaviconUrl } from "../../lib/getFaviconUrl";
 import { ArticleHeader } from "../../models";
 import classes from "./ArticleCard.module.scss";
@@ -21,9 +20,7 @@ export const ArticleCard: FC<Props> = ({ article }) => {
       />
       <h3 className={classes.title}>
         {article.type === "stin-blog" ? (
-          <NextLink
-            className={classes.titleLink}
-            href={pagesPath.articles._slug(article.slug).$url()}>
+          <NextLink className={classes.titleLink} href={`/articles/${article.slug}`}>
             {article.title}
           </NextLink>
         ) : (

@@ -1,7 +1,6 @@
 @use "../../styles/system.scss" as *;
 
 .container {
-  @include appContainer;
   margin-top: var(--spacing-4);
   margin-bottom: var(--spacing-16);
 }

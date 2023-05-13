@@ -1,5 +1,4 @@
 import { JSDOM } from "jsdom";
-import { NextApiHandler } from "next";
 
 export type SiteMetadata = {
   url: string;
@@ -10,23 +9,11 @@ export type SiteMetadata = {
   type?: string;
 };
 
-export type SiteMetadataError = {
-  message: string;
-};
-
-const handler: NextApiHandler<SiteMetadata | SiteMetadataError> = async (req, res) => {
-  const url = Array.isArray(req.query.url) ? req.query.url[0] : req.query.url;
-
-  if (!url) {
-    res.status(400).send({ message: "url must be passed." });
-    return;
-  }
-
-  const response = await fetch(url);
+export async function fetchSiteMetadata(url: string): Promise<SiteMetadata> {
+  const response = await fetch(url, { next: { revalidate: 0 } });
 
   if (!response.ok) {
-    res.status(404).send({ message: "Not Found" });
-    return;
+    throw new Error("Not Found");
   }
 
   const html = await response.text();
@@ -60,14 +47,9 @@ const handler: NextApiHandler<SiteMetadata | SiteMetadataError> = async (req, re
     const metaName = meta.getAttribute("name");
 
     if (metaName === "description") {
-      // og:description 優先
-      metadata.description =
-        metadata.description || meta.getAttribute("content") || undefined;
+      metadata.description = meta.getAttribute("content") ?? undefined;
     }
   }
 
-  res.setHeader("Cache-Control", "max-age=3600");
-  res.send(metadata);
-};
-
-export default handler;
+  return metadata;
+}

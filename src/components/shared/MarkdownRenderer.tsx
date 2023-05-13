@@ -2,14 +2,13 @@ import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkSlug from "remark-slug";
 import remarkGfm from "remark-gfm";
-import { Prism } from "react-syntax-highlighter";
 import { a11yDark as prismStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { RichLinkCard } from "./RichLinkCard";
-import { EmbeddedTweet } from "./EmbeddedTweet";
 import Link from "next/link";
 import classes from "./MarkdownRenderer.module.scss";
-import { useColorMode } from "../../lib/colorMode";
 import { staticPath } from "../../lib/$path";
+import { Prism } from "../../lib/react-syntax-highlighter";
+import { ArticleTweetCard } from "./ArticleTweetCard";
 
 type Props = { children: string };
 
@@ -50,6 +49,7 @@ export const MarkdownRenderer: React.FC<Props> = ({ children }) => {
 const MDLink: Components["a"] = ({ node, href, ...props }) => {
   // a link to same domain
   if (href?.startsWith("#") || href?.startsWith("/") || href?.includes("stin.ink")) {
+    // @ts-expect-error
     return <Link {...props} href={href} className={classes.textLink} />;
   }
 
@@ -115,8 +115,6 @@ const ListItem: Components["li"] = ({ node, checked, index, ordered, ...props })
 };
 
 const Paragraph: Components["p"] = ({ node, ...props }) => {
-  const { colorMode } = useColorMode();
-
   const child = node.children[0];
   if (
     node.children.length === 1 &&
@@ -132,7 +130,7 @@ const Paragraph: Components["p"] = ({ node, ...props }) => {
     ) {
       return (
         <div className={classes.embeded}>
-          <EmbeddedTweet url={child.properties.href} theme={colorMode} lang="ja" />
+          <ArticleTweetCard url={child.properties.href} />
         </div>
       );
     }

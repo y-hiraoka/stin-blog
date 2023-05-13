@@ -1,7 +1,8 @@
+"use client";
+
 import { FC } from "react";
 import { MdDarkMode, MdLightMode, MdMenu } from "react-icons/md";
 import NextLink from "next/link";
-import { pagesPath } from "../../lib/$path";
 import { config } from "../../config";
 import { useColorMode, useColorModeValue } from "../../lib/colorMode";
 import classes from "./Header.module.scss";
@@ -17,7 +18,7 @@ export const Header: FC = () => {
   return (
     <div className={classes.root}>
       <header className={classes.header}>
-        <NextLink href={pagesPath.$url()} className={classes.logoLink}>
+        <NextLink href="/" className={classes.logoLink}>
           <Image
             className={classes.logoLinkImage}
             src={useColorModeValue(logoBlack, logoWhite)}
@@ -44,7 +45,7 @@ export const Header: FC = () => {
 const NavLinks: FC = () => {
   return (
     <>
-      <NextLink href={pagesPath.articles.$url()} className={classes.navigationLink}>
+      <NextLink href="/articles" className={classes.navigationLink}>
         Articles
       </NextLink>
       <a href="https://stin.ink" className={classes.navigationLink}>
@@ -76,9 +77,7 @@ const CollapsedNavLinks: FC = () => {
       <DropdownMenu.Portal>
         <DropdownMenu.Content align="end" className={classes.collapsedNavigationContent}>
           <DropdownMenu.Item asChild>
-            <NextLink
-              href={pagesPath.articles.$url()}
-              className={classes.collapsedNavigationLink}>
+            <NextLink href="/articles" className={classes.collapsedNavigationLink}>
               Articles
             </NextLink>
           </DropdownMenu.Item>

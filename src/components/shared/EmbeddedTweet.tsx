@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, FC } from "react";
 
 // グローバル変数なので `declare global {}` のほうが適切だが、

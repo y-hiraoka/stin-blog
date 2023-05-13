@@ -1,5 +1,5 @@
 import { parseISO, format as formatter } from "date-fns";
-import { useMemo, FC, ComponentProps } from "react";
+import { FC, ComponentProps } from "react";
 
 type Props = {
   datetime: string;
@@ -7,7 +7,7 @@ type Props = {
 } & Omit<ComponentProps<"time">, "children" | "dateTime">;
 
 export const Datetime: FC<Props> = ({ datetime, format, ...props }) => {
-  const date = useMemo(() => parseISO(datetime), [datetime]);
+  const date = parseISO(datetime);
 
   return (
     <time dateTime={datetime} {...props}>

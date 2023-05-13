@@ -26,18 +26,18 @@
     background-color: var(--c-black-alpha-100);
   }
 
-  &[data-is-active="true"] {
+  &[aria-current="page"] {
     border-color: var(--c-gray-800);
   }
-  &[data-is-active="false"] {
+  &[aria-current="false"] {
     color: var(--c-black-alpha-500);
   }
 
   @include isDarkMode {
-    &[data-is-active="true"] {
+    &[aria-current="page"] {
       border-color: var(--c-gray-300);
     }
-    &[data-is-active="false"] {
+    &[aria-current="false"] {
       color: var(--c-white-alpha-600);
     }
     &:hover {

@@ -4,7 +4,6 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import RssParser from "rss-parser";
 import strip from "strip-markdown";
-import markdownToc from "markdown-toc";
 import { z } from "zod";
 import { Article, BlogArticleHeader, Tag, ZennArticleHeader } from "../models";
 import { config } from "../config";
@@ -108,8 +107,6 @@ export async function getArticleData(slug: string): Promise<Article> {
   try {
     const { content, frontMatter } = divideFrontMatterAndContent(rawData);
 
-    const tocMdText = markdownToc(content).content;
-
     const excerpt = await getArticleExcerpt(content);
 
     return {
@@ -125,7 +122,6 @@ export async function getArticleData(slug: string): Promise<Article> {
           : null,
       },
       bodyMdText: content,
-      tocMdText,
     };
   } catch (error) {
     console.error(`Error occured in ${slug}.`);
