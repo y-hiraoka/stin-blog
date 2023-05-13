@@ -1,5 +1,6 @@
 import "ress";
-import "../styles/global.css";
+import "../styles/tokens.scss";
+import "../styles/global.scss";
 import { AppProps } from "next/app";
 import { GA_TRACKING_ID, useGoogleAnalytics } from "../lib/gtag";
 import { ColorModeProvider } from "../lib/colorMode";

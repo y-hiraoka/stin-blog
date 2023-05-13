@@ -1,0 +1,15 @@
+@use "../../styles/system.scss" as *;
+
+.container {
+  @include appContainer;
+  margin-top: var(--spacing-4);
+  margin-bottom: var(--spacing-16);
+}
+
+.title {
+  margin-bottom: var(--spacing-4);
+}
+
+.articleList {
+  margin-top: var(--spacing-8);
+}

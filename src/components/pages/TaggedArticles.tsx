@@ -4,7 +4,7 @@ import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { ArticleHeader } from "../../models";
 import { TagLink } from "../shared/TagLink";
-import { taggedArticlesStyles } from "./TaggedArticles.css";
+import classes from "./TaggedArticles.module.scss";
 import { PageTitle } from "../shared/PageTitle";
 
 type Props = {
@@ -16,8 +16,8 @@ export const TaggedArticles: FC<Props> = ({ tagName, articles }) => {
   return (
     <div>
       <Header />
-      <main className={taggedArticlesStyles.container}>
-        <div className={taggedArticlesStyles.titleSection}>
+      <main className={classes.container}>
+        <div className={classes.titleSection}>
           <PageTitle>Tagged with</PageTitle>
           <TagLink tag={tagName} />
         </div>

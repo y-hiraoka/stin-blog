@@ -4,7 +4,7 @@ import { ArticlesNavigation } from "../shared/ArticlesNavigation";
 import { Footer } from "../shared/Footer";
 import { Header } from "../shared/Header";
 import { ArticleHeader } from "../../models";
-import { zennArticlesStyles } from "./ZennArticles.css";
+import classes from "./ZennArticles.module.scss";
 import { PageTitle } from "../shared/PageTitle";
 
 type Props = {
@@ -15,12 +15,12 @@ export const ZennArticles: FC<Props> = ({ articles }) => {
   return (
     <div>
       <Header />
-      <main className={zennArticlesStyles.container}>
-        <div className={zennArticlesStyles.title}>
+      <main className={classes.container}>
+        <div className={classes.title}>
           <PageTitle>Zenn Articles</PageTitle>
         </div>
         <ArticlesNavigation />
-        <div className={zennArticlesStyles.articleList}>
+        <div className={classes.articleList}>
           <ArticleList articles={articles} />
         </div>
       </main>

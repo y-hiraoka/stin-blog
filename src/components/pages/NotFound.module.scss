@@ -1,0 +1,23 @@
+@use "../../styles/system.scss" as *;
+
+.container {
+  text-align: center;
+  @include appContainer;
+}
+
+.heading {
+  margin: var(--spacing-16);
+  font-size: var(--font-size-4xl);
+  font-weight: bold;
+}
+
+.homeLink {
+  display: block;
+  margin-top: var(--spacing-12);
+  padding: var(--spacing-4);
+  text-decoration: underline;
+  transition: color 0.2s;
+  &:hover {
+    color: var(--c-primary-300);
+  }
+}

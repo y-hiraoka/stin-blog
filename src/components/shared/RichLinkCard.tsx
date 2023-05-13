@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useState, FC } from "react";
 import { getFaviconUrl } from "../../lib/getFaviconUrl";
 import { SiteMetadata } from "../../pages/api/site-metadata";
-import { richLinkCardStyles } from "./RichLinkCard.css";
+import classes from "./RichLinkCard.module.scss";
 
 type MetadataState =
   | {
@@ -72,33 +72,23 @@ const RichLinkCardLoaded: FC<{ metadata: SiteMetadata }> = ({ metadata }) => {
   const hostname = new URL(metadata.url).hostname;
 
   return (
-    <a
-      className={richLinkCardStyles.cardRoot}
-      href={metadata.url}
-      target="_blank"
-      rel="noreferrer">
-      <div className={richLinkCardStyles.loadedMetadata}>
-        <div className={richLinkCardStyles.loadedMetadataTitle}>
+    <a className={classes.cardRoot} href={metadata.url} target="_blank" rel="noreferrer">
+      <div className={classes.loadedMetadata}>
+        <div className={classes.loadedMetadataTitle}>
           {metadata.title ? metadata.title : metadata.url}
         </div>
-        <div className={richLinkCardStyles.loadedMetadataDescriptionContainer}>
-          <div className={richLinkCardStyles.loadedMetadataDescription}>
-            {metadata.description}
-          </div>
+        <div className={classes.loadedMetadataDescriptionContainer}>
+          <div className={classes.loadedMetadataDescription}>{metadata.description}</div>
         </div>
-        <div className={richLinkCardStyles.loadedMetadataSite}>
+        <div className={classes.loadedMetadataSite}>
           <Image src={getFaviconUrl(hostname)} alt="" width={16} height={16} />
-          <span className={richLinkCardStyles.loadedMetadataSiteName}>{hostname}</span>
+          <span className={classes.loadedMetadataSiteName}>{hostname}</span>
         </div>
       </div>
       {metadata.image && (
-        <div className={richLinkCardStyles.loadedMetadataImageContainer}>
+        <div className={classes.loadedMetadataImageContainer}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className={richLinkCardStyles.loadedMetadataImage}
-            src={metadata.image}
-            alt=""
-          />
+          <img className={classes.loadedMetadataImage} src={metadata.image} alt="" />
         </div>
       )}
     </a>
@@ -107,28 +97,28 @@ const RichLinkCardLoaded: FC<{ metadata: SiteMetadata }> = ({ metadata }) => {
 
 const RichLinkCardError: FC<{ href: string }> = ({ href }) => {
   return (
-    <a className={richLinkCardStyles.error} href={href} target="_blank" rel="noreferrer">
-      <p className={richLinkCardStyles.errorTitle}>ページを読み込めませんでした</p>
-      <div className={richLinkCardStyles.errorDescription}>{href}</div>
+    <a className={classes.error} href={href} target="_blank" rel="noreferrer">
+      <p className={classes.errorTitle}>ページを読み込めませんでした</p>
+      <div className={classes.errorDescription}>{href}</div>
     </a>
   );
 };
 
 const RichLinkCardSkeleton: FC = () => {
   return (
-    <div className={richLinkCardStyles.cardRoot}>
-      <div className={richLinkCardStyles.skeletonMetadata}>
-        <div className={richLinkCardStyles.skeletonTextContainer}>
-          <div className={richLinkCardStyles.skeletonText} />
-          <div className={richLinkCardStyles.skeletonTextShorter} />
+    <div className={classes.cardRoot}>
+      <div className={classes.skeletonMetadata}>
+        <div className={classes.skeletonTextContainer}>
+          <div className={classes.skeletonText} />
+          <div className={classes.skeletonTextShorter} />
         </div>
-        <div className={richLinkCardStyles.skeletonTextContainer}>
-          <div className={richLinkCardStyles.skeletonText} />
-          <div className={richLinkCardStyles.skeletonTextShorter} />
+        <div className={classes.skeletonTextContainer}>
+          <div className={classes.skeletonText} />
+          <div className={classes.skeletonTextShorter} />
         </div>
-        <div className={richLinkCardStyles.skeletonSiteIcon} />
+        <div className={classes.skeletonSiteIcon} />
       </div>
-      <div className={richLinkCardStyles.skeletonImage} />
+      <div className={classes.skeletonImage} />
     </div>
   );
 };

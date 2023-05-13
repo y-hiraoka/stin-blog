@@ -4,7 +4,7 @@ import NextLink from "next/link";
 import { pagesPath } from "../../lib/$path";
 import { config } from "../../config";
 import { useColorMode, useColorModeValue } from "../../lib/colorMode";
-import { headerStyles } from "./Header.css";
+import classes from "./Header.module.scss";
 import { IconButton } from "../system/IconButton";
 import Image from "next/image";
 import logoBlack from "./logo_black.png";
@@ -15,18 +15,18 @@ export const Header: FC = () => {
   const { toggleColorMode } = useColorMode();
 
   return (
-    <div className={headerStyles.root}>
-      <header className={headerStyles.header}>
-        <NextLink href={pagesPath.$url()} className={headerStyles.logoLink}>
+    <div className={classes.root}>
+      <header className={classes.header}>
+        <NextLink href={pagesPath.$url()} className={classes.logoLink}>
           <Image
-            className={headerStyles.logoLinkImage}
+            className={classes.logoLinkImage}
             src={useColorModeValue(logoBlack, logoWhite)}
             alt="stin's blog"
             title="stin's blog"
             priority
           />
         </NextLink>
-        <nav className={headerStyles.navigations}>
+        <nav className={classes.navigations}>
           <IconButton
             aria-label="toggle theme"
             variant="ghost"
@@ -44,17 +44,17 @@ export const Header: FC = () => {
 const NavLinks: FC = () => {
   return (
     <>
-      <NextLink href={pagesPath.articles.$url()} className={headerStyles.navigationLink}>
+      <NextLink href={pagesPath.articles.$url()} className={classes.navigationLink}>
         Articles
       </NextLink>
-      <a href="https://stin.ink" className={headerStyles.navigationLink}>
+      <a href="https://stin.ink" className={classes.navigationLink}>
         About
       </a>
       <a
         href={config.repository}
         target="_blank"
         rel="noreferrer"
-        className={headerStyles.navigationLink}>
+        className={classes.navigationLink}>
         GitHub
       </a>
     </>
@@ -64,7 +64,7 @@ const NavLinks: FC = () => {
 const CollapsedNavLinks: FC = () => {
   return (
     <DropdownMenu.Root>
-      <div className={headerStyles.collapsedNavigationTrigger}>
+      <div className={classes.collapsedNavigationTrigger}>
         <DropdownMenu.Trigger asChild>
           <IconButton
             aria-label="ナビゲーションリンクを開閉する"
@@ -74,18 +74,16 @@ const CollapsedNavLinks: FC = () => {
         </DropdownMenu.Trigger>
       </div>
       <DropdownMenu.Portal>
-        <DropdownMenu.Content
-          align="end"
-          className={headerStyles.collapsedNavigationContent}>
+        <DropdownMenu.Content align="end" className={classes.collapsedNavigationContent}>
           <DropdownMenu.Item asChild>
             <NextLink
               href={pagesPath.articles.$url()}
-              className={headerStyles.collapsedNavigationLink}>
+              className={classes.collapsedNavigationLink}>
               Articles
             </NextLink>
           </DropdownMenu.Item>
           <DropdownMenu.Item asChild>
-            <a href="https://stin.ink" className={headerStyles.collapsedNavigationLink}>
+            <a href="https://stin.ink" className={classes.collapsedNavigationLink}>
               About
             </a>
           </DropdownMenu.Item>
@@ -94,7 +92,7 @@ const CollapsedNavLinks: FC = () => {
               href={config.repository}
               target="_blank"
               rel="noreferrer"
-              className={headerStyles.collapsedNavigationLink}>
+              className={classes.collapsedNavigationLink}>
               GitHub
             </a>
           </DropdownMenu.Item>

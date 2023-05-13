@@ -1,6 +1,3 @@
-const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
-const withVanillaExtract = createVanillaExtractPlugin();
-
 const withMDX = require("@next/mdx")({
   extension: /\.mdx?$/,
 });
@@ -12,6 +9,10 @@ const nextConfig = {
   images: {
     domains: ["www.google.com"],
   },
+  experimental: {
+    appDir: false,
+    typedRoutes: true,
+  },
 };
 
-module.exports = withVanillaExtract(withMDX(nextConfig));
+module.exports = withMDX(nextConfig);

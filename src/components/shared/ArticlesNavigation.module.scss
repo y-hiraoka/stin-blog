@@ -1,0 +1,47 @@
+@use "../../styles/mediaQueries.scss" as *;
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+  border-bottom: var(--border-2);
+  border-color: var(--c-gray-300);
+
+  @include isDarkMode {
+    border-color: var(--c-gray-600);
+  }
+}
+
+.link {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--size-12);
+  padding: var(--spacing-2) var(--spacing-4);
+  border-bottom: var(--border-2);
+  border-color: transparent;
+  margin-bottom: -2px;
+  &:hover {
+    background-color: var(--c-black-alpha-100);
+  }
+
+  &[data-is-active="true"] {
+    border-color: var(--c-gray-800);
+  }
+  &[data-is-active="false"] {
+    color: var(--c-black-alpha-500);
+  }
+
+  @include isDarkMode {
+    &[data-is-active="true"] {
+      border-color: var(--c-gray-300);
+    }
+    &[data-is-active="false"] {
+      color: var(--c-white-alpha-600);
+    }
+    &:hover {
+      background-color: var(--c-white-alpha-200);
+    }
+  }
+}

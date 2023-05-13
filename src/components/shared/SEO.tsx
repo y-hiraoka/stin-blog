@@ -1,6 +1,5 @@
 import { NextSeo } from "next-seo";
 import { config } from "../../config";
-import { staticPath } from "../../lib/$path";
 
 type BaseProps = {
   pagePath: string;
@@ -57,7 +56,7 @@ export const SEO: React.FC<BaseProps & (ForWebsiteProps | ForArticleProps)> = ({
               type === "article"
                 ? config.siteUrl +
                   `/api/og-image?title=${encodeURIComponent(title ?? "")}`
-                : config.siteUrl + staticPath.images.ogimage_png,
+                : config.siteUrl + "/images/ogimage.png",
             width: 1200,
             height: 630,
           },

@@ -1,0 +1,71 @@
+@use "../../styles/mediaQueries.scss" as *;
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+.size-md {
+  width: var(--size-10);
+  height: var(--size-10);
+  font-size: var(--font-size-2xl);
+  border-radius: var(--radius-md);
+}
+
+.color-normal {
+  color: var(--c-text-primary);
+}
+
+.color-primary {
+  color: var(--c-primary-500);
+
+  @include isDarkMode {
+    color: var(--c-primary-400);
+  }
+}
+
+.variant-outlined {
+  border: var(--border-1);
+}
+
+.color-normal.variant-ghost {
+  &:hover {
+    background-color: var(--c-black-alpha-100);
+  }
+
+  @include isDarkMode {
+    &:hover {
+      background-color: var(--c-white-alpha-200);
+    }
+  }
+}
+
+.color-primary.variant-ghost {
+  &:hover {
+    background-color: var(--c-primary-50);
+  }
+
+  @include isDarkMode {
+    &:hover {
+      background-color: var(--c-primary-900);
+    }
+  }
+}
+
+.color-normal.variant-outlined {
+  border-color: var(--c-gray-200);
+
+  &:hover {
+    background-color: var(--c-gray-100);
+  }
+
+  @include isDarkMode {
+    border-color: var(--c-white-alpha-300);
+
+    &:hover {
+      background-color: var(--c-white-alpha-200);
+    }
+  }
+}

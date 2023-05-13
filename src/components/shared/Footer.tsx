@@ -1,6 +1,6 @@
 import { useState, FC } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
-import { footerStyles } from "./Footer.css";
+import classes from "./Footer.module.scss";
 
 export const Footer: FC = () => {
   const [copyrightPeriod, setCopyrightPeriod] = useState("");
@@ -12,11 +12,11 @@ export const Footer: FC = () => {
 
   return (
     <div>
-      <footer className={footerStyles.footer}>
-        <p className={footerStyles.description}>
+      <footer className={classes.footer}>
+        <p className={classes.description}>
           このサイトは{" "}
           <a
-            className={footerStyles.textLink}
+            className={classes.textLink}
             href="https://policies.google.com/technologies/partner-sites?hl=ja"
             target="_blank"
             rel="noreferrer">
@@ -28,7 +28,7 @@ export const Footer: FC = () => {
         <small>
           &copy;{copyrightPeriod}{" "}
           <a
-            className={footerStyles.textLink}
+            className={classes.textLink}
             href="https://twitter.com/stin_factory"
             target="_blank"
             rel="noreferrer">

@@ -10,7 +10,7 @@ import { TwitterIntentTweet } from "../shared/TwitterIntentTweet";
 import { config } from "../../config";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { AdSense } from "../shared/AdSense";
-import { articleStyles } from "./Article.css";
+import classes from "./Article.module.scss";
 import { PageTitle } from "../shared/PageTitle";
 
 type Props = {
@@ -21,11 +21,11 @@ export const Article: FC<Props> = ({ article }) => {
   return (
     <div>
       <Header />
-      <main className={articleStyles.container}>
-        <div className={articleStyles.articleHeader}>
+      <main className={classes.container}>
+        <div className={classes.articleHeader}>
           <PageTitle>{article.header.title}</PageTitle>
-          <div className={articleStyles.datetimes}>
-            <p className={articleStyles.datetime}>
+          <div className={classes.datetimes}>
+            <p className={classes.datetime}>
               公開:{" "}
               <Datetime
                 format="yyyy年MM月dd日 HH時mm分"
@@ -33,7 +33,7 @@ export const Article: FC<Props> = ({ article }) => {
               />
             </p>
             {article.header.updatedAt && (
-              <p className={articleStyles.datetime}>
+              <p className={classes.datetime}>
                 更新:{" "}
                 <Datetime
                   format="yyyy年MM月dd日 HH時mm分"
@@ -42,7 +42,7 @@ export const Article: FC<Props> = ({ article }) => {
               </p>
             )}
           </div>
-          <ul className={articleStyles.tags}>
+          <ul className={classes.tags}>
             {article.header.tags.map(tag => (
               <li key={tag}>
                 <TagLink tag={tag} />
@@ -50,17 +50,17 @@ export const Article: FC<Props> = ({ article }) => {
             ))}
           </ul>
         </div>
-        <hr className={articleStyles.contentDivider} />
-        <section className={articleStyles.articleContent}>
+        <hr className={classes.contentDivider} />
+        <section className={classes.articleContent}>
           <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
         </section>
-        <section className={articleStyles.adsense}>
+        <section className={classes.adsense}>
           <AdSense />
         </section>
-        <section className={articleStyles.externalLinks}>
-          <div className={articleStyles.shareButtons}>
+        <section className={classes.externalLinks}>
+          <div className={classes.shareButtons}>
             <TwitterIntentTweet
-              className={articleStyles.twitterButton}
+              className={classes.twitterButton}
               text={article.header.title}
               url={`${config.siteUrl}/articles/${article.header.slug}`}
               hashtags={article.header.tags}
@@ -70,14 +70,14 @@ export const Article: FC<Props> = ({ article }) => {
             </TwitterIntentTweet>
           </div>
           <a
-            className={articleStyles.githubLink}
+            className={classes.githubLink}
             href={`${config.repository}/tree/main/contents/${article.header.slug}.md`}
             rel="noreferrer">
-            <FaGithub className={articleStyles.githubIcon} />
+            <FaGithub className={classes.githubIcon} />
             GitHub で修正をリクエストする
           </a>
         </section>
-        <div className={articleStyles.linkToArticles}>
+        <div className={classes.linkToArticles}>
           <LinkToArticles />
         </div>
       </main>
