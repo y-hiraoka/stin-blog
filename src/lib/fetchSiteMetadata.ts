@@ -10,7 +10,7 @@ export type SiteMetadata = {
 };
 
 export async function fetchSiteMetadata(url: string): Promise<SiteMetadata> {
-  const response = await fetch(url, { next: { revalidate: 0 } });
+  const response = await fetch(url, { next: { revalidate: 60 * 60 } });
 
   if (!response.ok) {
     throw new Error("Not Found");

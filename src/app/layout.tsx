@@ -1,4 +1,4 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, Suspense } from "react";
 import Script from "next/script";
 import { GoogleAnalyticsScript } from "../lib/gtag";
 import "ress";
@@ -26,11 +26,13 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4010956213409647"
           crossOrigin="anonymous"
         />
-        <GoogleAnalyticsScript />
+        <Suspense fallback={null}>
+          <GoogleAnalyticsScript />
+        </Suspense>
       </head>
       <body>
         <Header />
-        {children}
+        <Suspense fallback={null}>{children}</Suspense>
         <Footer />
       </body>
     </ColorModeAppliedHtml>

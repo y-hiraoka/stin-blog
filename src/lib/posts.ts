@@ -161,7 +161,10 @@ export async function getAllArticleTags(): Promise<Tag[]> {
 
 export async function getZennArticleHeaders(): Promise<ZennArticleHeader[]> {
   const parser = new RssParser();
-  const feed = await parser.parseURL(`https://zenn.dev/${config.social.zenn}/feed?all=1`);
+  const xmlText = await fetch(`https://zenn.dev/${config.social.zenn}/feed?all=1`, {
+    next: { revalidate: 60 * 60 * 24 },
+  }).then(res => res.text());
+  const feed = await parser.parseString(xmlText);
 
   return feed.items.map(item => ({
     type: "zenn",
