@@ -1,10 +1,11 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, { Head, Main, NextScript } from "next/document";
 import Script from "next/script";
+import { ColorModeAppliedHtml } from "../lib/colorMode";
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="ja">
+      <ColorModeAppliedHtml>
         <Head>
           <Script
             id="twitter-embed-script"
@@ -26,7 +27,7 @@ export default class MyDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </Html>
+      </ColorModeAppliedHtml>
     );
   }
 }

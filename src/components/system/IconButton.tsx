@@ -1,19 +1,18 @@
-import { RecipeVariantType } from "@vanilla-extract/recipes";
-import { ComponentProps, FC, forwardRef, ReactNode } from "react";
+import { ComponentProps, forwardRef, ReactNode } from "react";
 import { cx } from "../../lib/cx";
-import { iconButtonStyle } from "./IconButton.css";
+import classes from "./IconButton.module.scss";
 
 type IconButtonProps = Omit<ComponentProps<"button">, "children"> & {
   icon: ReactNode;
   "aria-label": string;
-  variant?: RecipeVariantType<typeof iconButtonStyle, "variant">;
-  color?: RecipeVariantType<typeof iconButtonStyle, "color">;
-  size?: RecipeVariantType<typeof iconButtonStyle, "size">;
+  variant?: "ghost" | "outlined";
+  color?: "normal" | "primary";
+  size?: "md";
 };
 
 export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
   function IconButton(
-    { icon, variant, color, size, className, ...buttonProps },
+    { icon, variant = "ghost", color = "normal", size = "md", className, ...buttonProps },
     forwardedRef,
   ) {
     return (
@@ -21,7 +20,13 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         {...buttonProps}
         ref={forwardedRef}
         type={buttonProps.type ?? "button"}
-        className={cx(iconButtonStyle({ color, size, variant }), className)}>
+        className={cx(
+          classes.iconButton,
+          classes[`size-${size}`],
+          classes[`color-${color}`],
+          classes[`variant-${variant}`],
+          className,
+        )}>
         {icon}
       </button>
     );

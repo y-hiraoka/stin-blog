@@ -1,4 +1,6 @@
-import { useRouter } from "next/router";
+"use client";
+
+import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, FC } from "react";
 
 declare global {
@@ -6,7 +8,8 @@ declare global {
 }
 
 export const AdSense: FC = () => {
-  const { asPath } = useRouter();
+  const pathname = usePathname() ?? "";
+  const searchParams = useSearchParams()?.toString();
 
   useEffect(() => {
     try {
@@ -14,10 +17,10 @@ export const AdSense: FC = () => {
     } catch (error) {
       console.error(error);
     }
-  }, [asPath]);
+  }, [pathname, searchParams]);
 
   return (
-    <div key={asPath} style={{ textAlign: "center" }}>
+    <div key={pathname + searchParams} style={{ textAlign: "center" }}>
       <ins
         className="adsbygoogle"
         style={{ display: "block" }}

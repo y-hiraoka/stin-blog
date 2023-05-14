@@ -1,0 +1,115 @@
+@use "../../styles/mediaQueries.scss" as *;
+@use "../../styles/system.scss" as *;
+
+@keyframes uncollapse {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+    scale: 0.8;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(var(--spacing-2));
+    scale: 1;
+  }
+}
+
+.root {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(8px);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--spacing-4);
+  padding-bottom: var(--spacing-4);
+
+  @include appContainer;
+}
+
+.logoLink {
+  line-height: 0;
+}
+
+.logoLinkImage {
+  width: auto;
+  height: var(--size-12);
+
+  @include largerThan("sm") {
+    height: var(--size-14);
+  }
+
+  @include largerThan("md") {
+    height: var(--size-16);
+  }
+}
+
+.navigations {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.navigationLink {
+  display: none;
+  font-weight: bold;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @include largerThan("md") {
+    display: inline;
+  }
+}
+
+.collapsedNavigationTrigger {
+  @include largerThan("md") {
+    display: none;
+  }
+}
+
+.collapsedNavigationContent {
+  box-shadow: var(--shadow-md);
+  background: var(--c-background);
+  border-radius: var(--radius-md);
+  border: var(--border-1);
+  border-color: var(--c-gray-200);
+  padding-top: var(--spacing-2);
+  padding-bottom: var(--spacing-2);
+  min-width: var(--size-48);
+  transform-origin: top right;
+  animation: uncollapse 0.2s forwards;
+
+  @include isDarkMode {
+    background: var(--c-gray-700);
+    border-color: var(--c-white-alpha-300);
+    box-shadow: var(--shadow-dark-lg);
+  }
+}
+
+.collapsedNavigationLink {
+  display: block;
+  padding: var(--spacing-2) var(--spacing-4);
+  transition: background-color 0.2s;
+
+  &:focus {
+    background-color: var(--c-gray-100);
+  }
+  &:hover {
+    background-color: var(--c-gray-100);
+  }
+
+  @include isDarkMode {
+    &:focus {
+      background-color: var(--c-white-alpha-100);
+    }
+    &:hover {
+      background-color: var(--c-white-alpha-100);
+    }
+  }
+}

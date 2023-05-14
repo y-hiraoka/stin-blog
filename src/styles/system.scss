@@ -1,0 +1,59 @@
+@mixin appContainer {
+  max-width: var(--container-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--spacing-4);
+  padding-right: var(--spacing-4);
+}
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin vStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+@mixin hStack {
+  display: flex;
+  flex-direction: row;
+  gap: var(--spacing-2);
+}
+
+@mixin wrapItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-2);
+}
+
+@mixin lineClamp($noOfLines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $noOfLines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@keyframes skeletonAnimation {
+  0% {
+    border-color: var(--c-gray-100);
+    background: var(--c-gray-100);
+  }
+  100% {
+    border-color: var(--c-gray-400);
+    background: var(--c-gray-400);
+  }
+}
+
+@mixin skeletonBase {
+  animation: 0.8s linear infinite alternate skeletonAnimation;
+  opacity: 0.7;
+}
+
+@mixin skeletonText {
+  @include skeletonBase;
+  height: var(--size-2);
+  border-radius: var(--radius-xs);
+}

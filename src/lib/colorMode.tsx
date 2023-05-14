@@ -1,10 +1,11 @@
+"use client";
+
 import { createContext, FC, ReactNode, useCallback, useContext, useMemo } from "react";
-import { useIsomorphicLayoutEffect } from "react-use";
 import { useLocalStorage } from "./useLocalStorage";
 import { useMatchMedia } from "./useMatchMedia";
 
 const COLOR_MODE_VALUE = ["light", "dark"] as const;
-export type ColorMode = typeof COLOR_MODE_VALUE[number];
+export type ColorMode = (typeof COLOR_MODE_VALUE)[number];
 type ColorModeContextValue = {
   colorMode: ColorMode;
   setColorMode: (color: ColorMode) => void;
@@ -16,7 +17,7 @@ const ColorModeContext = createContext<ColorModeContextValue>({
   toggleColorMode: () => null,
 });
 
-export const ColorModeProvider: FC<{ children: ReactNode }> = ({ children }) => {
+export const ColorModeAppliedHtml: FC<{ children: ReactNode }> = ({ children }) => {
   const [appColorMode, setColorMode] = useLocalStorage<ColorMode>({
     storageKey: "stin-blog-color-mode",
     initialState: "light",
@@ -40,11 +41,13 @@ export const ColorModeProvider: FC<{ children: ReactNode }> = ({ children }) => 
     [colorMode, setColorMode, toggleColorMode],
   );
 
-  useIsomorphicLayoutEffect(() => {
-    document.querySelector("html")?.setAttribute("data-color-mode", colorMode);
-  }, [colorMode]);
-
-  return <ColorModeContext.Provider value={value}>{children}</ColorModeContext.Provider>;
+  return (
+    <ColorModeContext.Provider value={value}>
+      <html lang="ja" data-color-mode={colorMode}>
+        {children}
+      </html>
+    </ColorModeContext.Provider>
+  );
 };
 
 export function useColorMode() {

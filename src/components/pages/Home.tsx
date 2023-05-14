@@ -1,11 +1,9 @@
 import { FC } from "react";
 import { ArticleList } from "../shared/ArticleList";
-import { Footer } from "../shared/Footer";
-import { Header } from "../shared/Header";
 import { LinkToArticles } from "../shared/LinkToArticles";
 import { ArticleHeader } from "../../models";
 import { PageTitle } from "../shared/PageTitle";
-import { homeStyles } from "./Home.css";
+import classes from "./Home.module.scss";
 
 type Props = {
   articles: ArticleHeader[];
@@ -13,18 +11,14 @@ type Props = {
 
 export const Home: FC<Props> = ({ articles }) => {
   return (
-    <div>
-      <Header />
-      <main className={homeStyles.container}>
-        <div className={homeStyles.title}>
-          <PageTitle>Home</PageTitle>
-        </div>
-        <ArticleList articles={articles} />
-        <div className={homeStyles.linkToArticles}>
-          <LinkToArticles />
-        </div>
-      </main>
-      <Footer />
-    </div>
+    <main className={classes.container}>
+      <div className={classes.title}>
+        <PageTitle>Home</PageTitle>
+      </div>
+      <ArticleList articles={articles} />
+      <div className={classes.linkToArticles}>
+        <LinkToArticles />
+      </div>
+    </main>
   );
 };

@@ -1,5 +1,6 @@
-import { parseISO, format as formatter } from "date-fns";
-import { useMemo, FC, ComponentProps } from "react";
+import { format as formatter } from "date-fns";
+import { utcToZonedTime } from "date-fns-tz";
+import { FC, ComponentProps } from "react";
 
 type Props = {
   datetime: string;
@@ -7,7 +8,7 @@ type Props = {
 } & Omit<ComponentProps<"time">, "children" | "dateTime">;
 
 export const Datetime: FC<Props> = ({ datetime, format, ...props }) => {
-  const date = useMemo(() => parseISO(datetime), [datetime]);
+  const date = utcToZonedTime(datetime, "Asia/Tokyo");
 
   return (
     <time dateTime={datetime} {...props}>

@@ -2,10 +2,9 @@ import Image from "next/image";
 import NextLink from "next/link";
 import { FC } from "react";
 import { config } from "../../config";
-import { pagesPath } from "../../lib/$path";
 import { getFaviconUrl } from "../../lib/getFaviconUrl";
 import { ArticleHeader } from "../../models";
-import { articleCardStyles } from "./ArticleCard.css";
+import classes from "./ArticleCard.module.scss";
 import { Datetime } from "./Datetime";
 import { TagLink } from "./TagLink";
 
@@ -13,22 +12,20 @@ type Props = { article: ArticleHeader };
 
 export const ArticleCard: FC<Props> = ({ article }) => {
   return (
-    <article className={articleCardStyles.card}>
+    <article className={classes.card}>
       <Datetime
-        className={articleCardStyles.publishedAt}
+        className={classes.publishedAt}
         datetime={article.createdAt}
         format="yyyy年MM月dd日 HH時mm分"
       />
-      <h3 className={articleCardStyles.title}>
+      <h3 className={classes.title}>
         {article.type === "stin-blog" ? (
-          <NextLink
-            className={articleCardStyles.titleLink}
-            href={pagesPath.articles._slug(article.slug).$url()}>
+          <NextLink className={classes.titleLink} href={`/articles/${article.slug}`}>
             {article.title}
           </NextLink>
         ) : (
           <a
-            className={articleCardStyles.titleLink}
+            className={classes.titleLink}
             href={article.url}
             target="_blank"
             rel="noreferrer">
@@ -37,7 +34,7 @@ export const ArticleCard: FC<Props> = ({ article }) => {
         )}
       </h3>
       {article.type === "stin-blog" ? (
-        <ul className={articleCardStyles.tags}>
+        <ul className={classes.tags}>
           {article.tags.map(tag => (
             <li key={tag}>
               <TagLink tag={tag} />
@@ -46,7 +43,7 @@ export const ArticleCard: FC<Props> = ({ article }) => {
         </ul>
       ) : (
         <a
-          className={articleCardStyles.zennLink}
+          className={classes.zennLink}
           href={`https://zenn.dev/${config.social.zenn}`}
           target="_blank"
           rel="noreferrer">

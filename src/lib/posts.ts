@@ -4,7 +4,6 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import RssParser from "rss-parser";
 import strip from "strip-markdown";
-import markdownToc from "markdown-toc";
 import { z } from "zod";
 import { Article, BlogArticleHeader, Tag, ZennArticleHeader } from "../models";
 import { config } from "../config";
@@ -108,8 +107,6 @@ export async function getArticleData(slug: string): Promise<Article> {
   try {
     const { content, frontMatter } = divideFrontMatterAndContent(rawData);
 
-    const tocMdText = markdownToc(content).content;
-
     const excerpt = await getArticleExcerpt(content);
 
     return {
@@ -125,7 +122,6 @@ export async function getArticleData(slug: string): Promise<Article> {
           : null,
       },
       bodyMdText: content,
-      tocMdText,
     };
   } catch (error) {
     console.error(`Error occured in ${slug}.`);
@@ -165,7 +161,10 @@ export async function getAllArticleTags(): Promise<Tag[]> {
 
 export async function getZennArticleHeaders(): Promise<ZennArticleHeader[]> {
   const parser = new RssParser();
-  const feed = await parser.parseURL(`https://zenn.dev/${config.social.zenn}/feed?all=1`);
+  const xmlText = await fetch(`https://zenn.dev/${config.social.zenn}/feed?all=1`, {
+    next: { revalidate: 60 * 60 * 24 },
+  }).then(res => res.text());
+  const feed = await parser.parseString(xmlText);
 
   return feed.items.map(item => ({
     type: "zenn",

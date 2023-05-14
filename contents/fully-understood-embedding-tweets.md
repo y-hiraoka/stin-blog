@@ -63,8 +63,7 @@ widgets.js による変換後の HTML ↓
 <div class="twitter-tweet twitter-tweet-rendered">
   <iframe
     id="twitter-widget-1"
-    src="https://platform.twitter.com/embed/Tweet.html..."
-  ></iframe>
+    src="https://platform.twitter.com/embed/Tweet.html..."></iframe>
 </div>
 ```
 

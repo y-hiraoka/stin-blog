@@ -23,5 +23,4 @@ export type ArticleHeader = BlogArticleHeader | ZennArticleHeader;
 export type Article = {
   header: BlogArticleHeader;
   bodyMdText: string;
-  tocMdText: string;
 };

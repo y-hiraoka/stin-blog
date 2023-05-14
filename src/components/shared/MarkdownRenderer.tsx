@@ -2,20 +2,17 @@ import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkSlug from "remark-slug";
 import remarkGfm from "remark-gfm";
-import { Prism } from "react-syntax-highlighter";
-import { a11yDark as prismStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { RichLinkCard } from "./RichLinkCard";
-import { EmbeddedTweet } from "./EmbeddedTweet";
 import Link from "next/link";
-import { markdownRendererStyles } from "./MarkdownRenderer.css";
-import { useColorMode } from "../../lib/colorMode";
-import { staticPath } from "../../lib/$path";
+import classes from "./MarkdownRenderer.module.scss";
+import { ArticleTweetCard } from "./ArticleTweetCard";
+import { SyntaxHighlighter } from "./SyntaxHighlighter";
 
 type Props = { children: string };
 
 export const MarkdownRenderer: React.FC<Props> = ({ children }) => {
   return (
-    <div className={markdownRendererStyles.root}>
+    <div className={classes.root}>
       <ReactMarkdown
         remarkPlugins={[remarkSlug, remarkGfm]}
         components={{
@@ -50,14 +47,15 @@ export const MarkdownRenderer: React.FC<Props> = ({ children }) => {
 const MDLink: Components["a"] = ({ node, href, ...props }) => {
   // a link to same domain
   if (href?.startsWith("#") || href?.startsWith("/") || href?.includes("stin.ink")) {
-    return <Link {...props} href={href} className={markdownRendererStyles.textLink} />;
+    // @ts-expect-error
+    return <Link {...props} href={href} className={classes.textLink} />;
   }
 
   return (
     <a
       {...props}
       href={href}
-      className={markdownRendererStyles.textLink}
+      className={classes.textLink}
       target="_blank"
       rel="noreferrer"
     />
@@ -65,58 +63,56 @@ const MDLink: Components["a"] = ({ node, href, ...props }) => {
 };
 
 const Heading1: Components["h1"] = ({ level, node, ...props }) => {
-  return <h1 {...props} className={markdownRendererStyles.h1} />;
+  return <h1 {...props} className={classes.h1} />;
 };
 
 const Heading2: Components["h2"] = ({ level, node, ...props }) => {
-  return <h2 {...props} className={markdownRendererStyles.h2} />;
+  return <h2 {...props} className={classes.h2} />;
 };
 
 const Heading3: Components["h3"] = ({ level, node, ...props }) => {
-  return <h3 {...props} className={markdownRendererStyles.h3} />;
+  return <h3 {...props} className={classes.h3} />;
 };
 
 const Heading4: Components["h4"] = ({ level, node, ...props }) => {
-  return <h4 {...props} className={markdownRendererStyles.h4} />;
+  return <h4 {...props} className={classes.h4} />;
 };
 
 const Heading5: Components["h5"] = ({ level, node, ...props }) => {
-  return <h5 {...props} className={markdownRendererStyles.h5} />;
+  return <h5 {...props} className={classes.h5} />;
 };
 
 const Heading6: Components["h6"] = ({ level, node, ...props }) => {
-  return <h6 {...props} className={markdownRendererStyles.h6} />;
+  return <h6 {...props} className={classes.h6} />;
 };
 
 const Code: Components["code"] = ({ node, inline, className, children, ...props }) => {
   const match = /language-(\w+)/.exec(className || "");
   return !inline ? (
-    <div className={markdownRendererStyles.codeBlock}>
-      {/* @ts-expect-error 原因不明のエラー */}
-      <Prism style={prismStyle} language={match?.[1]} {...props}>
-        {String(children).replace(/\n$/, "")}
-      </Prism>
+    <div className={classes.codeBlock}>
+      <SyntaxHighlighter
+        code={String(children).replace(/\n$/, "")}
+        language={match?.[1] ?? "plain-text"}
+      />
     </div>
   ) : (
-    <code className={markdownRendererStyles.inlineCode}>{children}</code>
+    <code className={classes.inlineCode}>{children}</code>
   );
 };
 
 const UnorderedList: Components["ul"] = ({ node, depth, ordered, ...props }) => {
-  return <ul {...props} className={markdownRendererStyles.list} />;
+  return <ul {...props} className={classes.list} />;
 };
 
 const OrderedList: Components["ol"] = ({ node, depth, ordered, ...props }) => {
-  return <ol {...props} className={markdownRendererStyles.list} />;
+  return <ol {...props} className={classes.list} />;
 };
 
 const ListItem: Components["li"] = ({ node, checked, index, ordered, ...props }) => {
-  return <li {...props} className={markdownRendererStyles.listItem} />;
+  return <li {...props} className={classes.listItem} />;
 };
 
 const Paragraph: Components["p"] = ({ node, ...props }) => {
-  const { colorMode } = useColorMode();
-
   const child = node.children[0];
   if (
     node.children.length === 1 &&
@@ -131,28 +127,28 @@ const Paragraph: Components["p"] = ({ node, ...props }) => {
       /https?:\/\/(www\.)?twitter.com\/\w{1,15}\/status\/.*/.test(child.properties.href)
     ) {
       return (
-        <div className={markdownRendererStyles.embeded}>
-          <EmbeddedTweet url={child.properties.href} theme={colorMode} lang="ja" />
+        <div className={classes.embeded}>
+          <ArticleTweetCard url={child.properties.href} />
         </div>
       );
     }
 
     return (
-      <div className={markdownRendererStyles.embeded}>
+      <div className={classes.embeded}>
         <RichLinkCard href={child.properties.href} isExternal />
       </div>
     );
   }
 
-  return <p {...props} className={markdownRendererStyles.paragraph} />;
+  return <p {...props} className={classes.paragraph} />;
 };
 
 const Blockquote: Components["blockquote"] = ({ node, ...props }) => {
-  return <blockquote {...props} className={markdownRendererStyles.blockquote} />;
+  return <blockquote {...props} className={classes.blockquote} />;
 };
 
 const Table: Components["table"] = ({ node, ...props }) => {
-  return <table {...props} className={markdownRendererStyles.table} />;
+  return <table {...props} className={classes.table} />;
 };
 
 const Thead: Components["thead"] = ({ node, ...props }) => {
@@ -168,22 +164,22 @@ const Tr: Components["tr"] = ({ node, isHeader, ...props }) => {
 };
 
 const Th: Components["th"] = ({ node, isHeader, ...props }) => {
-  return <th {...props} className={markdownRendererStyles.th} />;
+  return <th {...props} className={classes.th} />;
 };
 
 const Td: Components["td"] = ({ node, isHeader, ...props }) => {
-  return <td {...props} className={markdownRendererStyles.td} />;
+  return <td {...props} className={classes.td} />;
 };
 
 const Hr: Components["hr"] = ({ node, ...props }) => {
-  return <hr {...props} className={markdownRendererStyles.hr} />;
+  return <hr {...props} className={classes.hr} />;
 };
 
 const Img: Components["img"] = ({ src, alt }) => {
   return (
     <a href={src} target="_blank" rel="noreferrer">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src ?? staticPath.images.no_image_png} alt={alt ?? ""} />
+      <img src={src ?? "/images/no-image.png"} alt={alt ?? ""} />
     </a>
   );
 };

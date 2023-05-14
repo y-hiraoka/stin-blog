@@ -1,8 +1,5 @@
-const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
-const withVanillaExtract = createVanillaExtractPlugin();
-
-const withMDX = require("@next/mdx")({
-  extension: /\.mdx?$/,
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
 });
 
 /** @type {import('next').NextConfig} */
@@ -12,6 +9,15 @@ const nextConfig = {
   images: {
     domains: ["www.google.com"],
   },
+  experimental: {
+    typedRoutes: true,
+  },
+  rewrites: async () => [
+    {
+      source: "/feed",
+      destination: "/api/feed",
+    },
+  ],
 };
 
-module.exports = withVanillaExtract(withMDX(nextConfig));
+module.exports = withBundleAnalyzer(nextConfig);

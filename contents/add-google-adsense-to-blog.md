@@ -40,8 +40,7 @@ AdSense 管理画面のコード生成ツールからコピペできる広告ユ
 <script
   async
   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=YOUR_PUBLISHER_ID"
-  crossorigin="anonymous"
-></script>
+  crossorigin="anonymous"></script>
 <!-- スクエアの広告 -->
 <ins
   class="adsbygoogle"
@@ -49,8 +48,7 @@ AdSense 管理画面のコード生成ツールからコピペできる広告ユ
   data-ad-client="YOUR_PUBLISHER_ID"
   data-ad-slot="9999999999"
   data-ad-format="auto"
-  data-full-width-responsive="true"
-></ins>
+  data-full-width-responsive="true"></ins>
 <script>
   (adsbygoogle = window.adsbygoogle || []).push({});
 </script>

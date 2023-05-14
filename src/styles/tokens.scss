@@ -1,0 +1,175 @@
+@use "./mediaQueries.scss" as *;
+
+:root {
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-7: 28px;
+  --spacing-8: 32px;
+  --spacing-9: 36px;
+  --spacing-10: 40px;
+  --spacing-11: 44px;
+  --spacing-12: 48px;
+  --spacing-14: 56px;
+  --spacing-16: 64px;
+  --spacing-18: 72px;
+  --spacing-20: 80px;
+  --spacing-24: 96px;
+  --spacing-32: 128px;
+  --spacing-40: 160px;
+
+  --size-1: 4px;
+  --size-2: 8px;
+  --size-3: 12px;
+  --size-4: 16px;
+  --size-5: 20px;
+  --size-6: 24px;
+  --size-7: 28px;
+  --size-8: 32px;
+  --size-9: 36px;
+  --size-10: 40px;
+  --size-11: 44px;
+  --size-12: 48px;
+  --size-14: 56px;
+  --size-16: 64px;
+  --size-18: 72px;
+  --size-20: 80px;
+  --size-24: 96px;
+  --size-32: 128px;
+  --size-36: 144px;
+  --size-40: 160px;
+  --size-48: 192px;
+  --size-60: 240px;
+  --size-64: 256px;
+  --size-72: 288px;
+  --size-80: 320px;
+  --size-90: 360px;
+  --size-100: 400px;
+
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.75rem;
+  --font-size-4xl: 2rem;
+  --font-size-5xl: 2.5rem;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-max: 9999px;
+
+  --border-1: 1px solid;
+  --border-2: 2px solid;
+  --border-4: 4px solid;
+  --border-8: 8px solid;
+
+  --shadow-xs: 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-outline: 0 0 0 3px rgba(66, 153, 225, 0.6);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-none: none;
+  --shadow-dark-lg: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px,
+    rgba(0, 0, 0, 0.4) 0px 15px 40px;
+
+  --c-white-alpha-50: rgba(255, 255, 255, 0.04);
+  --c-white-alpha-100: rgba(255, 255, 255, 0.06);
+  --c-white-alpha-200: rgba(255, 255, 255, 0.08);
+  --c-white-alpha-300: rgba(255, 255, 255, 0.16);
+  --c-white-alpha-400: rgba(255, 255, 255, 0.24);
+  --c-white-alpha-500: rgba(255, 255, 255, 0.36);
+  --c-white-alpha-600: rgba(255, 255, 255, 0.48);
+  --c-white-alpha-700: rgba(255, 255, 255, 0.64);
+  --c-white-alpha-800: rgba(255, 255, 255, 0.8);
+  --c-white-alpha-900: rgba(255, 255, 255, 0.92);
+
+  --c-black-alpha-50: rgba(0, 0, 0, 0.04);
+  --c-black-alpha-100: rgba(0, 0, 0, 0.06);
+  --c-black-alpha-200: rgba(0, 0, 0, 0.08);
+  --c-black-alpha-300: rgba(0, 0, 0, 0.16);
+  --c-black-alpha-400: rgba(0, 0, 0, 0.24);
+  --c-black-alpha-500: rgba(0, 0, 0, 0.36);
+  --c-black-alpha-600: rgba(0, 0, 0, 0.48);
+  --c-black-alpha-700: rgba(0, 0, 0, 0.64);
+  --c-black-alpha-800: rgba(0, 0, 0, 0.8);
+  --c-black-alpha-900: rgba(0, 0, 0, 0.92);
+
+  --c-gray-50: #f7fafc;
+  --c-gray-100: #edf2f7;
+  --c-gray-200: #e2e8f0;
+  --c-gray-300: #cbd5e0;
+  --c-gray-400: #a0aec0;
+  --c-gray-500: #718096;
+  --c-gray-600: #4a5568;
+  --c-gray-700: #2d3748;
+  --c-gray-800: #1a202c;
+  --c-gray-900: #171923;
+
+  --c-facebook-50: #e8f4f9;
+  --c-facebook-100: #d9dee9;
+  --c-facebook-200: #b7c2da;
+  --c-facebook-300: #6482c0;
+  --c-facebook-400: #4267b2;
+  --c-facebook-500: #385898;
+  --c-facebook-600: #314e89;
+  --c-facebook-700: #29487d;
+  --c-facebook-800: #223b67;
+  --c-facebook-900: #1e355b;
+
+  --c-twitter-50: #e5f4fd;
+  --c-twitter-100: #c8e9fb;
+  --c-twitter-200: #a8dcfa;
+  --c-twitter-300: #83cdf7;
+  --c-twitter-400: #57bbf5;
+  --c-twitter-500: #1da1f2;
+  --c-twitter-600: #1a94da;
+  --c-twitter-700: #1681bf;
+  --c-twitter-800: #136b9e;
+  --c-twitter-900: #0d4d71;
+
+  --c-primary-50: #faf5ff;
+  --c-primary-100: #e9d8fd;
+  --c-primary-200: #d6bcfa;
+  --c-primary-300: #b794f4;
+  --c-primary-400: #9f7aea;
+  --c-primary-500: #805ad5;
+  --c-primary-600: #6b46c1;
+  --c-primary-700: #553c9a;
+  --c-primary-800: #44337a;
+  --c-primary-900: #322659;
+
+  --c-text-primary: #474b4b;
+  --c-text-secondary: var(--c-black-alpha-600);
+  --c-text-link: #3182ce;
+  --c-text-link-visited: #805ad5;
+
+  --c-background: #fff;
+
+  --container-max-width: 1024px;
+
+  --font-family-heading: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  --font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New";
+
+  &[data-color-mode="dark"] {
+    --c-text-primary: #e8eaea;
+    --c-text-secondary: var(--c-white-alpha-700);
+    --c-text-link: #4299e1;
+    --c-text-link-visited: #b794f4;
+
+    --c-background: #1c1c1c;
+  }
+}
