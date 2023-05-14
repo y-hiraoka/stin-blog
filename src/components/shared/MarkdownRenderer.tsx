@@ -5,7 +5,6 @@ import remarkGfm from "remark-gfm";
 import { RichLinkCard } from "./RichLinkCard";
 import Link from "next/link";
 import classes from "./MarkdownRenderer.module.scss";
-import { staticPath } from "../../lib/$path";
 import { ArticleTweetCard } from "./ArticleTweetCard";
 import { SyntaxHighlighter } from "./SyntaxHighlighter";
 
@@ -180,7 +179,7 @@ const Img: Components["img"] = ({ src, alt }) => {
   return (
     <a href={src} target="_blank" rel="noreferrer">
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src ?? staticPath.images.no_image_png} alt={alt ?? ""} />
+      <img src={src ?? "/images/no-image.png"} alt={alt ?? ""} />
     </a>
   );
 };
