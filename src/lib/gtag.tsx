@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import Script from "next/script";
 import { useEffect } from "react";
 
@@ -11,7 +11,7 @@ export const GA_TRACKING_ID =
 
 // https://developers.google.com/analytics/devguides/collection/gtagjs/pages
 const pageview = (url: string) => {
-  //@ts-ignore
+  if (!GA_TRACKING_ID) return;
   window.gtag("config", GA_TRACKING_ID, {
     page_path: url,
   });
@@ -51,6 +51,7 @@ export const GoogleAnalyticsScript: React.FC = () => {
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
       />
+      {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
       <Script
         id="gtag-init"
         strategy="beforeInteractive"

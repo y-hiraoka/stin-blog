@@ -2,13 +2,12 @@ import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
 import remarkSlug from "remark-slug";
 import remarkGfm from "remark-gfm";
-import { a11yDark as prismStyle } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { RichLinkCard } from "./RichLinkCard";
 import Link from "next/link";
 import classes from "./MarkdownRenderer.module.scss";
 import { staticPath } from "../../lib/$path";
-import { Prism } from "../../lib/react-syntax-highlighter";
 import { ArticleTweetCard } from "./ArticleTweetCard";
+import { SyntaxHighlighter } from "./SyntaxHighlighter";
 
 type Props = { children: string };
 
@@ -92,10 +91,10 @@ const Code: Components["code"] = ({ node, inline, className, children, ...props 
   const match = /language-(\w+)/.exec(className || "");
   return !inline ? (
     <div className={classes.codeBlock}>
-      {/* @ts-expect-error 原因不明のエラー */}
-      <Prism style={prismStyle} language={match?.[1]} {...props}>
-        {String(children).replace(/\n$/, "")}
-      </Prism>
+      <SyntaxHighlighter
+        code={String(children).replace(/\n$/, "")}
+        language={match?.[1] ?? "plain-text"}
+      />
     </div>
   ) : (
     <code className={classes.inlineCode}>{children}</code>
