@@ -4,7 +4,6 @@ import { getFaviconUrl } from "../../lib/getFaviconUrl";
 import classes from "./RichLinkCard.module.scss";
 import { fetchSiteMetadata } from "../../lib/fetchSiteMetadata";
 import { config } from "../../config";
-import { ErrorBoundary } from "../../lib/ErrorBoundary";
 
 type Props = {
   href: string;
@@ -13,11 +12,9 @@ type Props = {
 
 export const RichLinkCard: React.FC<Props> = ({ href, isExternal }) => {
   return (
-    <ErrorBoundary fallback={<RichLinkCardError href={href} />}>
-      <Suspense fallback={<RichLinkCardSkeleton />}>
-        <RichLinkCardInner href={href} isExternal={isExternal} />
-      </Suspense>
-    </ErrorBoundary>
+    <Suspense fallback={<RichLinkCardSkeleton />}>
+      <RichLinkCardInner href={href} isExternal={isExternal} />
+    </Suspense>
   );
 };
 
@@ -25,6 +22,10 @@ export const RichLinkCard: React.FC<Props> = ({ href, isExternal }) => {
 const RichLinkCardInner: React.FC<Props> = async ({ href, isExternal }) => {
   const url = new URL(href, config.siteUrl);
   const metadata = await fetchSiteMetadata(url.href);
+
+  if (!metadata) {
+    return <RichLinkCardError href={href} />;
+  }
 
   return (
     <a className={classes.cardRoot} href={metadata.url} target="_blank" rel="noreferrer">

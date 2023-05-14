@@ -1,4 +1,4 @@
-import { JSDOM } from "jsdom";
+import { JSDOM, VirtualConsole } from "jsdom";
 
 export type SiteMetadata = {
   url: string;
@@ -9,16 +9,17 @@ export type SiteMetadata = {
   type?: string;
 };
 
-export async function fetchSiteMetadata(url: string): Promise<SiteMetadata> {
+export async function fetchSiteMetadata(url: string): Promise<SiteMetadata | null> {
   const response = await fetch(url, { next: { revalidate: 60 * 60 } });
 
   if (!response.ok) {
-    throw new Error("Not Found");
+    return null;
   }
 
   const html = await response.text();
   const metadata: SiteMetadata = { url };
-  const jsdom = new JSDOM(html);
+  const virtualConsole = new VirtualConsole();
+  const jsdom = new JSDOM(html, { virtualConsole });
 
   const title = jsdom.window.document.title;
   metadata.title = title;
