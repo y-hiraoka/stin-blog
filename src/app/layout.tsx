@@ -7,6 +7,7 @@ import "../styles/global.scss";
 import { ColorModeAppliedHtml } from "../lib/colorMode";
 import { Header } from "../components/shared/Header";
 import { Footer } from "../components/shared/Footer";
+import { GA_TRACKING_ID } from "../lib/contant";
 
 const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
@@ -25,6 +26,25 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
           strategy="afterInteractive"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4010956213409647"
           crossOrigin="anonymous"
+        />
+        <Script
+          strategy="afterInteractive"
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        />
+        {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
+        <Script
+          id="gtag-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_TRACKING_ID}', {
+            page_path: window.location.pathname,
+          });
+        `,
+          }}
         />
         <Suspense fallback={null}>
           <GoogleAnalyticsScript />
