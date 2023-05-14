@@ -22,6 +22,7 @@
     "@types/jsdom": "^21.1.1",
     "@vercel/og": "^0.5.4",
     "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.0",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
     "highlight.js": "^11.8.0",
