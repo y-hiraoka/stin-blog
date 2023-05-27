@@ -1,49 +1,49 @@
 "use client";
 
-import { createContext, FC, ReactNode, useCallback, useContext, useMemo } from "react";
+import { createContext, FC, ReactNode, useContext, useMemo } from "react";
 import { useLocalStorage } from "./useLocalStorage";
 import { useMatchMedia } from "./useMatchMedia";
 
-const COLOR_MODE_VALUE = ["light", "dark"] as const;
+const COLOR_MODE_VALUE = ["system", "light", "dark"] as const;
 export type ColorMode = (typeof COLOR_MODE_VALUE)[number];
 type ColorModeContextValue = {
   colorMode: ColorMode;
   setColorMode: (color: ColorMode) => void;
-  toggleColorMode: () => void;
+  actualColorMode: "light" | "dark";
 };
 const ColorModeContext = createContext<ColorModeContextValue>({
-  colorMode: "light",
+  colorMode: "system",
   setColorMode: () => null,
-  toggleColorMode: () => null,
+  actualColorMode: "light",
 });
 
+export function isColorModeValue(value: unknown): value is ColorMode {
+  return COLOR_MODE_VALUE.includes(value as ColorMode);
+}
+
 export const ColorModeAppliedHtml: FC<{ children: ReactNode }> = ({ children }) => {
-  const [appColorMode, setColorMode] = useLocalStorage<ColorMode>({
+  const [colorMode, setColorMode] = useLocalStorage<ColorMode>({
     storageKey: "stin-blog-color-mode",
-    initialState: "light",
-    isValidValue: (value: unknown): value is ColorMode =>
-      COLOR_MODE_VALUE.includes(value as any),
+    initialState: "system",
+    isValidValue: isColorModeValue,
   });
   const preferColorSchemeIsDark = useMatchMedia("(prefers-color-scheme: dark)");
-  const toggleColorMode = useCallback(
-    () => (appColorMode === "dark" ? setColorMode("light") : setColorMode("dark")),
-    [appColorMode, setColorMode],
-  );
 
-  const colorMode = preferColorSchemeIsDark ? "dark" : appColorMode;
+  const actualColorMode =
+    colorMode === "system" ? (preferColorSchemeIsDark ? "dark" : "light") : colorMode;
 
   const value: ColorModeContextValue = useMemo(
     () => ({
       colorMode,
       setColorMode,
-      toggleColorMode,
+      actualColorMode,
     }),
-    [colorMode, setColorMode, toggleColorMode],
+    [actualColorMode, colorMode, setColorMode],
   );
 
   return (
     <ColorModeContext.Provider value={value}>
-      <html lang="ja" data-color-mode={colorMode}>
+      <html lang="ja" data-color-mode={actualColorMode}>
         {children}
       </html>
     </ColorModeContext.Provider>
@@ -55,9 +55,9 @@ export function useColorMode() {
 }
 
 export function useColorModeValue<T>(valueOnLight: T, valueOnDark: T): T {
-  const { colorMode } = useColorMode();
+  const { actualColorMode } = useColorMode();
 
-  switch (colorMode) {
+  switch (actualColorMode) {
     case "light":
       return valueOnLight;
     case "dark":

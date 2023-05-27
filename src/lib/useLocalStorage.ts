@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
 
 type UseLocalStorageParams<T> = {
@@ -11,7 +11,7 @@ export function useLocalStorage<T>({
   storageKey,
   initialState,
   isValidValue,
-}: UseLocalStorageParams<T>): [T, (value: T) => void] {
+}: UseLocalStorageParams<T>): [T, React.Dispatch<React.SetStateAction<T>>] {
   const [state, _setState] = useState(initialState);
   const isValidValueRef = useRef(isValidValue);
   isValidValueRef.current = isValidValue;
@@ -34,10 +34,16 @@ export function useLocalStorage<T>({
     return () => window.removeEventListener("storage", setValueFromStorage);
   }, [setValueFromStorage]);
 
-  const setState = useCallback(
-    (value: T) => {
-      _setState(value);
-      window.localStorage.setItem(storageKey, JSON.stringify({ __value: value }));
+  const setState: React.Dispatch<React.SetStateAction<T>> = useCallback(
+    value => {
+      _setState(prevState => {
+        // @ts-expect-error
+        const nextState: T = typeof value === "function" ? value(prevState) : value;
+
+        window.localStorage.setItem(storageKey, JSON.stringify({ __value: nextState }));
+
+        return nextState;
+      });
     },
     [storageKey],
   );

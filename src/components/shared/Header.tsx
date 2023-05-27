@@ -1,10 +1,10 @@
 "use client";
 
 import { FC } from "react";
-import { MdDarkMode, MdLightMode, MdMenu } from "react-icons/md";
+import { MdMenu } from "react-icons/md";
 import NextLink from "next/link";
 import { config } from "../../config";
-import { useColorMode, useColorModeValue } from "../../lib/colorMode";
+import { useColorModeValue } from "../../lib/colorMode";
 import classes from "./Header.module.scss";
 import { IconButton } from "../system/IconButton";
 import Image from "next/image";
@@ -13,8 +13,6 @@ import logoWhite from "./logo_white.png";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 export const Header: FC = () => {
-  const { toggleColorMode } = useColorMode();
-
   return (
     <div className={classes.root}>
       <header className={classes.header}>
@@ -28,12 +26,6 @@ export const Header: FC = () => {
           />
         </NextLink>
         <nav className={classes.navigations}>
-          <IconButton
-            aria-label="toggle theme"
-            variant="ghost"
-            icon={useColorModeValue(<MdDarkMode />, <MdLightMode />)}
-            onClick={toggleColorMode}
-          />
           <NavLinks />
           <CollapsedNavLinks />
         </nav>

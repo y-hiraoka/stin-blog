@@ -3,6 +3,7 @@
 import { useState, FC } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
 import classes from "./Footer.module.scss";
+import { ColorModeSwitcher } from "./ColorModeSwitcher";
 
 export const Footer: FC = () => {
   const [copyrightPeriod, setCopyrightPeriod] = useState("");
@@ -14,6 +15,9 @@ export const Footer: FC = () => {
 
   return (
     <div>
+      <div className={classes.colorModeSwitcher}>
+        <ColorModeSwitcher />
+      </div>
       <footer className={classes.footer}>
         <p className={classes.description}>
           このサイトは{" "}
