@@ -1,8 +1,8 @@
-import { ImageResponse } from "@vercel/og";
+import { ImageResponse } from "next/server";
 import { NextApiHandler } from "next";
 
 export const config = {
-  runtime: "experimental-edge",
+  runtime: "edge",
 };
 
 const handler: NextApiHandler = async req => {
