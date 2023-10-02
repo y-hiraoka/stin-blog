@@ -12,12 +12,6 @@ const nextConfig = {
   experimental: {
     typedRoutes: true,
   },
-  rewrites: async () => [
-    {
-      source: "/feed",
-      destination: "/api/feed",
-    },
-  ],
 };
 
 module.exports = withBundleAnalyzer(nextConfig);
