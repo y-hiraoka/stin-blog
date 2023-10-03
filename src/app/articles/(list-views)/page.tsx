@@ -1,8 +1,8 @@
+import { Metadata } from "next";
 import { Articles } from "../../../components/pages/Articles";
-import { getMetadata } from "../../../lib/getMetadata";
 import { getSortedArticleHeaders } from "../../../lib/posts";
+import { config } from "../../../config";
 
-// @ts-expect-error
 const ArticlesPage: React.FC = async () => {
   const articles = await getSortedArticleHeaders();
 
@@ -10,9 +10,14 @@ const ArticlesPage: React.FC = async () => {
 };
 
 export default ArticlesPage;
-export const metadata = getMetadata({
-  type: "website",
-  pagePath: "/articles",
+
+export const metadata: Metadata = {
   title: "記事一覧",
   description: "すてぃんのブログの記事一覧ページです",
-});
+  openGraph: {
+    type: "website",
+    url: `${config.siteUrl}/articles`,
+    title: "記事一覧",
+    description: "すてぃんのブログの記事一覧ページです",
+  },
+};
