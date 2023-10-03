@@ -2,9 +2,7 @@ import { FC } from "react";
 import { Home } from "../components/pages/Home";
 import { ArticleHeader } from "../models";
 import { getSortedArticleHeaders, getZennArticleHeaders } from "../lib/posts";
-import { getMetadata } from "../lib/getMetadata";
 
-// @ts-expect-error
 const TestPage: FC = async () => {
   const blogArticles = await getSortedArticleHeaders();
   const zennArticles = await getZennArticleHeaders();
@@ -19,9 +17,3 @@ const TestPage: FC = async () => {
 };
 
 export default TestPage;
-export const metadata = getMetadata({
-  type: "website",
-  pagePath: "/",
-  title: "Home",
-  description: "すてぃんの技術ブログ",
-});

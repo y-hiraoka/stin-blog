@@ -1,15 +1,14 @@
 import { ImageResponse } from "next/server";
-import { NextApiHandler } from "next";
+import { getArticleData } from "../../../lib/posts";
 
-export const config = {
-  runtime: "edge",
+type Props = {
+  params: {
+    slug: string;
+  };
 };
 
-const handler: NextApiHandler = async req => {
-  if (!req.url) throw Error("not supported.");
-  const { searchParams } = new URL(req.url);
-
-  const title = searchParams.get("title");
+const handler = async ({ params }: Props) => {
+  const article = await getArticleData(params.slug);
 
   return new ImageResponse(
     (
@@ -48,7 +47,7 @@ const handler: NextApiHandler = async req => {
               height: "100%",
               overflow: "hidden",
             }}>
-            {title}
+            {article.header.title}
           </div>
         </div>
       </div>

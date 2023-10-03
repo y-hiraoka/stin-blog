@@ -8,6 +8,8 @@ import { ColorModeAppliedHtml } from "../lib/colorMode";
 import { Header } from "../components/shared/Header";
 import { Footer } from "../components/shared/Footer";
 import { GA_TRACKING_ID } from "../lib/contant";
+import { Metadata } from "next";
+import { config } from "../config";
 
 const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
@@ -60,3 +62,26 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
 };
 
 export default RootLayout;
+
+export const metadata: Metadata = {
+  title: {
+    template: `%s | ${config.siteTitle}`,
+    default: `Home | ${config.siteTitle}`,
+  },
+  description: "すてぃんの技術ブログ",
+  twitter: {
+    card: "summary_large_image",
+    creator: `@${config.social.twitter}`,
+  },
+  openGraph: {
+    type: "website",
+    url: config.siteUrl,
+    title: {
+      template: `%s | ${config.siteTitle}`,
+      default: `Home | ${config.siteTitle}`,
+    },
+    description: "すてぃんの技術ブログ",
+    siteName: config.siteTitle,
+  },
+  metadataBase: new URL(config.siteUrl),
+};

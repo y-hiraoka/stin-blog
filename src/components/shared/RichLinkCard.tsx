@@ -18,8 +18,7 @@ export const RichLinkCard: React.FC<Props> = ({ href, isExternal }) => {
   );
 };
 
-// @ts-expect-error
-const RichLinkCardInner: React.FC<Props> = async ({ href, isExternal }) => {
+const RichLinkCardInner: React.FC<Props> = async ({ href }) => {
   const url = new URL(href, config.siteUrl);
   const metadata = await fetchSiteMetadata(url.href);
 

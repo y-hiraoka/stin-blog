@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 import { Article } from "../../../components/pages/Article";
-import { getMetadata } from "../../../lib/getMetadata";
 import { getAllPostSlugs, getArticleData } from "../../../lib/posts";
 import { notFound } from "next/navigation";
+import { config } from "../../../config";
 
 type Params = {
   slug: string;
@@ -22,27 +22,24 @@ export const generateMetadata = async ({
   try {
     const article = await getArticleData(params.slug);
 
-    return getMetadata({
-      type: "article",
-      pagePath: `/articles/${params.slug}`,
-      publishedTime: article.header.createdAt,
-      modifiedTime: article.header.updatedAt ?? undefined,
-      tags: article.header.tags,
+    return {
       title: article.header.title,
       description: article.header.excerpt,
-    });
+      openGraph: {
+        type: "article",
+        url: `${config.siteUrl}/articles/${params.slug}`,
+        title: article.header.title,
+        description: article.header.excerpt,
+        publishedTime: article.header.createdAt,
+        modifiedTime: article.header.updatedAt ?? undefined,
+        tags: article.header.tags,
+      },
+    };
   } catch (error) {
-    return getMetadata({
-      type: "website",
-      pagePath: `/articles/${params.slug}`,
-      title: "Not Found",
-      description: "記事が見つかりませんでした",
-      noindex: true,
-    });
+    return notFound();
   }
 };
 
-// @ts-expect-error
 const ArticlePage: React.FC<{
   params: Params;
 }> = async ({ params }) => {

@@ -1,17 +1,15 @@
-import { FC } from "react";
-import { getMetadata } from "../lib/getMetadata";
-import NotFound from "./articles/not-found";
+import { NotFound } from "../components/pages/NotFound";
+import { Metadata } from "next";
 
-export const metadata = getMetadata({
-  noindex: true,
-  pagePath: "/404",
-  type: "website",
-  title: "404 Not Found",
+export default NotFound;
+
+export const metadata: Metadata = {
+  robots: "noindex",
+  title: "Not Found",
   description: "指定されたページが見つかりませんでした",
-});
-
-const NotFoundPage: FC = () => {
-  return <NotFound />;
+  openGraph: {
+    type: "website",
+    title: "Not Found",
+    description: "指定されたページが見つかりませんでした",
+  },
 };
-
-export default NotFoundPage;

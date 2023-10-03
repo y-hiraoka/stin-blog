@@ -1,8 +1,8 @@
+import { Metadata } from "next";
 import { ZennArticles } from "../../../../components/pages/ZennArticles";
-import { getMetadata } from "../../../../lib/getMetadata";
 import { getZennArticleHeaders } from "../../../../lib/posts";
+import { config } from "../../../../config";
 
-// @ts-expect-error
 const ZennArticlesPage: React.FC = async () => {
   const articles = await getZennArticleHeaders();
 
@@ -10,9 +10,14 @@ const ZennArticlesPage: React.FC = async () => {
 };
 
 export default ZennArticlesPage;
-export const metadata = getMetadata({
-  type: "website",
-  pagePath: "/articles/zenn",
+
+export const metadata: Metadata = {
   title: "Zennの記事一覧",
   description: "すてぃんが Zenn に投稿した記事一覧ページです",
-});
+  openGraph: {
+    type: "website",
+    url: `${config.siteUrl}/articles/zenn`,
+    title: "Zennの記事一覧",
+    description: "すてぃんが Zenn に投稿した記事一覧ページです",
+  },
+};
