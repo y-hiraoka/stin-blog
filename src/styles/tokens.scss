@@ -37,5 +37,12 @@
   --c-article-card-bg: var(--c-bg-base);
   --c-article-card-border: #303030;
 
+  --c-color-mode-switcher-bg: var(--c-bg-base);
+  --c-color-mode-switcher-border: var(--c-divider);
+  --c-color-mode-switcher-option-text: var(--c-text-secondary);
+  --c-color-mode-switcher-option-text-active: var(--c-text-primary);
+  --c-color-mode-switcher-option-bg-active: var(--c-primary-900);
+  --c-color-mode-switcher-option-border-active: var(--c-primary-700);
+
   --c-focus-ring: var(--c-primary-300);
 }

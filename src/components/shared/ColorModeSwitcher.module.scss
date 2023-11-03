@@ -1,27 +1,24 @@
-@use "../../styles/mediaQueries.scss" as *;
-
 .switcher {
   position: relative;
   display: flex;
-  gap: var(--spacing-1);
   align-items: center;
-  padding: var(--spacing-1);
-  border-radius: var(--radius-max);
-  border: var(--border-1);
-  border-color: var(--c-gray-200);
-  box-shadow: var(--shadow-inner);
+  gap: 4px;
+  padding: 4px;
+  border-radius: 9999px;
+  border: 1px solid var(--c-color-mode-switcher-border);
 
   &::before {
     content: "";
     position: absolute;
-    left: var(--spacing-1);
+    left: 4px;
     z-index: 0;
-    border-radius: var(--radius-max);
+    border-radius: 9999px;
     background-color: var(--c-primary-100);
-    width: var(--spacing-10);
-    height: var(--spacing-10);
-    transition: transform 0.15s ease;
-    box-shadow: var(--shadow-sm);
+    width: 40px;
+    height: 40px;
+    transition: transform 0.15s ease-out;
+    background-color: var(--c-color-mode-switcher-option-bg-active);
+    border: 2px solid var(--c-color-mode-switcher-option-border-active);
   }
 
   &[data-value="light"]::before {
@@ -29,46 +26,31 @@
   }
 
   &[data-value="system"]::before {
-    transform: translateX(calc(var(--spacing-10) + var(--spacing-1)));
+    transform: translateX(calc(40px + 4px));
   }
 
   &[data-value="dark"]::before {
-    transform: translateX(calc((var(--spacing-10) + var(--spacing-1)) * 2));
-  }
-
-  @include isDarkMode {
-    border-color: var(--c-white-alpha-300);
-
-    &::before {
-      background-color: var(--c-primary-400);
-    }
+    transform: translateX(calc((40px + 4px) * 2));
   }
 }
 
 .switcherButton {
   z-index: 1;
-  width: var(--spacing-10);
-  height: var(--spacing-10);
-  border-radius: var(--radius-max);
+  border-radius: 9999px;
   font-size: var(--font-size-xl);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--c-black-alpha-700);
+  background-color: transparent;
+  border-color: transparent;
+  width: 40px;
+  height: 40px;
 
   &:hover {
     background-color: var(--c-black-alpha-100);
   }
-
-  @include isDarkMode {
-    color: var(--c-white-alpha-700);
-
-    &:hover {
-      background-color: var(--c-white-alpha-100);
-    }
-
-    &[data-state="on"] {
-      color: var(--c-black-alpha-800);
-    }
+  &[data-state="on"] {
+    color: var(--c-color-mode-switcher-option-text-active);
   }
 }

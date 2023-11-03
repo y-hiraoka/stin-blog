@@ -19,19 +19,22 @@ export const ColorModeSwitcher: React.FC = () => {
       <ToggleGroup.Item
         className={styles.switcherButton}
         value="light"
-        aria-label="ライトモードにする">
+        aria-label="ライトモードにする"
+        title="ライトモードにする">
         <MdLightMode />
       </ToggleGroup.Item>
       <ToggleGroup.Item
         className={styles.switcherButton}
         value="system"
-        aria-label="OSに従う">
+        aria-label="OSに従う"
+        title="OSに従う">
         <MdDevices />
       </ToggleGroup.Item>
       <ToggleGroup.Item
         className={styles.switcherButton}
         value="dark"
-        aria-label="ダークモードにする">
+        aria-label="ダークモードにする"
+        title="ダークモードにする">
         <MdDarkMode />
       </ToggleGroup.Item>
     </ToggleGroup.Root>
