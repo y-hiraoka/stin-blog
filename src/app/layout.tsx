@@ -1,7 +1,7 @@
 import { FC, ReactNode, Suspense } from "react";
 import Script from "next/script";
 import { GoogleAnalyticsScript } from "../lib/gtag";
-import "./global.css";
+import "modern-normalize/modern-normalize.css";
 import "../styles/tokens.scss";
 import "../styles/global.scss";
 import { ColorModeAppliedHtml } from "../lib/colorMode";
@@ -9,8 +9,15 @@ import { Header } from "../components/shared/Header";
 import { Footer } from "../components/shared/Footer";
 import { GA_TRACKING_ID } from "../lib/contant";
 import { Metadata } from "next";
-import { Noto_Sans_JP } from "next/font/google";
+import { Inter, Noto_Sans_JP } from "next/font/google";
 import { config } from "../config";
+
+const inter = Inter({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "500", "700"],
+});
 
 const notosansjp = Noto_Sans_JP({
   display: "swap",
@@ -56,7 +63,7 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
           <GoogleAnalyticsScript />
         </Suspense>
       </head>
-      <body className={notosansjp.variable}>
+      <body className={`${inter.variable} ${notosansjp.variable}`}>
         <Header />
         <Suspense fallback={null}>{children}</Suspense>
         <Footer />
