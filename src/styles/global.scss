@@ -1,6 +1,6 @@
 body {
   line-height: 1.5;
-  font-family: var(--font-inter), var(--font-noto), sans-serif;
+  font-family: var(--font-inter), var(--font-noto), "Noto Sans JP", sans-serif;
   color: var(--c-text-primary);
   background-color: var(--c-bg-base);
 }
@@ -26,4 +26,13 @@ img {
   height: auto;
   display: block;
   vertical-align: middle;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--c-divider);
+}
+
+a {
+  text-decoration: none;
 }

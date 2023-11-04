@@ -30,7 +30,6 @@
 .logoLink {
   font-size: var(--font-size-3xl);
   color: var(--c-text-primary);
-  text-decoration: none;
   font-weight: 800;
   letter-spacing: -0.04em;
 }
@@ -48,7 +47,6 @@
 .navLink {
   font-size: var(--font-size-sm);
   color: var(--c-text-secondary);
-  text-decoration: none;
   transition: color 0.2s;
   padding: 8px;
 }

@@ -48,4 +48,19 @@
   --c-color-mode-switcher-option-border-active: var(--c-primary-700);
 
   --c-focus-ring: var(--c-primary-300);
+
+  --c-blockquote-text: var(--c-text-secondary);
+  --c-blockquote-decoration: #494949;
+
+  --c-inline-code-bg: #3d3b3b;
+  --c-inline-code-text: var(--c-text-primary);
+
+  --c-table-thead-border: #3a3a3a;
+  --c-table-tbody-border: #202020;
+
+  --c-link-card-border: #303030;
+  --c-link-card-border-hover: #4f4f4f;
+
+  --c-skeleton-before: #1a1a1a;
+  --c-skeleton-after: #2a2a2a;
 }

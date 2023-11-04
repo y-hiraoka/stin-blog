@@ -8,13 +8,9 @@
   transition: border-color 0.2s;
 }
 
+.card:has(.link:focus-visible),
 .card:hover {
   border-color: var(--c-article-card-border-hover);
-}
-
-.card:has(.link:focus-visible) {
-  outline: 2px solid var(--c-focus-ring);
-  outline-offset: 1px;
 }
 
 .metadata {

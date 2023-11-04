@@ -1,104 +1,54 @@
-@use "../../styles/system.scss" as *;
-@use "../../styles/mediaQueries.scss" as *;
-
-.container {
-  @include appContainer;
-  margin-top: var(--spacing-4);
-  margin-bottom: var(--spacing-16);
-}
-
-.articleHeader {
-  @include vStack;
-  gap: var(--spacing-8);
+.article {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .articleTitle {
   font-weight: bold;
-  font-size: var(--font-size-2xl);
-  line-height: 1.6;
+  font-size: var(--font-size-3xl);
+  letter-spacing: -0.01em;
+  margin-bottom: 64px;
 }
 
-.contentDivider {
-  opacity: 0.6;
-  border: 0;
-  border-bottom: var(--border-1);
-  border-bottom-color: var(--c-gray-200);
-  width: 100%;
-  margin-top: var(--spacing-8);
-  margin-bottom: var(--spacing-8);
-  @include isDarkMode {
-    border-bottom-color: var(--c-white-alpha-300);
-  }
-}
-
-.datetimes {
-  @include vStack;
-  gap: var(--spacing-1);
-}
-
-.datetime {
+.createdAt {
   font-size: var(--font-size-sm);
   color: var(--c-text-secondary);
+  margin-bottom: 12px;
 }
 
 .tags {
-  @include wrapItems;
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
 }
 
-.articleContent {
-  margin-bottom: var(--spacing-16);
+.contentDivider {
+  margin: 80px 0;
 }
 
-.adsense {
-  margin-bottom: var(--spacing-16);
-}
-
-.externalLinks {
-  margin-bottom: var(--spacing-16);
-}
-
-.shareButtons {
-  @include wrapItems;
-}
-
-.twitterButton {
+.tweetLink {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: var(--spacing-2);
-  border-radius: var(--radius-md);
-  font-weight: bold;
-  color: white;
-  background-color: var(--c-twitter-500);
-  padding-left: var(--spacing-4);
-  padding-right: var(--spacing-4);
-  height: var(--size-10);
-  transition: background-color 0.3s;
-  &:hover {
-    background-color: var(--c-twitter-600);
-  }
-  @include isDarkMode {
-    color: var(--c-gray-800);
-    background-color: var(--c-twitter-200);
-    &:hover {
-      background-color: var(--c-twitter-300);
-    }
-  }
+  gap: 8px;
+  color: var(--c-text-primary);
+  padding: 16px 0;
+  height: 40px;
+  margin-bottom: 16px;
 }
 
-.githubLink {
+.articlesLink {
   display: inline-flex;
   align-items: center;
-  gap: var(--spacing-2);
-  color: var(--c-text-secondary);
-  margin-top: var(--spacing-6);
+  gap: 8px;
+  color: var(--c-text-primary);
+  font-size: var(--font-size-sm);
+  padding: 16px 0;
+  height: 40px;
 }
 
-.githubIcon {
-  font-size: var(--font-size-2xl);
-}
-
-.linkToArticles {
-  @include center;
+.tweetLink:hover,
+.articlesLink:hover {
+  text-decoration: underline;
 }

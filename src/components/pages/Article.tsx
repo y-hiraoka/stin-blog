@@ -1,15 +1,13 @@
-import { FC, Suspense } from "react";
+import { FC } from "react";
 import { Datetime } from "../shared/Datetime";
 import { MarkdownRenderer } from "../shared/MarkdownRenderer";
 import { TagLink } from "../shared/TagLink";
 import { Article as IArticle } from "../../models";
-import { LinkToArticles } from "../shared/LinkToArticles";
-import { TwitterIntentTweet } from "../shared/TwitterIntentTweet";
-import { config } from "../../config";
-import { FaGithub, FaTwitter } from "react-icons/fa";
-import { AdSense } from "../shared/AdSense";
+import { FaTwitter } from "react-icons/fa";
 import classes from "./Article.module.scss";
-import { PageTitle } from "../shared/PageTitle";
+import { createIntentTweetLink } from "../../lib/createIntentTweetLink";
+import Link from "next/link";
+import { MdArrowBack } from "react-icons/md";
 
 type Props = {
   article: IArticle;
@@ -17,27 +15,12 @@ type Props = {
 
 export const Article: FC<Props> = ({ article }) => {
   return (
-    <main className={classes.container}>
-      <div className={classes.articleHeader}>
-        <PageTitle>{article.header.title}</PageTitle>
-        <div className={classes.datetimes}>
-          <p className={classes.datetime}>
-            公開:{" "}
-            <Datetime
-              format="yyyy年MM月dd日 HH時mm分"
-              datetime={article.header.createdAt}
-            />
-          </p>
-          {article.header.updatedAt && (
-            <p className={classes.datetime}>
-              更新:{" "}
-              <Datetime
-                format="yyyy年MM月dd日 HH時mm分"
-                datetime={article.header.updatedAt}
-              />
-            </p>
-          )}
-        </div>
+    <div className={classes.article}>
+      <div>
+        <h1 className={classes.articleTitle}>{article.header.title}</h1>
+        <p className={classes.createdAt}>
+          <Datetime format="yyyy/MM/dd HH:mm" datetime={article.header.createdAt} />
+        </p>
         <ul className={classes.tags}>
           {article.header.tags.map(tag => (
             <li key={tag}>
@@ -47,37 +30,31 @@ export const Article: FC<Props> = ({ article }) => {
         </ul>
       </div>
       <hr className={classes.contentDivider} />
-      <section className={classes.articleContent}>
+      <section>
         <MarkdownRenderer>{article.bodyMdText}</MarkdownRenderer>
       </section>
-      <section className={classes.adsense}>
-        <Suspense fallback={null}>
-          <AdSense />
-        </Suspense>
-      </section>
-      <section className={classes.externalLinks}>
-        <div className={classes.shareButtons}>
-          <TwitterIntentTweet
-            className={classes.twitterButton}
-            text={article.header.title}
-            url={`${config.siteUrl}/articles/${article.header.slug}`}
-            hashtags={article.header.tags}
-            via={config.social.twitter}>
+      <hr className={classes.contentDivider} />
+      <section>
+        <div>
+          <a
+            className={classes.tweetLink}
+            href={createIntentTweetLink({
+              text: article.header.title,
+              url: `https://blog.stin.ink/articles/${article.header.slug}`,
+              hashtags: article.header.tags,
+              via: "stin_factory",
+            })}>
             <FaTwitter />
             記事をシェア
-          </TwitterIntentTweet>
+          </a>
         </div>
-        <a
-          className={classes.githubLink}
-          href={`${config.repository}/tree/main/contents/${article.header.slug}.md`}
-          rel="noreferrer">
-          <FaGithub className={classes.githubIcon} />
-          GitHub で修正をリクエストする
-        </a>
+        <div>
+          <Link className={classes.articlesLink} href="/">
+            <MdArrowBack />
+            記事一覧へ
+          </Link>
+        </div>
       </section>
-      <div className={classes.linkToArticles}>
-        <LinkToArticles />
-      </div>
-    </main>
+    </div>
   );
 };

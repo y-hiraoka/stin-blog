@@ -38,12 +38,12 @@
 
 @keyframes skeletonAnimation {
   0% {
-    border-color: var(--c-gray-100);
-    background: var(--c-gray-100);
+    border-color: var(--c-skeleton-before);
+    background: var(--c-skeleton-before);
   }
   100% {
-    border-color: var(--c-gray-400);
-    background: var(--c-gray-400);
+    border-color: var(--c-skeleton-after);
+    background: var(--c-skeleton-after);
   }
 }
 
@@ -54,6 +54,6 @@
 
 @mixin skeletonText {
   @include skeletonBase;
-  height: var(--size-2);
-  border-radius: var(--radius-xs);
+  height: 8px;
+  border-radius: 2px;
 }
