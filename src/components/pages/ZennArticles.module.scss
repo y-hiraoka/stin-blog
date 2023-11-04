@@ -1,14 +1,23 @@
 @use "../../styles/system.scss" as *;
 
-.container {
-  margin-top: var(--spacing-4);
-  margin-bottom: var(--spacing-16);
-}
-
 .title {
-  margin-bottom: var(--spacing-4);
+  margin-bottom: 40px;
 }
 
 .articleList {
-  margin-top: var(--spacing-8);
+  list-style: none;
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+
+.articleListItem {
+  display: block;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+
+.articleListItem:hover {
+  opacity: 0.85;
 }

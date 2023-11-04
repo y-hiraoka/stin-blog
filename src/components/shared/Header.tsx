@@ -27,9 +27,9 @@ const NavLinks: FC = () => {
   return (
     <>
       <NextLink
-        href="/articles"
+        href="/"
         className={classes.navLink}
-        aria-current={pathname === "/articles" ? "page" : undefined}>
+        aria-current={pathname === "/" ? "page" : undefined}>
         Articles
       </NextLink>
       <NextLink
