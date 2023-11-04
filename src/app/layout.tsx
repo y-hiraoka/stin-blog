@@ -11,6 +11,7 @@ import { GA_TRACKING_ID } from "../lib/contant";
 import { Metadata } from "next";
 import { Inter, Noto_Sans_JP } from "next/font/google";
 import { config } from "../config";
+import { Main } from "../components/shared/Main";
 
 const inter = Inter({
   display: "swap",
@@ -65,7 +66,7 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
       </head>
       <body className={`${inter.variable} ${notosansjp.variable}`}>
         <Header />
-        <Suspense fallback={null}>{children}</Suspense>
+        <Main>{children}</Main>
         <Footer />
       </body>
     </ColorModeAppliedHtml>

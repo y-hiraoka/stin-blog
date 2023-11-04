@@ -13,3 +13,17 @@ button:not([disabled]) {
   outline: 2px solid var(--c-focus-ring);
   outline-offset: 1px;
 }
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: middle;
+}

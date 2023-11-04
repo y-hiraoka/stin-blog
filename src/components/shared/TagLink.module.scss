@@ -1,26 +1,17 @@
 @use "../../styles/mediaQueries.scss" as *;
 
 .tagLink {
-  border-radius: var(--radius-md);
-  min-width: var(--size-6);
-  min-height: var(--size-6);
-  display: inline-flex;
-  align-items: center;
-  padding-inline-start: var(--spacing-2);
-  padding-inline-end: var(--spacing-2);
-  font-size: var(--font-size-sm);
-  font-weight: 500;
-  background-color: var(--c-primary-100);
-  color: var(--c-primary-800);
-  line-height: 1.2;
-  vertical-align: top;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: var(--font-size-xs);
+  color: var(--c-tag-text);
+  border: 1px solid var(--c-tag-border);
+  background-color: var(--c-tag-bg);
+  text-decoration: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
 
-  &:hover {
-    text-decoration: underline;
-  }
-
-  @include isDarkMode {
-    background-color: var(--c-primary-700);
-    color: var(--c-primary-200);
-  }
+.tagLink:hover {
+  border-color: var(--c-tag-border-hover);
+  background-color: var(--c-tag-bg-hover);
 }

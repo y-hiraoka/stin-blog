@@ -2,10 +2,6 @@
 
 .articleList {
   display: grid;
-  gap: var(--spacing-6);
-  grid-template-columns: 1fr;
-
-  @include largerThan("md") {
-    grid-template-columns: 1fr 1fr;
-  }
+  gap: 40px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
 }

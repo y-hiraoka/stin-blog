@@ -33,9 +33,12 @@
   --c-tag-text: var(--c-text-secondary);
   --c-tag-border: #3a3a3a;
   --c-tag-bg: rgb(154, 154, 154, 0.12);
+  --c-tag-border-hover: #4f4f4f;
+  --c-tag-bg-hover: rgb(154, 154, 154, 0.24);
 
   --c-article-card-bg: var(--c-bg-base);
   --c-article-card-border: #303030;
+  --c-article-card-border-hover: #4f4f4f;
 
   --c-color-mode-switcher-bg: var(--c-bg-base);
   --c-color-mode-switcher-border: var(--c-divider);
