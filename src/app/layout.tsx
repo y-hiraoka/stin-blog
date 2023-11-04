@@ -39,11 +39,6 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
         />
         <Script
           strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4010956213409647"
-          crossOrigin="anonymous"
-        />
-        <Script
-          strategy="afterInteractive"
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
         />
         {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
@@ -66,11 +61,13 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
         </Suspense>
       </head>
       <body className={`${inter.variable} ${notosansjp.variable}`}>
-        <Layout>
-          <Header />
-          <Main>{children}</Main>
-          <Footer />
-        </Layout>
+        <Suspense fallback={null}>
+          <Layout>
+            <Header />
+            <Main>{children}</Main>
+            <Footer />
+          </Layout>
+        </Suspense>
       </body>
     </ColorModeAppliedHtml>
   );

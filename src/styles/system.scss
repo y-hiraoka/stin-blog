@@ -1,11 +1,3 @@
-@mixin appContainer {
-  max-width: var(--container-max-width);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--spacing-4);
-  padding-right: var(--spacing-4);
-}
-
 @mixin center {
   display: flex;
   justify-content: center;
