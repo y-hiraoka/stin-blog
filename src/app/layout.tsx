@@ -12,6 +12,7 @@ import { Metadata } from "next";
 import { Inter, Noto_Sans_JP } from "next/font/google";
 import { config } from "../config";
 import { Main } from "../components/shared/Main";
+import { Layout } from "../components/shared/Layout";
 
 const inter = Inter({
   display: "swap",
@@ -65,9 +66,11 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
         </Suspense>
       </head>
       <body className={`${inter.variable} ${notosansjp.variable}`}>
-        <Header />
-        <Main>{children}</Main>
-        <Footer />
+        <Layout>
+          <Header />
+          <Main>{children}</Main>
+          <Footer />
+        </Layout>
       </body>
     </ColorModeAppliedHtml>
   );
