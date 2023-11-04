@@ -1,5 +1,3 @@
-@use "../../styles/mediaQueries.scss" as *;
-
 .card {
   background-color: var(--c-article-card-bg);
   border-radius: 8px;
@@ -8,14 +6,15 @@
   position: relative;
   isolation: isolate;
   transition: border-color 0.2s;
-
-  @include isDarkMode {
-    background-color: var(--c-gray-700);
-  }
 }
 
 .card:hover {
   border-color: var(--c-article-card-border-hover);
+}
+
+.card:has(.link:focus-visible) {
+  outline: 2px solid var(--c-focus-ring);
+  outline-offset: 1px;
 }
 
 .metadata {
@@ -40,6 +39,10 @@
   z-index: 1;
 }
 
+.link:focus-visible {
+  outline: none;
+}
+
 .link::before {
   content: "";
   display: block;
@@ -49,16 +52,4 @@
   width: 100%;
   height: 100%;
   z-index: 0;
-}
-
-.zennLink {
-  display: inline-flex;
-  width: fit-content;
-  margin-top: var(--spacing-8);
-  align-items: center;
-  gap: var(--spacing-2);
-
-  &:hover {
-    text-decoration: underline;
-  }
 }

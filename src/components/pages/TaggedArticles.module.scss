@@ -1,13 +1,6 @@
-@use "../../styles/system.scss" as *;
-
-.container {
-  @include appContainer;
-  margin-top: var(--spacing-4);
-  margin-bottom: var(--spacing-16);
-}
-
 .titleSection {
-  @include hStack;
-  margin-bottom: var(--spacing-8);
+  display: flex;
   align-items: center;
+  gap: 8px;
+  margin-bottom: 40px;
 }
