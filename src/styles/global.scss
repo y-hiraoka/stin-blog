@@ -1,28 +1,38 @@
 body {
   line-height: 1.5;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: var(--font-inter), var(--font-noto), "Noto Sans JP", sans-serif;
   color: var(--c-text-primary);
-  background-color: var(--c-background);
+  background-color: var(--c-bg-base);
 }
 
-a {
-  color: inherit;
-  text-decoration: inherit;
+button:not([disabled]) {
+  cursor: pointer;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--c-focus-ring);
+  outline-offset: 1px;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
 }
 
 img {
   max-width: 100%;
   height: auto;
+  display: block;
+  vertical-align: middle;
 }
 
-a:focus,
-button:focus,
-input:focus,
-select:focus,
-textarea:focus {
-  outline-width: 3px;
+hr {
+  border: none;
+  border-top: 1px solid var(--c-divider);
 }
 
-*:focus-visible {
-  outline: 3px solid var(--c-primary-300);
+a {
+  text-decoration: none;
 }

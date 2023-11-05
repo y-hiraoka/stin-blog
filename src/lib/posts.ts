@@ -173,5 +173,6 @@ export async function getZennArticleHeaders(): Promise<ZennArticleHeader[]> {
       ? new Date(item.pubDate).toISOString()
       : new Date().toISOString(),
     url: item.link ?? "",
+    thumbnail: item.enclosure?.url ?? "",
   }));
 }

@@ -19,7 +19,8 @@ export const generateMetadata = async ({
 }: {
   params: Params;
 }): Promise<Metadata> => {
-  const { tagName } = params;
+  const tagName = decodeURIComponent(params.tagName);
+
   const articles = await getSortedArticleHeaders().then(articles =>
     articles.filter(article => article.tags.includes(tagName)),
   );
@@ -41,7 +42,8 @@ export const generateMetadata = async ({
 };
 
 const TagPage: React.FC<{ params: Params }> = async ({ params }) => {
-  const { tagName } = params;
+  const tagName = decodeURIComponent(params.tagName);
+
   const articles = await getSortedArticleHeaders().then(articles =>
     articles.filter(article => article.tags.includes(tagName)),
   );

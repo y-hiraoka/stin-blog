@@ -1,37 +1,25 @@
 @use "../../styles/system.scss" as *;
-@use "../../styles/mediaQueries.scss" as *;
 
 .cardRoot {
   display: flex;
-  gap: var(--spacing-2);
-  height: var(--size-36);
+  gap: 8px;
+  height: 144px;
   width: 100%;
-  border-radius: var(--radius-lg);
-  border: var(--border-1);
-  border-color: var(--c-gray-200);
+  border-radius: 8px;
+  border: 1px solid var(--c-link-card-border);
   overflow: hidden;
-  transition: background-color 0.3s;
+  transition: background-color 0.2s, border-color 0.2s;
+
   &:hover {
-    background-color: var(--c-black-alpha-50);
-  }
-  &:focus-visible {
-    background-color: var(--c-black-alpha-50);
-  }
-  @include isDarkMode {
-    border-color: var(--c-gray-700);
-    &:hover {
-      background-color: var(--c-white-alpha-100);
-    }
-    &:focus-visible {
-      background-color: var(--c-white-alpha-100);
-    }
+    border-color: var(--c-link-card-border-hover);
+    background-color: var(--c-link-card-bg-hover);
   }
 }
 
 .loadedMetadata {
   display: flex;
   flex-direction: column;
-  padding: var(--spacing-2) var(--spacing-4);
+  padding: 8px 16px;
   flex: 1;
   height: 100%;
 }
@@ -40,37 +28,37 @@
   @include lineClamp(2);
   font-weight: bold;
   word-break: break-all;
+  font-weight: 500;
+  color: var(--c-text-primary);
 }
 
 .loadedMetadataDescriptionContainer {
   flex: 1;
-  margin-top: var(--spacing-2);
+  margin-top: 8px;
 }
 
 .loadedMetadataDescription {
   @include lineClamp(2);
-  font-size: var(--font-size-xs);
+  font-size: var(--font-size-sm);
   color: var(--c-text-secondary);
   word-break: break-all;
-  @include largerThan(md) {
-    font-size: var(--font-size-sm);
-  }
 }
 
 .loadedMetadataSite {
   display: flex;
   align-items: center;
-  gap: var(--spacing-2);
+  gap: 8px;
 }
 
 .loadedMetadataSiteName {
   @include lineClamp(1);
+  color: var(--c-text-secondary);
   font-size: var(--font-size-sm);
 }
 
 .loadedMetadataImageContainer {
   max-width: 40%;
-  height: var(--size-36);
+  height: 144px;
 }
 
 .loadedMetadataImage {
@@ -82,32 +70,20 @@
 .error {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
-  padding: var(--spacing-4);
-  border-radius: var(--radius-lg);
-  border: var(--border-1);
-  border-color: var(--c-gray-200);
-  transition: background-color 0.3s;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--c-link-card-border);
+  color: var(--c-text-primary);
+  transition: background-color 0.2s, border-color 0.2s;
   &:hover {
-    background-color: var(--c-black-alpha-50);
-  }
-  &:focus-visible {
-    background-color: var(--c-black-alpha-50);
-  }
-
-  @include isDarkMode {
-    border-color: var(--c-gray-700);
-    &:hover {
-      background-color: var(--c-white-alpha-100);
-    }
-    &:focus-visible {
-      background-color: var(--c-white-alpha-100);
-    }
+    border-color: var(--c-link-card-border-hover);
+    background-color: var(--c-link-card-bg-hover);
   }
 }
 
 .errorTitle {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 .errorDescription {
@@ -118,9 +94,9 @@
 .skeletonTextContainer {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2);
+  gap: 8px;
   &:not(:first-of-type) {
-    margin-top: var(--spacing-6);
+    margin-top: 24px;
     flex: 1;
   }
 }
@@ -134,7 +110,7 @@
   flex-direction: column;
   flex: 1;
   height: 100%;
-  padding: var(--spacing-2) var(--spacing-4);
+  padding: 8px 16px;
 }
 
 .skeletonTextShorter {
@@ -144,14 +120,14 @@
 
 .skeletonSiteIcon {
   @include skeletonBase;
-  width: var(--size-4);
-  height: var(--size-4);
-  border-radius: var(--radius-xs);
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
 }
 
 .skeletonImage {
   @include skeletonBase;
   max-width: 40%;
-  width: var(--size-64);
+  width: 256px;
   height: 100%;
 }

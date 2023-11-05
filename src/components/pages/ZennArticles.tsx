@@ -1,22 +1,37 @@
 import { FC } from "react";
-import { ArticleList } from "../shared/ArticleList";
-import { ArticleHeader } from "../../models";
+import { ZennArticleHeader } from "../../models";
 import classes from "./ZennArticles.module.scss";
 import { PageTitle } from "../shared/PageTitle";
+import Image from "next/image";
 
 type Props = {
-  articles: ArticleHeader[];
+  articles: ZennArticleHeader[];
 };
 
 export const ZennArticles: FC<Props> = ({ articles }) => {
   return (
-    <main className={classes.container}>
+    <div>
       <div className={classes.title}>
-        <PageTitle>Zenn Articles</PageTitle>
+        <PageTitle>Posted on Zenn</PageTitle>
       </div>
-      <div className={classes.articleList}>
-        <ArticleList articles={articles} />
-      </div>
-    </main>
+      <ul className={classes.articleList}>
+        {articles.map((article, index) => (
+          <li key={index}>
+            <a
+              className={classes.articleListItem}
+              href={article.url}
+              target="_blank"
+              rel="noopener noreferrer">
+              <Image
+                src={article.thumbnail}
+                alt={article.title}
+                width={1200}
+                height={630}
+              />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };

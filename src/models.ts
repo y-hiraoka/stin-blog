@@ -16,6 +16,7 @@ export type BlogArticleHeader = ArticleHeaderBase & {
 export type ZennArticleHeader = ArticleHeaderBase & {
   type: "zenn";
   url: string;
+  thumbnail: string;
 };
 
 export type ArticleHeader = BlogArticleHeader | ZennArticleHeader;

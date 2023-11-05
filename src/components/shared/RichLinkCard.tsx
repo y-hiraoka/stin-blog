@@ -36,7 +36,8 @@ const RichLinkCardInner: React.FC<Props> = async ({ href }) => {
           <div className={classes.loadedMetadataDescription}>{metadata.description}</div>
         </div>
         <div className={classes.loadedMetadataSite}>
-          <Image src={getFaviconUrl(url.hostname)} alt="" width={16} height={16} />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={getFaviconUrl(url.hostname)} alt="" width={16} height={16} />
           <span className={classes.loadedMetadataSiteName}>{url.hostname}</span>
         </div>
       </div>

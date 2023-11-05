@@ -14,34 +14,37 @@ export const Footer: FC = () => {
   }, []);
 
   return (
-    <div>
-      <div className={classes.colorModeSwitcher}>
-        <ColorModeSwitcher />
-      </div>
-      <footer className={classes.footer}>
-        <p className={classes.description}>
-          このサイトは{" "}
+    <footer className={classes.footer}>
+      <div className={classes.footerContents}>
+        <div className={classes.links}>
           <a
-            className={classes.textLink}
-            href="https://policies.google.com/technologies/partner-sites?hl=ja"
-            target="_blank"
-            rel="noreferrer">
-            {" "}
-            Google Analytics
-          </a>{" "}
-          を使用しています
-        </p>
-        <small>
-          &copy;{copyrightPeriod}{" "}
-          <a
-            className={classes.textLink}
+            className={classes.externalLink}
             href="https://twitter.com/stin_factory"
             target="_blank"
             rel="noreferrer">
-            stin_factory
+            Twitter
           </a>
-        </small>
-      </footer>
-    </div>
+          <a
+            className={classes.externalLink}
+            href="https://github.com/y-hiraoka"
+            target="_blank"
+            rel="noreferrer">
+            GitHub
+          </a>
+          <a
+            className={classes.externalLink}
+            href="https://zenn.dev/stin"
+            target="_blank"
+            rel="noreferrer">
+            Zenn
+          </a>
+        </div>
+        <p className={classes.description}>This site uses Google Analytics.</p>
+        <small className={classes.copyright}>&copy;{copyrightPeriod} stin_factory</small>
+      </div>
+      <div className={classes.colorModeSwitcher}>
+        <ColorModeSwitcher />
+      </div>
+    </footer>
   );
 };

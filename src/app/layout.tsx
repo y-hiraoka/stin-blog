@@ -1,7 +1,7 @@
 import { FC, ReactNode, Suspense } from "react";
 import Script from "next/script";
 import { GoogleAnalyticsScript } from "../lib/gtag";
-import "ress";
+import "modern-normalize/modern-normalize.css";
 import "../styles/tokens.scss";
 import "../styles/global.scss";
 import { ColorModeAppliedHtml } from "../lib/colorMode";
@@ -9,25 +9,33 @@ import { Header } from "../components/shared/Header";
 import { Footer } from "../components/shared/Footer";
 import { GA_TRACKING_ID } from "../lib/contant";
 import { Metadata } from "next";
+import { Inter, Noto_Sans_JP } from "next/font/google";
 import { config } from "../config";
+import { Main } from "../components/shared/Main";
+import { Layout } from "../components/shared/Layout";
+
+const inter = Inter({
+  display: "swap",
+  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "500", "700", "900"],
+});
+
+const notosansjp = Noto_Sans_JP({
+  display: "swap",
+  weight: ["400", "500", "700"],
+  subsets: ["latin"],
+  variable: "--font-noto",
+});
 
 const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
   return (
     <ColorModeAppliedHtml>
       <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
         <Script
           id="twitter-embed-script"
           src="https://platform.twitter.com/widgets.js"
           strategy="lazyOnload"
-        />
-        <Script
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4010956213409647"
-          crossOrigin="anonymous"
         />
         <Script
           strategy="afterInteractive"
@@ -52,10 +60,14 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
           <GoogleAnalyticsScript />
         </Suspense>
       </head>
-      <body>
-        <Header />
-        <Suspense fallback={null}>{children}</Suspense>
-        <Footer />
+      <body className={`${inter.variable} ${notosansjp.variable}`}>
+        <Suspense fallback={null}>
+          <Layout>
+            <Header />
+            <Main>{children}</Main>
+            <Footer />
+          </Layout>
+        </Suspense>
       </body>
     </ColorModeAppliedHtml>
   );

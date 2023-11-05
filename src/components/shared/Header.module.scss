@@ -1,115 +1,68 @@
 @use "../../styles/mediaQueries.scss" as *;
 @use "../../styles/system.scss" as *;
 
-@keyframes uncollapse {
-  from {
-    opacity: 0;
-    transform: translateY(-4px);
-    scale: 0.8;
-  }
-  to {
-    opacity: 1;
-    transform: translateY(var(--spacing-2));
-    scale: 1;
-  }
-}
-
-.root {
+.header {
   position: sticky;
   top: 0;
-  backdrop-filter: blur(8px);
-}
-
-.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-top: var(--spacing-4);
-  padding-bottom: var(--spacing-4);
+  padding: 0 24px;
+  height: 64px;
+  border-bottom: 1px solid var(--c-divider);
+  backdrop-filter: var(--c-header-backdrop-filter);
+  z-index: 1;
+}
 
-  @include appContainer;
+.header::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--c-header-bg);
+  opacity: var(--c-header-opacity);
+  z-index: -1;
 }
 
 .logoLink {
-  line-height: 0;
+  font-size: var(--font-size-3xl);
+  color: var(--c-text-primary);
+  font-weight: 900;
+  letter-spacing: -0.02em;
 }
 
-.logoLinkImage {
-  width: auto;
-  height: var(--size-12);
-
-  @include largerThan("sm") {
-    height: var(--size-14);
-  }
-
-  @include largerThan("md") {
-    height: var(--size-16);
-  }
+.logoLinkAccent {
+  color: var(--c-header-logo-accent);
 }
 
-.navigations {
+.navigation {
   display: flex;
   align-items: center;
-  gap: var(--spacing-3);
+  gap: 8px;
 }
 
-.navigationLink {
-  display: none;
-  font-weight: bold;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  @include largerThan("md") {
-    display: inline;
-  }
+.navLink {
+  font-size: var(--font-size-sm);
+  color: var(--c-text-secondary);
+  transition: color 0.2s;
+  padding: 8px;
 }
 
-.collapsedNavigationTrigger {
-  @include largerThan("md") {
-    display: none;
-  }
+.navLink:hover {
+  color: var(--c-text-primary);
 }
 
-.collapsedNavigationContent {
-  box-shadow: var(--shadow-md);
-  background: var(--c-background);
-  border-radius: var(--radius-md);
-  border: var(--border-1);
-  border-color: var(--c-gray-200);
-  padding-top: var(--spacing-2);
-  padding-bottom: var(--spacing-2);
-  min-width: var(--size-48);
-  transform-origin: top right;
-  animation: uncollapse 0.2s forwards;
-
-  @include isDarkMode {
-    background: var(--c-gray-700);
-    border-color: var(--c-white-alpha-300);
-    box-shadow: var(--shadow-dark-lg);
-  }
+.navLink[aria-current="page"] {
+  font-weight: 700;
+  color: var(--c-text-primary);
 }
 
-.collapsedNavigationLink {
-  display: block;
-  padding: var(--spacing-2) var(--spacing-4);
-  transition: background-color 0.2s;
-
-  &:focus {
-    background-color: var(--c-gray-100);
-  }
-  &:hover {
-    background-color: var(--c-gray-100);
-  }
-
-  @include isDarkMode {
-    &:focus {
-      background-color: var(--c-white-alpha-100);
-    }
-    &:hover {
-      background-color: var(--c-white-alpha-100);
-    }
-  }
+.githubLink {
+  display: flex;
+  color: var(--c-text-primary);
+  font-size: var(--font-size-3xl);
+  transition: color 0.2s;
 }
