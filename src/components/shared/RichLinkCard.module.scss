@@ -27,7 +27,7 @@
 .loadedMetadataTitle {
   @include lineClamp(2);
   font-weight: bold;
-  word-break: break-all;
+  overflow-wrap: break-word;
   font-weight: 500;
   color: var(--c-text-primary);
 }
@@ -41,7 +41,7 @@
   @include lineClamp(2);
   font-size: var(--font-size-sm);
   color: var(--c-text-secondary);
-  word-break: break-all;
+  overflow-wrap: break-word;
 }
 
 .loadedMetadataSite {

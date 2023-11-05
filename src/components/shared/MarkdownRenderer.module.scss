@@ -1,5 +1,5 @@
 .markdown {
-  word-break: break-all;
+  overflow-wrap: break-word;
 
   & > :first-child {
     margin-top: 0;
