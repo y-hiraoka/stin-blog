@@ -15,7 +15,7 @@ export const Footer: FC = () => {
 
   return (
     <footer className={classes.footer}>
-      <div>
+      <div className={classes.footerContents}>
         <div className={classes.links}>
           <a
             className={classes.externalLink}
@@ -42,7 +42,9 @@ export const Footer: FC = () => {
         <p className={classes.description}>This site uses Google Analytics.</p>
         <small className={classes.copyright}>&copy;{copyrightPeriod} stin_factory</small>
       </div>
-      <ColorModeSwitcher />
+      <div className={classes.colorModeSwitcher}>
+        <ColorModeSwitcher />
+      </div>
     </footer>
   );
 };

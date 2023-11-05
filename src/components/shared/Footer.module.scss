@@ -1,4 +1,5 @@
 @use "../../styles/system.scss" as *;
+@use "../../styles/mediaQueries.scss" as *;
 
 .footer {
   display: flex;
@@ -7,6 +8,12 @@
   padding: 24px;
   background-color: var(--c-bg-footer);
   border-top: 1px solid var(--c-divider);
+
+  @include smallerThan(sm) {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
 }
 
 .links {
@@ -34,4 +41,16 @@
 .copyright {
   font-size: var(--font-size-xs);
   color: var(--c-text-secondary);
+}
+
+@include smallerThan(sm) {
+  .footerContents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .colorModeSwitcher {
+    order: -1;
+  }
 }
