@@ -38,6 +38,8 @@ _イタリック体_ や _イタリック体_
 
 [Google へのリンク - Link to Google](https://www.google.com)
 
+[Example へのリンク - Link to Google](https://www.example.com)
+
 ![安美の画像](https://stat.ameba.jp/user_images/20231101/22/tsubaki-factory/93/f3/j/o1080130515358820314.jpg)
 
 インラインの `inline-code` は逆クォートで囲みます。

@@ -41,14 +41,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--c-black-alpha-700);
+  color: var(--c-color-mode-switcher-option-text);
   background-color: transparent;
   border-color: transparent;
   width: 40px;
   height: 40px;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 
   &:hover {
-    background-color: var(--c-black-alpha-100);
+    background-color: var(--c-color-mode-switcher-option-bg-hover);
   }
   &[data-state="on"] {
     color: var(--c-color-mode-switcher-option-text-active);

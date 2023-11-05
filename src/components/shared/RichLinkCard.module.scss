@@ -12,7 +12,7 @@
 
   &:hover {
     border-color: var(--c-link-card-border-hover);
-    background-color: var(--c-black-alpha-50);
+    background-color: var(--c-link-card-bg-hover);
   }
 }
 
@@ -78,7 +78,7 @@
   transition: background-color 0.2s, border-color 0.2s;
   &:hover {
     border-color: var(--c-link-card-border-hover);
-    background-color: var(--c-black-alpha-50);
+    background-color: var(--c-link-card-bg-hover);
   }
 }
 

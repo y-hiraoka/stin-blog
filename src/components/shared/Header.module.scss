@@ -10,7 +10,7 @@
   padding: 0 24px;
   height: 64px;
   border-bottom: 1px solid var(--c-divider);
-  backdrop-filter: blur(8px);
+  backdrop-filter: var(--c-header-backdrop-filter);
   z-index: 1;
 }
 
@@ -22,8 +22,8 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: var(--c-bg-base);
-  opacity: 0.8;
+  background-color: var(--c-header-bg);
+  opacity: var(--c-header-opacity);
   z-index: -1;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .logoLinkAccent {
-  color: var(--c-primary-300);
+  color: var(--c-header-logo-accent);
 }
 
 .navigation {

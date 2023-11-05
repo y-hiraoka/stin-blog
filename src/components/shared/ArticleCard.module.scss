@@ -1,16 +1,19 @@
 .card {
-  background-color: var(--c-article-card-bg);
+  background: var(--c-article-card-bg);
   border-radius: 8px;
   overflow: hidden;
-  border: 1px solid var(--c-article-card-border);
+  border-width: var(--c-article-card-border-width);
+  border-style: solid;
+  border-color: var(--c-article-card-border);
   position: relative;
   isolation: isolate;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, background-color 0.2s;
 }
 
 .card:has(.link:focus-visible),
 .card:hover {
   border-color: var(--c-article-card-border-hover);
+  background-color: var(--c-article-card-bg-hover);
 }
 
 .metadata {
