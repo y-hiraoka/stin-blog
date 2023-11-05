@@ -193,6 +193,7 @@
 
 .textLink {
   color: var(--c-text-link);
+  text-decoration: underline;
 
   &:visited {
     color: var(--c-text-link-visited);
