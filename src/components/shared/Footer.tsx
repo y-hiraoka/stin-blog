@@ -38,6 +38,13 @@ export const Footer: FC = () => {
             rel="noreferrer">
             Zenn
           </a>
+          <a
+            className={classes.externalLink}
+            href="/feed"
+            target="_blank"
+            rel="noreferrer">
+            Feed
+          </a>
         </div>
         <p className={classes.description}>This site uses Google Analytics.</p>
         <small className={classes.copyright}>&copy;{copyrightPeriod} stin_factory</small>
