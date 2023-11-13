@@ -1,7 +1,7 @@
 ---
 title: "ポケモンBGMループ再生サイトをアップデートした"
 createdAt: "2023-11-13T16:39:44.062Z"
-tags: ["Next.js", "tailwindcss"]
+tags: ["nextjs", "tailwindcss"]
 ---
 
 https://pokemon-soundlibrary.stin.ink
