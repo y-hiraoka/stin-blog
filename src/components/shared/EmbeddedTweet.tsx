@@ -23,7 +23,7 @@ type EmbeddedTweetProps = {
   dnt?: true;
 };
 
-export const EmbeddedTweet: FC<EmbeddedTweetProps> = props => {
+export const EmbeddedTweet: FC<EmbeddedTweetProps> = (props) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const key = JSON.stringify(props);

@@ -11,7 +11,7 @@ type Params = {
 export const generateStaticParams = async () => {
   const tags = await getAllArticleTags();
 
-  return tags.map(tag => ({ tagName: tag.name }));
+  return tags.map((tag) => ({ tagName: tag.name }));
 };
 
 export const generateMetadata = async ({
@@ -21,8 +21,8 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const tagName = decodeURIComponent(params.tagName);
 
-  const articles = await getSortedArticleHeaders().then(articles =>
-    articles.filter(article => article.tags.includes(tagName)),
+  const articles = await getSortedArticleHeaders().then((articles) =>
+    articles.filter((article) => article.tags.includes(tagName)),
   );
 
   if (articles.length === 0) {
@@ -44,8 +44,8 @@ export const generateMetadata = async ({
 const TagPage: React.FC<{ params: Params }> = async ({ params }) => {
   const tagName = decodeURIComponent(params.tagName);
 
-  const articles = await getSortedArticleHeaders().then(articles =>
-    articles.filter(article => article.tags.includes(tagName)),
+  const articles = await getSortedArticleHeaders().then((articles) =>
+    articles.filter((article) => article.tags.includes(tagName)),
   );
 
   if (articles.length === 0) notFound();

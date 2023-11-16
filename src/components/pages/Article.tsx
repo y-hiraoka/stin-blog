@@ -22,7 +22,7 @@ export const Article: FC<Props> = ({ article }) => {
           <Datetime format="yyyy/MM/dd HH:mm" datetime={article.header.createdAt} />
         </p>
         <ul className={classes.tags}>
-          {article.header.tags.map(tag => (
+          {article.header.tags.map((tag) => (
             <li key={tag}>
               <TagLink tag={tag} />
             </li>

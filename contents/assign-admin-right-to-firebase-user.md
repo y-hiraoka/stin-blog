@@ -21,7 +21,7 @@ Functions for Firebase で Firestore の `user-claims` コレクションへの�
 ```tsx
 const isAdminUser = getAuth()
   .currentUser?.getIdTokenResult(true)
-  .then(idToken => idToken.claims.isAdminUser); // `isAdminUser` の部分は好きなキー名にできる。ただし型はつかない
+  .then((idToken) => idToken.claims.isAdminUser); // `isAdminUser` の部分は好きなキー名にできる。ただし型はつかない
 
 console.log(isAdminUser); // user-claims コレクションで付与した値
 ```
@@ -59,21 +59,21 @@ Firestore の `user-claims` コレクションに登録されたデータを Fir
 ```tsx
 export const addUserClaims = functions.firestore
   .document("user-claims/{docId}")
-  .onCreate(userClaims =>
+  .onCreate((userClaims) =>
     getAuth().setCustomUserClaims(userClaims.id, userClaims.data()),
   );
 
 export const updateUserClaims = functions.firestore
   .document("user-claims/{docId}")
-  .onUpdate(userClaims =>
+  .onUpdate((userClaims) =>
     getAuth().setCustomUserClaims(userClaims.after.id, userClaims.after.data()),
   );
 
 export const removeUserClaims = functions.firestore
   .document("user-claims/{docId}")
-  .onDelete(userClaims => getAuth().setCustomUserClaims(userClaims.id, null));
+  .onDelete((userClaims) => getAuth().setCustomUserClaims(userClaims.id, null));
 
-export const removeUserClaimDoc = functions.auth.user().onDelete(user => {
+export const removeUserClaimDoc = functions.auth.user().onDelete((user) => {
   getFirestore().collection("user-claims").doc(user.uid).delete({ exists: false });
 });
 ```

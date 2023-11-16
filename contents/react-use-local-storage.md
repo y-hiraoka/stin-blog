@@ -83,8 +83,8 @@ useEffect(() => {
 
 ```ts
 const setState: React.Dispatch<React.SetStateAction<T>> = useCallback(
-  value => {
-    _setState(prevState => {
+  (value) => {
+    _setState((prevState) => {
       // @ts-expect-error
       const nextState: T = typeof value === "function" ? value(prevState) : value;
 

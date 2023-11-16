@@ -23,7 +23,7 @@ const handler = async ({ params }: Props) => {
       .readFile(path.join(assetsDirectory, "article-ogimage-base.png"), {
         encoding: "base64",
       })
-      .then(base64 => `data:image/png;base64,${base64}`);
+      .then((base64) => `data:image/png;base64,${base64}`);
 
     return new ImageResponse(
       (

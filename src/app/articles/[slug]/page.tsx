@@ -11,7 +11,7 @@ type Params = {
 export const generateStaticParams = async () => {
   const slugs = await getAllPostSlugs();
 
-  return slugs.map(slug => ({ slug }));
+  return slugs.map((slug) => ({ slug }));
 };
 
 export const generateMetadata = async ({

@@ -56,7 +56,7 @@ function App() {
     const socket = new WebSocket("ws://localhost:7777");
     webSocketRef.current = socket;
 
-    socket.addEventListener("message", event => {
+    socket.addEventListener("message", (event) => {
       setMessage(event.data);
     });
 
@@ -65,7 +65,7 @@ function App() {
 
   const [inputText, setInputText] = useState("");
   const submit: React.FormEventHandler = useCallback(
-    event => {
+    (event) => {
       event.preventDefault();
       webSocketRef.current?.send(inputText);
     },
@@ -76,7 +76,7 @@ function App() {
     <div className="App">
       <h1>{JSON.stringify(message)}</h1>
       <form onSubmit={submit}>
-        <input value={inputText} onChange={e => setInputText(e.target.value)} />
+        <input value={inputText} onChange={(e) => setInputText(e.target.value)} />
         <button>送信</button>
       </form>
     </div>
@@ -260,8 +260,8 @@ export function addChatMessage(
 そしてクライアントとの接続部分。
 
 ```tsx
-server.get("/chat", { websocket: true }, connection => {
-  connection.socket.on("message", data => {
+server.get("/chat", { websocket: true }, (connection) => {
+  connection.socket.on("message", (data) => {
     const rawData = JSON.parse(data.toString());
     try {
       const message = chatMessageValidator.parse(rawData);
@@ -354,7 +354,7 @@ export const useChatMessages = (userId: string): UseChatMessagesReturn => {
     const socket = new WebSocket(`${protocol}://${window.location.host}/chat`);
     webSocketRef.current = socket;
 
-    socket.addEventListener("message", event => {
+    socket.addEventListener("message", (event) => {
       setMessages(JSON.parse(event.data));
     });
 

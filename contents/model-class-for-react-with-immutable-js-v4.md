@@ -130,7 +130,7 @@ const NameForm: React.VFC<Props> = ({ firstName, lastName }) => {
         <input
           name="firstName"
           value={model.firstName}
-          onChange={e => setModel(prev => prev.setFirstName(e.target.value))}
+          onChange={(e) => setModel((prev) => prev.setFirstName(e.target.value))}
         />
       </label>
       <label>
@@ -138,7 +138,7 @@ const NameForm: React.VFC<Props> = ({ firstName, lastName }) => {
         <input
           name="lastName"
           value={model.lastName}
-          onChange={e => setModel(prev => prev.setLastName(e.target.value))}
+          onChange={(e) => setModel((prev) => prev.setLastName(e.target.value))}
         />
       </label>
       <div>Your full name is {model.fullName}</div>

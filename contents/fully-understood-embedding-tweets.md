@@ -237,7 +237,7 @@ const EmbeddedTweet:VFC<EmbeddedTweetProps> = (props) => { ... }
 それでは実装しましょう。
 
 ```tsx
-export const EmbeddedTweet: VFC<EmbeddedTweetProps> = props => {
+export const EmbeddedTweet: VFC<EmbeddedTweetProps> = (props) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -284,7 +284,7 @@ export const EmbeddedTweet: VFC<EmbeddedTweetProps> = props => {
 では消えた実 DOM はどうやって復活させればいいのでしょう？ `key` を変化させればいいのですね。
 
 ```tsx
-export const EmbeddedTweet: VFC<EmbeddedTweetProps> = props => {
+export const EmbeddedTweet: VFC<EmbeddedTweetProps> = (props) => {
   const rootRef = useRef<HTMLDivElement>(null);
 
   const key = JSON.stringify(props);

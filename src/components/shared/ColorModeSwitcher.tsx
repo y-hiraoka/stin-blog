@@ -13,7 +13,7 @@ export const ColorModeSwitcher: React.FC = () => {
       className={styles.switcher}
       type="single"
       value={colorMode}
-      onValueChange={value => isColorModeValue(value) && setColorMode(value)}
+      onValueChange={(value) => isColorModeValue(value) && setColorMode(value)}
       aria-label="カラーモード設定"
       data-value={colorMode}>
       <ToggleGroup.Item

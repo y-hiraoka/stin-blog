@@ -7,7 +7,9 @@
   color: var(--c-tag-text);
   border: 1px solid var(--c-tag-border);
   background-color: var(--c-tag-bg);
-  transition: border-color 0.2s, background-color 0.2s;
+  transition:
+    border-color 0.2s,
+    background-color 0.2s;
 }
 
 .tagLink:hover {

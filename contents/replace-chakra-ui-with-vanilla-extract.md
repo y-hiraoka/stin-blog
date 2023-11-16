@@ -33,7 +33,7 @@ const fruits = ["りんご", "みかん", "なし", "ぶどう"];
 const Home: NextPage = () => {
   return (
     <ul>
-      {fruits.map(fruit => (
+      {fruits.map((fruit) => (
         <li
           key={fruit}
           css={css`

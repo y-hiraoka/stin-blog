@@ -81,7 +81,7 @@ const UserProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    fetchUser().then(user => setUser(user));
+    fetchUser().then((user) => setUser(user));
   }, []);
 
   return <userContext.Provider value={user}>{children}</userContext.Provider>;
@@ -160,7 +160,7 @@ const UserProvider: React.FC = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    fetchUser().then(user => setUser(user));
+    fetchUser().then((user) => setUser(user));
   }, []);
 
   if (user === null) return <div>Loading...</div>; // <- 取得中は children をマウントさせない

@@ -16,7 +16,7 @@ export const generateFeed = async () => {
     favicon: `${config.siteUrl}/favicon.ico`,
   });
 
-  posts.forEach(post => {
+  posts.forEach((post) => {
     feed.addItem({
       title: post.title,
       id: `${config.siteUrl}/articles/${post.slug}`,

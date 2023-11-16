@@ -28,7 +28,7 @@ export const ArticleCard: FC<Props> = ({ article }) => {
           format="yyyy/MM/dd HH:mm"
         />
         <ul className={classes.tags}>
-          {article.tags.map(tag => (
+          {article.tags.map((tag) => (
             <li key={tag}>
               <TagLink tag={tag} />
             </li>

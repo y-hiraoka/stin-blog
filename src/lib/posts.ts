@@ -41,7 +41,7 @@ function divideFrontMatterAndContent(markdown: string): {
 export async function getAllPostSlugs(): Promise<string[]> {
   const fileNames = await fs.promises.readdir(postsDirectory);
 
-  return fileNames.map(fileName => fileName.replace(/\.md$/, ""));
+  return fileNames.map((fileName) => fileName.replace(/\.md$/, ""));
 }
 
 async function getArticleExcerpt(mdText: string): Promise<string> {
@@ -62,7 +62,7 @@ async function getAllArticlesRawData() {
   const slugs = await getAllPostSlugs();
 
   return await Promise.all(
-    slugs.map(async slug => {
+    slugs.map(async (slug) => {
       const content = await getArticleRawData(`${slug}.md`);
 
       return { slug, content };
@@ -73,7 +73,7 @@ async function getAllArticlesRawData() {
 export async function getSortedArticleHeaders(): Promise<BlogArticleHeader[]> {
   const rawData = await getAllArticlesRawData();
 
-  const headerPromises = rawData.map<Promise<BlogArticleHeader>>(async data => {
+  const headerPromises = rawData.map<Promise<BlogArticleHeader>>(async (data) => {
     try {
       const { frontMatter, content } = divideFrontMatterAndContent(data.content);
 
@@ -96,7 +96,7 @@ export async function getSortedArticleHeaders(): Promise<BlogArticleHeader[]> {
   });
 
   // Sort posts by date
-  return await Promise.all(headerPromises).then(headers =>
+  return await Promise.all(headerPromises).then((headers) =>
     headers.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1)),
   );
 }
@@ -133,7 +133,7 @@ export async function getArticleData(slug: string): Promise<Article> {
 export async function getAllArticleTags(): Promise<Tag[]> {
   const articles = await getAllArticlesRawData();
 
-  const tagsList = articles.map(article => {
+  const tagsList = articles.map((article) => {
     try {
       const { frontMatter } = divideFrontMatterAndContent(article.content);
 
@@ -147,8 +147,8 @@ export async function getAllArticleTags(): Promise<Tag[]> {
 
   const tagsCount = {} as Record<string, number>;
 
-  tagsList.forEach(tags => {
-    tags.forEach(tag => {
+  tagsList.forEach((tags) => {
+    tags.forEach((tag) => {
       tagsCount[tag] = tagsCount[tag] !== undefined ? tagsCount[tag] + 1 : 1;
     });
   });
@@ -163,10 +163,10 @@ export async function getZennArticleHeaders(): Promise<ZennArticleHeader[]> {
   const parser = new RssParser();
   const xmlText = await fetch(`https://zenn.dev/${config.social.zenn}/feed?all=1`, {
     next: { revalidate: 60 * 60 * 24 },
-  }).then(res => res.text());
+  }).then((res) => res.text());
   const feed = await parser.parseString(xmlText);
 
-  return feed.items.map(item => ({
+  return feed.items.map((item) => ({
     type: "zenn",
     title: item.title ?? "",
     createdAt: item.pubDate

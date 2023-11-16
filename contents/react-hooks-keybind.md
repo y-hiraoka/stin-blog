@@ -57,7 +57,7 @@ function useKeybind(props: KeybindProps): void;
 このインターフェイスにしておけば、コンポーネントにするのも簡単です。
 
 ```tsx
-export const Keybind: FC<KeybindProps> = props => {
+export const Keybind: FC<KeybindProps> = (props) => {
   useKeybind(props);
   return null;
 };

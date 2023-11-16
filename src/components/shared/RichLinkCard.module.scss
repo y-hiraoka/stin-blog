@@ -8,7 +8,9 @@
   border-radius: 8px;
   border: 1px solid var(--c-link-card-border);
   overflow: hidden;
-  transition: background-color 0.2s, border-color 0.2s;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
 
   &:hover {
     border-color: var(--c-link-card-border-hover);
@@ -75,7 +77,9 @@
   border-radius: 8px;
   border: 1px solid var(--c-link-card-border);
   color: var(--c-text-primary);
-  transition: background-color 0.2s, border-color 0.2s;
+  transition:
+    background-color 0.2s,
+    border-color 0.2s;
   &:hover {
     border-color: var(--c-link-card-border-hover);
     background-color: var(--c-link-card-bg-hover);
