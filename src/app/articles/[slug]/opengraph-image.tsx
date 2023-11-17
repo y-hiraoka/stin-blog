@@ -92,3 +92,8 @@ const handler = async ({ params }: Props) => {
 };
 
 export default handler;
+
+export const size = {
+  width: 1200,
+  height: 630,
+}
