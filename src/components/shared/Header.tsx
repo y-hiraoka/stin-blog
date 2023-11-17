@@ -42,7 +42,8 @@ const NavLinks: FC = () => {
         href="https://github.com/y-hiraoka/stin-blog"
         target="_blank"
         rel="noreferrer"
-        className={classes.githubLink}>
+        className={classes.githubLink}
+        aria-label="stin's blog の GitHub repository">
         <FaGithub />
       </a>
     </>
