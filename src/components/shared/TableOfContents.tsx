@@ -20,7 +20,7 @@ export const TableOfContents: FC = () => {
   }, []);
 
   return (
-    <nav>
+    <nav className={classes.root}>
       <h2 className={classes.tocTitle}>Table of Contents</h2>
       <div className={classes.toc} />
     </nav>

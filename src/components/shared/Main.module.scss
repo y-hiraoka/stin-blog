@@ -9,8 +9,4 @@
   @include largerThan(md) {
     padding: 64px 40px 128px;
   }
-
-  @include largerThan(lg) {
-    padding: 64px 64px 128px;
-  }
 }

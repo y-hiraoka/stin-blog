@@ -1,3 +1,8 @@
+.root {
+  max-height: calc(100dvh - var(--header-height) - 24px);
+  overflow-y: auto;
+}
+
 .tocTitle {
   font-size: var(--font-size-md);
   font-weight: bold;

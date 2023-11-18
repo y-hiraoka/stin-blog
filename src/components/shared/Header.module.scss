@@ -12,6 +12,10 @@
   border-bottom: 1px solid var(--c-divider);
   backdrop-filter: var(--c-header-backdrop-filter);
   z-index: 1;
+
+  @include largerThan(md) {
+    padding: 0 40px;
+  }
 }
 
 .header::before {
