@@ -1,20 +1,23 @@
 import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
-import remarkSlug from "remark-slug";
 import remarkGfm from "remark-gfm";
+import rehypeSlug from "rehype-slug";
+import remarkFrontmatter from "remark-frontmatter";
+import rehypeHighlight from "rehype-highlight";
 import { RichLinkCard } from "./RichLinkCard";
 import Link from "next/link";
 import classes from "./MarkdownRenderer.module.scss";
 import { ArticleTweetCard } from "./ArticleTweetCard";
-import { SyntaxHighlighter } from "./SyntaxHighlighter";
+import "highlight.js/styles/panda-syntax-dark.css";
 
 type Props = { children: string };
 
 export const MarkdownRenderer: React.FC<Props> = ({ children }) => {
   return (
-    <div className={classes.markdown}>
+    <div id="markdown-renderer" className={classes.markdown}>
       <ReactMarkdown
-        remarkPlugins={[remarkSlug, remarkGfm]}
+        remarkPlugins={[remarkFrontmatter, remarkGfm]}
+        rehypePlugins={[rehypeSlug, [rehypeHighlight, { detect: true }]]}
         components={{
           a: MDLink,
           code: Code,
@@ -45,25 +48,15 @@ const MDLink: Components["a"] = ({ node, href, ...props }) => {
   );
 };
 
-const Code: Components["code"] = ({ node, inline, className, children, ...props }) => {
-  const match = /language-(\w+)/.exec(className || "");
-  return !inline ? (
-    <div className={classes.codeBlock}>
-      <SyntaxHighlighter
-        code={String(children).replace(/\n$/, "")}
-        language={match?.[1] ?? "plain-text"}
-      />
-    </div>
-  ) : (
-    <code className={classes.inlineCode}>{children}</code>
-  );
+const Code: Components["code"] = ({ node, className, children, ...props }) => {
+  return <code className={className ?? classes.inlineCode}>{children}</code>;
 };
 
 const Paragraph: Components["p"] = ({ node, ...props }) => {
-  const child = node.children[0];
+  const child = node?.children[0];
   if (
-    node.children.length === 1 &&
-    child.type === "element" &&
+    node?.children.length === 1 &&
+    child?.type === "element" &&
     child.tagName === "a" &&
     typeof child.properties?.href === "string" &&
     child.children[0].type === "text" &&

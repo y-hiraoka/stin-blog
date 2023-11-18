@@ -1,6 +1,17 @@
-.article {
-  max-width: 800px;
+@use "../../styles/mediaQueries.scss" as *;
+
+.layout {
   margin: 0 auto;
+  gap: 48px;
+
+  @include largerThan("lg") {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+  }
+}
+
+.article {
+  min-width: 0;
 }
 
 .articleTitle {
@@ -51,4 +62,14 @@
 .tweetLink:hover,
 .articlesLink:hover {
   text-decoration: underline;
+}
+
+.toc {
+  position: sticky;
+  top: calc(var(--header-height) + 24px);
+  display: none;
+
+  @include largerThan("lg") {
+    display: block;
+  }
 }

@@ -1,0 +1,36 @@
+.tocTitle {
+  font-size: var(--font-size-md);
+  font-weight: bold;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.toc {
+  overflow-wrap: break-word;
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+}
+
+.tocList {
+  list-style: none;
+}
+
+.tocList .tocList {
+  padding-left: 24px;
+}
+
+.tocLink {
+  display: block;
+  padding: 8px 0;
+  color: var(--c-text-secondary);
+}
+
+.tocLink:hover {
+  color: var(--c-text-primary);
+  text-decoration: underline;
+}
+
+.tocLinkActive {
+  color: var(--c-text-primary);
+  font-weight: bold;
+}

@@ -94,7 +94,7 @@ experimental ではありますがユーザー体験に影響するものでは�
 
 **before**
 
-```
+```txt
 Route (pages)                                                 Size     First Load JS
 ┌ ● / (ISR: 86400 Seconds) (535 ms)                           1.54 kB         117 kB
 ├   └ css/5ae3c401f528394f.css                                1.34 kB
@@ -138,7 +138,7 @@ Route (pages)                                                 Size     First Loa
 
 **after**
 
-```
+```txt
 Route (app)                                  Size     First Load JS
 ┌ ○ /                                        501 B            88 kB
 ├ ○ /articles                                0 B                0 B

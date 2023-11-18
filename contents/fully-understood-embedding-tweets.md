@@ -8,7 +8,7 @@ tags: ["react", "twitter"]
 
 Tweet の URL だけを Markdown に記述すると ↓
 
-```
+```txt
 https://twitter.com/jack/status/20
 ```
 

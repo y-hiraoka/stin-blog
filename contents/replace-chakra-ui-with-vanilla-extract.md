@@ -18,7 +18,7 @@ tags: ["react", "chakraui", "vanilla-extract"]
 
 Emotion を使ったことがある人なら必ず一度は次の警告文を見たことがあるでしょう。
 
-```
+```txt
 The pseudo class ":first-child" is potentially unsafe when doing server-side rendering. Try changing it to ":first-of-type".
 ```
 

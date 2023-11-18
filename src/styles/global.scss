@@ -1,3 +1,7 @@
+html {
+  scroll-padding-top: calc(var(--header-height) + 24px);
+}
+
 body {
   line-height: 1.5;
   font-family: var(--font-inter), var(--font-noto), "Noto Sans JP", sans-serif;

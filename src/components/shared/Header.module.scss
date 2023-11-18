@@ -8,7 +8,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
-  height: 64px;
+  height: var(--header-height);
   border-bottom: 1px solid var(--c-divider);
   backdrop-filter: var(--c-header-backdrop-filter);
   z-index: 1;

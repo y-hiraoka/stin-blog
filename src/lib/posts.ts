@@ -121,7 +121,7 @@ export async function getArticleData(slug: string): Promise<Article> {
           ? new Date(frontMatter.updatedAt).toISOString()
           : null,
       },
-      bodyMdText: content,
+      bodyMdText: rawData,
     };
   } catch (error) {
     console.error(`Error occured in ${slug}.`);
