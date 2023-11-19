@@ -14,6 +14,9 @@ export default ZennArticlesPage;
 export const metadata: Metadata = {
   title: "Zennの記事一覧",
   description: "すてぃんが Zenn に投稿した記事一覧ページです",
+  alternates: {
+    canonical: "/articles/zenn",
+  },
   openGraph: {
     type: "website",
     url: `${config.siteUrl}/articles/zenn`,

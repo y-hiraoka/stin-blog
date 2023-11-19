@@ -25,6 +25,9 @@ export const generateMetadata = async ({
     return {
       title: article.header.title,
       description: article.header.excerpt,
+      alternates: {
+        canonical: `/articles/${params.slug}`,
+      },
       openGraph: {
         type: "article",
         url: `${config.siteUrl}/articles/${params.slug}`,

@@ -32,6 +32,9 @@ export const generateMetadata = async ({
   return {
     title: `tag: ${params.tagName}`,
     description: `${params.tagName} でタグ付けされた記事一覧`,
+    alternates: {
+      canonical: `/tags/${params.tagName}`,
+    },
     openGraph: {
       type: "website",
       url: `${config.siteUrl}/tags/${params.tagName}`,

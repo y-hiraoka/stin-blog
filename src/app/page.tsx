@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Home } from "../components/pages/Home";
 import { getSortedArticleHeaders } from "../lib/posts";
+import { Metadata } from "next";
 
 const TestPage: FC = async () => {
   const blogArticles = await getSortedArticleHeaders();
@@ -9,3 +10,9 @@ const TestPage: FC = async () => {
 };
 
 export default TestPage;
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
