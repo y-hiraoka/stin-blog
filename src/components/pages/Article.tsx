@@ -43,8 +43,6 @@ export const Article: FC<Props> = ({ article }) => {
               href={createIntentTweetLink({
                 text: article.header.title,
                 url: `https://blog.stin.ink/articles/${article.header.slug}`,
-                hashtags: article.header.tags,
-                via: "stin_factory",
               })}>
               <FaTwitter />
               記事をシェア
