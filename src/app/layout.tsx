@@ -82,7 +82,7 @@ export const metadata: Metadata = {
   },
   description: "すてぃんの技術ブログ",
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     creator: `@${config.social.twitter}`,
   },
   openGraph: {

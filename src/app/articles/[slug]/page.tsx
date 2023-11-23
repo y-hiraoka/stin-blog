@@ -37,6 +37,10 @@ export const generateMetadata = async ({
         modifiedTime: article.header.updatedAt ?? undefined,
         tags: article.header.tags,
       },
+      twitter: {
+        card: "summary_large_image",
+        creator: `@${config.social.twitter}`,
+      },
     };
   } catch (error) {
     return notFound();
