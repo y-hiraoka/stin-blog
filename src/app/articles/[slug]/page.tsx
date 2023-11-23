@@ -30,12 +30,16 @@ export const generateMetadata = async ({
       },
       openGraph: {
         type: "article",
-        url: `${config.siteUrl}/articles/${params.slug}`,
+        url: `/articles/${params.slug}`,
         title: article.header.title,
         description: article.header.excerpt,
         publishedTime: article.header.createdAt,
         modifiedTime: article.header.updatedAt ?? undefined,
         tags: article.header.tags,
+      },
+      twitter: {
+        card: "summary_large_image",
+        creator: `@${config.social.twitter}`,
       },
     };
   } catch (error) {

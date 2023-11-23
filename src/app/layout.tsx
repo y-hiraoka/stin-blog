@@ -82,12 +82,12 @@ export const metadata: Metadata = {
   },
   description: "すてぃんの技術ブログ",
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     creator: `@${config.social.twitter}`,
   },
   openGraph: {
     type: "website",
-    url: config.siteUrl,
+    url: "/",
     title: {
       template: `%s | ${config.siteTitle}`,
       default: `Home | ${config.siteTitle}`,
@@ -95,5 +95,9 @@ export const metadata: Metadata = {
     description: "すてぃんの技術ブログ",
     siteName: config.siteTitle,
   },
-  metadataBase: new URL(config.siteUrl),
+  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
+    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
+    : process.env.VERCEL_URL
+      ? new URL(`https://${process.env.VERCEL_URL}`)
+      : new URL(`http://localhost:${process.env.PORT || 3000}`),
 };
