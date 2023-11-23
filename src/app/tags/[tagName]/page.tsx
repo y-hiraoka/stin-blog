@@ -37,7 +37,7 @@ export const generateMetadata = async ({
     },
     openGraph: {
       type: "website",
-      url: `${config.siteUrl}/tags/${params.tagName}`,
+      url: `/tags/${params.tagName}`,
       title: `tag: ${params.tagName}`,
       description: `${params.tagName} でタグ付けされた記事一覧`,
     },

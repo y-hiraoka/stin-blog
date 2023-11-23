@@ -30,7 +30,7 @@ export const generateMetadata = async ({
       },
       openGraph: {
         type: "article",
-        url: `${config.siteUrl}/articles/${params.slug}`,
+        url: `/articles/${params.slug}`,
         title: article.header.title,
         description: article.header.excerpt,
         publishedTime: article.header.createdAt,
