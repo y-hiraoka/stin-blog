@@ -22,6 +22,5 @@ export const metadata: Metadata = {
     url: `/articles/zenn`,
     title: "Zennの記事一覧",
     description: "すてぃんが Zenn に投稿した記事一覧ページです",
-    images: "/opengraph-image.png",
   },
 };
