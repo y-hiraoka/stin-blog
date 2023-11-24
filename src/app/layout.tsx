@@ -18,12 +18,10 @@ const inter = Inter({
   display: "swap",
   subsets: ["latin"],
   variable: "--font-inter",
-  weight: ["400", "500", "700", "900"],
 });
 
 const notosansjp = Noto_Sans_JP({
   display: "swap",
-  weight: ["400", "500", "700"],
   subsets: ["latin"],
   variable: "--font-noto",
 });
