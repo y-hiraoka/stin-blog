@@ -4,6 +4,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect, FC } from "react";
 
 declare global {
+  // eslint-disable-next-line no-var
   var adsbygoogle: unknown[];
 }
 

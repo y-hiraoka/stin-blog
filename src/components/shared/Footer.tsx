@@ -2,8 +2,8 @@
 
 import { useState, FC } from "react";
 import { useIsomorphicLayoutEffect } from "react-use";
-import classes from "./Footer.module.scss";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
+import classes from "./Footer.module.scss";
 
 export const Footer: FC = () => {
   const [copyrightPeriod, setCopyrightPeriod] = useState("");

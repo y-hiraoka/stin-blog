@@ -1,9 +1,9 @@
 import { FC } from "react";
-import { ArticleList } from "../shared/ArticleList";
 import { BlogArticleHeader } from "../../models";
+import { ArticleList } from "../shared/ArticleList";
+import { PageTitle } from "../shared/PageTitle";
 import { TagLink } from "../shared/TagLink";
 import classes from "./TaggedArticles.module.scss";
-import { PageTitle } from "../shared/PageTitle";
 
 type Props = {
   tagName: string;

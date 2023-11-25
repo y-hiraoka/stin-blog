@@ -37,7 +37,7 @@ export function useLocalStorage<T>({
   const setState: React.Dispatch<React.SetStateAction<T>> = useCallback(
     (value) => {
       _setState((prevState) => {
-        // @ts-expect-error
+        // @ts-expect-error 型推論できない
         const nextState: T = typeof value === "function" ? value(prevState) : value;
 
         window.localStorage.setItem(storageKey, JSON.stringify({ __value: nextState }));

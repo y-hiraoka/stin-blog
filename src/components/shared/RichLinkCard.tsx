@@ -1,9 +1,8 @@
-import Image from "next/image";
 import { Suspense } from "react";
+import { config } from "../../config";
+import { fetchSiteMetadata } from "../../lib/fetchSiteMetadata";
 import { getFaviconUrl } from "../../lib/getFaviconUrl";
 import classes from "./RichLinkCard.module.scss";
-import { fetchSiteMetadata } from "../../lib/fetchSiteMetadata";
-import { config } from "../../config";
 
 type Props = {
   href: string;

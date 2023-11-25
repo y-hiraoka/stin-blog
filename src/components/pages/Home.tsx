@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { ArticleList } from "../shared/ArticleList";
 import { BlogArticleHeader } from "../../models";
+import { ArticleList } from "../shared/ArticleList";
 
 type Props = {
   articles: BlogArticleHeader[];

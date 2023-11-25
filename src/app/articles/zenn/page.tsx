@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { ZennArticles } from "../../../components/pages/ZennArticles";
 import { getZennArticleHeaders } from "../../../lib/posts";
-import { config } from "../../../config";
 
 const ZennArticlesPage: React.FC = async () => {
   const articles = await getZennArticleHeaders();

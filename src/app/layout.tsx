@@ -1,18 +1,18 @@
-import { FC, ReactNode, Suspense } from "react";
+import { Metadata } from "next";
+import { Inter, Noto_Sans_JP } from "next/font/google";
 import Script from "next/script";
-import { GoogleAnalyticsScript } from "../lib/gtag";
+import { FC, ReactNode, Suspense } from "react";
 import "modern-normalize/modern-normalize.css";
 import "../styles/tokens.scss";
 import "../styles/global.scss";
-import { ColorModeAppliedHtml } from "../lib/colorMode";
-import { Header } from "../components/shared/Header";
 import { Footer } from "../components/shared/Footer";
-import { GA_TRACKING_ID } from "../lib/contant";
-import { Metadata } from "next";
-import { Inter, Noto_Sans_JP } from "next/font/google";
-import { config } from "../config";
-import { Main } from "../components/shared/Main";
+import { Header } from "../components/shared/Header";
 import { Layout } from "../components/shared/Layout";
+import { Main } from "../components/shared/Main";
+import { config } from "../config";
+import { ColorModeAppliedHtml } from "../lib/colorMode";
+import { GA_TRACKING_ID } from "../lib/contant";
+import { GoogleAnalyticsScript } from "../lib/gtag";
 
 const inter = Inter({
   display: "swap",

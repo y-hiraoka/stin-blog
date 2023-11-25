@@ -1,7 +1,7 @@
-import { ImageResponse } from "next/og";
-import { getArticleData } from "../../../lib/posts";
 import fs from "fs/promises";
 import path from "path";
+import { ImageResponse } from "next/og";
+import { getArticleData } from "../../../lib/posts";
 
 type Props = {
   params: {
@@ -96,4 +96,4 @@ export default handler;
 export const size = {
   width: 1200,
   height: 630,
-}
+};

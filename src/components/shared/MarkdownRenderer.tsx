@@ -1,13 +1,13 @@
+import Link from "next/link";
 import React from "react";
 import ReactMarkdown, { Components } from "react-markdown";
-import remarkGfm from "remark-gfm";
+import rehypeHighlight from "rehype-highlight";
 import rehypeSlug from "rehype-slug";
 import remarkFrontmatter from "remark-frontmatter";
-import rehypeHighlight from "rehype-highlight";
-import { RichLinkCard } from "./RichLinkCard";
-import Link from "next/link";
-import classes from "./MarkdownRenderer.module.scss";
+import remarkGfm from "remark-gfm";
 import { ArticleTweetCard } from "./ArticleTweetCard";
+import classes from "./MarkdownRenderer.module.scss";
+import { RichLinkCard } from "./RichLinkCard";
 import "highlight.js/styles/panda-syntax-dark.css";
 
 type Props = { children: string };
@@ -30,10 +30,10 @@ export const MarkdownRenderer: React.FC<Props> = ({ children }) => {
   );
 };
 
-const MDLink: Components["a"] = ({ node, href, ...props }) => {
+const MDLink: Components["a"] = ({ node: _, href, ...props }) => {
   // a link to same domain
   if (href?.startsWith("#") || href?.startsWith("/") || href?.includes("stin.ink")) {
-    // @ts-expect-error
+    // @ts-expect-error Link の href が 存在するページのみに限定されるため
     return <Link {...props} href={href} className={classes.textLink} />;
   }
 
@@ -48,7 +48,7 @@ const MDLink: Components["a"] = ({ node, href, ...props }) => {
   );
 };
 
-const Code: Components["code"] = ({ node, className, children, ...props }) => {
+const Code: Components["code"] = ({ node: _, className, children, ..._props }) => {
   return <code className={className ?? classes.inlineCode}>{children}</code>;
 };
 

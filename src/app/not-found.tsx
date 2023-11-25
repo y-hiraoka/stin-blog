@@ -1,5 +1,5 @@
-import { NotFound } from "../components/pages/NotFound";
 import { Metadata } from "next";
+import { NotFound } from "../components/pages/NotFound";
 
 export default NotFound;
 
