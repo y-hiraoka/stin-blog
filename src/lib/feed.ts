@@ -1,6 +1,6 @@
 import { Feed } from "feed";
-import { config } from "../config";
 import { getSortedArticleHeaders } from "./posts";
+import { config } from "@/config";
 
 export const generateFeed = async () => {
   const posts = await getSortedArticleHeaders();

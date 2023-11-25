@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { generateFeed } from "../../lib/feed";
+import { generateFeed } from "@/lib/feed";
 
 export const GET = async (): Promise<NextResponse> => {
   const feed = await generateFeed();

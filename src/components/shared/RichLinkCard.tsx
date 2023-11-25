@@ -1,8 +1,8 @@
 import { Suspense } from "react";
-import { config } from "../../config";
-import { fetchSiteMetadata } from "../../lib/fetchSiteMetadata";
-import { getFaviconUrl } from "../../lib/getFaviconUrl";
 import classes from "./RichLinkCard.module.scss";
+import { config } from "@/config";
+import { fetchSiteMetadata } from "@/lib/fetchSiteMetadata";
+import { getFaviconUrl } from "@/lib/getFaviconUrl";
 
 type Props = {
   href: string;

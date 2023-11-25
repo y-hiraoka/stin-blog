@@ -3,16 +3,16 @@ import { Inter, Noto_Sans_JP } from "next/font/google";
 import Script from "next/script";
 import { FC, ReactNode, Suspense } from "react";
 import "modern-normalize/modern-normalize.css";
-import "../styles/tokens.scss";
-import "../styles/global.scss";
-import { Footer } from "../components/shared/Footer";
-import { Header } from "../components/shared/Header";
-import { Layout } from "../components/shared/Layout";
-import { Main } from "../components/shared/Main";
-import { config } from "../config";
-import { ColorModeAppliedHtml } from "../lib/colorMode";
-import { GA_TRACKING_ID } from "../lib/contant";
-import { GoogleAnalyticsScript } from "../lib/gtag";
+import "@/styles/tokens.scss";
+import "@/styles/global.scss";
+import { Footer } from "@/components/shared/Footer";
+import { Header } from "@/components/shared/Header";
+import { Layout } from "@/components/shared/Layout";
+import { Main } from "@/components/shared/Main";
+import { config } from "@/config";
+import { ColorModeAppliedHtml } from "@/lib/colorMode";
+import { GA_TRACKING_ID } from "@/lib/contant";
+import { GoogleAnalyticsScript } from "@/lib/gtag";
 
 const inter = Inter({
   display: "swap",

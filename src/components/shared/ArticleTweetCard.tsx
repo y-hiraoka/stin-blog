@@ -1,7 +1,7 @@
 "use client";
 
-import { useColorMode } from "../../lib/colorMode";
 import { EmbeddedTweet } from "./EmbeddedTweet";
+import { useColorMode } from "@/lib/colorMode";
 
 export const ArticleTweetCard: React.FC<{ url: string }> = ({ url }) => {
   const { actualColorMode } = useColorMode();
