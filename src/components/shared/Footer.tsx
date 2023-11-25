@@ -1,17 +1,9 @@
-"use client";
-
-import { useState, FC } from "react";
-import { useIsomorphicLayoutEffect } from "react-use";
+import { FC } from "react";
 import { ColorModeSwitcher } from "./ColorModeSwitcher";
 import classes from "./Footer.module.scss";
 
 export const Footer: FC = () => {
-  const [copyrightPeriod, setCopyrightPeriod] = useState("");
-
-  useIsomorphicLayoutEffect(() => {
-    const currentYear = new Date().getFullYear();
-    setCopyrightPeriod(`${currentYear}`);
-  }, []);
+  const copyrightPeriod = new Date().getFullYear();
 
   return (
     <footer className={classes.footer}>

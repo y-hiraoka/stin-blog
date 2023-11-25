@@ -13,7 +13,16 @@ export default withBundleAnalyzer(
   withMDX({
     pageExtensions: ["ts", "tsx", "md", "mdx"],
     images: {
-      domains: ["www.google.com", "res.cloudinary.com"],
+      remotePatterns: [
+        {
+          protocol: "https",
+          hostname: "www.google.com",
+        },
+        {
+          protocol: "https",
+          hostname: "res.cloudinary.com",
+        },
+      ],
     },
     experimental: {
       typedRoutes: true,

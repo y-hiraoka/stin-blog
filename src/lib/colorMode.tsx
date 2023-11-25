@@ -53,14 +53,3 @@ export const ColorModeAppliedHtml: FC<{ children: ReactNode }> = ({ children }) 
 export function useColorMode() {
   return useContext(ColorModeContext);
 }
-
-export function useColorModeValue<T>(valueOnLight: T, valueOnDark: T): T {
-  const { actualColorMode } = useColorMode();
-
-  switch (actualColorMode) {
-    case "light":
-      return valueOnLight;
-    case "dark":
-      return valueOnDark;
-  }
-}

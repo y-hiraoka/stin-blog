@@ -59,13 +59,11 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
         </Suspense>
       </head>
       <body className={`${inter.variable} ${notosansjp.variable}`}>
-        <Suspense fallback={null}>
-          <Layout>
-            <Header />
-            <Main>{children}</Main>
-            <Footer />
-          </Layout>
-        </Suspense>
+        <Layout>
+          <Header />
+          <Main>{children}</Main>
+          <Footer />
+        </Layout>
       </body>
     </ColorModeAppliedHtml>
   );
