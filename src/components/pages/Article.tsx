@@ -2,13 +2,13 @@ import Link from "next/link";
 import { FC } from "react";
 import { FaTwitter } from "react-icons/fa";
 import { MdArrowBack } from "react-icons/md";
-import { createIntentTweetLink } from "../../lib/createIntentTweetLink";
-import { Article as IArticle } from "../../models";
 import { Datetime } from "../shared/Datetime";
 import { MarkdownRenderer } from "../shared/MarkdownRenderer";
 import { TableOfContents } from "../shared/TableOfContents";
 import { TagLink } from "../shared/TagLink";
 import classes from "./Article.module.scss";
+import { createIntentTweetLink } from "@/lib/createIntentTweetLink";
+import { Article as IArticle } from "@/models";
 
 type Props = {
   article: IArticle;

@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { BlogArticleHeader } from "../../models";
 import { ArticleCard } from "./ArticleCard";
 import classes from "./ArticleList.module.scss";
+import { BlogArticleHeader } from "@/models";
 
 type Props = { articles: BlogArticleHeader[] };
 

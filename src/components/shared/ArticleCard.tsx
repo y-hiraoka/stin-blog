@@ -1,10 +1,10 @@
 import Image from "next/image";
 import NextLink from "next/link";
 import { FC } from "react";
-import { BlogArticleHeader } from "../../models";
 import classes from "./ArticleCard.module.scss";
 import { Datetime } from "./Datetime";
 import { TagLink } from "./TagLink";
+import { BlogArticleHeader } from "@/models";
 
 type Props = { article: BlogArticleHeader };
 
