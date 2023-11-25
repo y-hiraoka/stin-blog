@@ -1,9 +1,9 @@
 "use client";
 
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
-import styles from "./ColorModeSwitcher.module.scss";
 import { MdDarkMode, MdDevices, MdLightMode } from "react-icons/md";
 import { isColorModeValue, useColorMode } from "../../lib/colorMode";
+import styles from "./ColorModeSwitcher.module.scss";
 
 export const ColorModeSwitcher: React.FC = () => {
   const { colorMode, setColorMode } = useColorMode();

@@ -1,8 +1,8 @@
 import { Metadata } from "next";
-import { Article } from "../../../components/pages/Article";
-import { getAllPostSlugs, getArticleData } from "../../../lib/posts";
 import { notFound } from "next/navigation";
+import { Article } from "../../../components/pages/Article";
 import { config } from "../../../config";
+import { getAllPostSlugs, getArticleData } from "../../../lib/posts";
 
 type Params = {
   slug: string;

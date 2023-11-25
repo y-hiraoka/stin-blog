@@ -1,8 +1,8 @@
+import Image from "next/image";
 import { FC } from "react";
 import { ZennArticleHeader } from "../../models";
-import classes from "./ZennArticles.module.scss";
 import { PageTitle } from "../shared/PageTitle";
-import Image from "next/image";
+import classes from "./ZennArticles.module.scss";
 
 type Props = {
   articles: ZennArticleHeader[];

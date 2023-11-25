@@ -1,8 +1,7 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { TaggedArticles } from "../../../components/pages/TaggedArticles";
 import { getAllArticleTags, getSortedArticleHeaders } from "../../../lib/posts";
-import { Metadata } from "next";
-import { config } from "../../../config";
 
 type Params = {
   tagName: string;

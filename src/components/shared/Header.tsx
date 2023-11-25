@@ -1,10 +1,10 @@
 "use client";
 
-import { FC } from "react";
 import NextLink from "next/link";
-import classes from "./Header.module.scss";
 import { usePathname } from "next/navigation";
+import { FC } from "react";
 import { FaGithub } from "react-icons/fa";
+import classes from "./Header.module.scss";
 
 export const Header: FC = () => {
   return (

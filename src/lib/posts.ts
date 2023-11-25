@@ -5,8 +5,8 @@ import { remark } from "remark";
 import RssParser from "rss-parser";
 import strip from "strip-markdown";
 import { z } from "zod";
-import { Article, BlogArticleHeader, Tag, ZennArticleHeader } from "../models";
 import { config } from "../config";
+import { Article, BlogArticleHeader, Tag, ZennArticleHeader } from "../models";
 
 const postsDirectory = path.join(process.cwd(), "contents");
 

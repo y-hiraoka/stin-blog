@@ -1,14 +1,14 @@
+import Link from "next/link";
 import { FC } from "react";
+import { FaTwitter } from "react-icons/fa";
+import { MdArrowBack } from "react-icons/md";
+import { createIntentTweetLink } from "../../lib/createIntentTweetLink";
+import { Article as IArticle } from "../../models";
 import { Datetime } from "../shared/Datetime";
 import { MarkdownRenderer } from "../shared/MarkdownRenderer";
-import { TagLink } from "../shared/TagLink";
-import { Article as IArticle } from "../../models";
-import { FaTwitter } from "react-icons/fa";
-import classes from "./Article.module.scss";
-import { createIntentTweetLink } from "../../lib/createIntentTweetLink";
-import Link from "next/link";
-import { MdArrowBack } from "react-icons/md";
 import { TableOfContents } from "../shared/TableOfContents";
+import { TagLink } from "../shared/TagLink";
+import classes from "./Article.module.scss";
 
 type Props = {
   article: IArticle;
