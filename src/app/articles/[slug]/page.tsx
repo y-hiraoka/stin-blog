@@ -1,9 +1,9 @@
-import { allArticles } from "contentlayer/generated";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Article } from "@/components/pages/Article";
 import { config } from "@/config";
 import { getArticle } from "@/lib/posts";
+import { allArticles } from "contentlayer/generated";
 
 type Params = {
   slug: string;
