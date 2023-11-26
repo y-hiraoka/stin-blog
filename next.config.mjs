@@ -1,16 +1,14 @@
 // @ts-check
 
 import nextBundleAnalyzer from "@next/bundle-analyzer";
-import nextMDX from "@next/mdx";
+import { withContentlayer } from "next-contentlayer";
 
 const withBundleAnalyzer = nextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
-const withMDX = nextMDX();
-
 export default withBundleAnalyzer(
-  withMDX({
+  withContentlayer({
     pageExtensions: ["ts", "tsx", "md", "mdx"],
     images: {
       remotePatterns: [

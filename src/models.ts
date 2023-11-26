@@ -1,27 +1,10 @@
-export type Tag = { name: string; itemCount: number };
+import { Article } from "contentlayer/generated";
 
-type ArticleHeaderBase = {
+export type ZennArticle = {
+  url: string;
   title: string;
+  thumbnail: string;
   createdAt: string;
 };
 
-export type BlogArticleHeader = ArticleHeaderBase & {
-  type: "stin-blog";
-  slug: string;
-  tags: string[];
-  excerpt: string;
-  updatedAt: string | null;
-};
-
-export type ZennArticleHeader = ArticleHeaderBase & {
-  type: "zenn";
-  url: string;
-  thumbnail: string;
-};
-
-export type ArticleHeader = BlogArticleHeader | ZennArticleHeader;
-
-export type Article = {
-  header: BlogArticleHeader;
-  bodyMdText: string;
-};
+export type BlogArticle = Article;

@@ -3,11 +3,11 @@ import { ArticleList } from "../shared/ArticleList";
 import { PageTitle } from "../shared/PageTitle";
 import { TagLink } from "../shared/TagLink";
 import classes from "./TaggedArticles.module.scss";
-import { BlogArticleHeader } from "@/models";
+import { BlogArticle } from "@/models";
 
 type Props = {
   tagName: string;
-  articles: BlogArticleHeader[];
+  articles: BlogArticle[];
 };
 
 export const TaggedArticles: FC<Props> = ({ tagName, articles }) => {

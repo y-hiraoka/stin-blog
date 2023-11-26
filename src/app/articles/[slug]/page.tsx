@@ -1,15 +1,16 @@
+import { allArticles } from "contentlayer/generated";
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Article } from "@/components/pages/Article";
 import { config } from "@/config";
-import { getAllPostSlugs, getArticleData } from "@/lib/posts";
+import { getArticle } from "@/lib/posts";
 
 type Params = {
   slug: string;
 };
 
 export const generateStaticParams = async () => {
-  const slugs = await getAllPostSlugs();
+  const slugs = allArticles.map((article) => article.slug);
 
   return slugs.map((slug) => ({ slug }));
 };
@@ -19,44 +20,41 @@ export const generateMetadata = async ({
 }: {
   params: Params;
 }): Promise<Metadata> => {
-  try {
-    const article = await getArticleData(params.slug);
+  const article = getArticle(params.slug);
 
-    return {
-      title: article.header.title,
-      description: article.header.excerpt,
-      alternates: {
-        canonical: `/articles/${params.slug}`,
-      },
-      openGraph: {
-        type: "article",
-        url: `/articles/${params.slug}`,
-        title: article.header.title,
-        description: article.header.excerpt,
-        publishedTime: article.header.createdAt,
-        modifiedTime: article.header.updatedAt ?? undefined,
-        tags: article.header.tags,
-      },
-      twitter: {
-        card: "summary_large_image",
-        creator: `@${config.social.twitter}`,
-      },
-    };
-  } catch (error) {
-    return notFound();
-  }
+  if (!article) return notFound();
+
+  return {
+    title: article.title,
+    description: article.excerpt,
+    alternates: {
+      canonical: `/articles/${params.slug}`,
+    },
+    openGraph: {
+      type: "article",
+      url: `/articles/${params.slug}`,
+      title: article.title,
+      description: article.excerpt,
+      publishedTime: article.createdAt,
+      modifiedTime: article.updatedAt ?? undefined,
+      tags: article.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: `@${config.social.twitter}`,
+    },
+  };
 };
 
 const ArticlePage: React.FC<{
   params: Params;
 }> = async ({ params }) => {
-  try {
-    const { slug } = params;
-    const article = await getArticleData(slug);
-    return <Article article={article} />;
-  } catch (error) {
-    notFound();
-  }
+  const { slug } = params;
+  const article = getArticle(slug);
+
+  if (!article) notFound();
+
+  return <Article article={article} />;
 };
 
 export default ArticlePage;

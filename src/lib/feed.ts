@@ -1,9 +1,9 @@
 import { Feed } from "feed";
-import { getSortedArticleHeaders } from "./posts";
+import { getSortedArticles } from "./posts";
 import { config } from "@/config";
 
 export const generateFeed = async () => {
-  const posts = await getSortedArticleHeaders();
+  const posts = getSortedArticles();
 
   const feed = new Feed({
     id: config.siteUrl,

@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { ArticleList } from "../shared/ArticleList";
-import { BlogArticleHeader } from "@/models";
+import { BlogArticle } from "@/models";
 
 type Props = {
-  articles: BlogArticleHeader[];
+  articles: BlogArticle[];
 };
 
 export const Home: FC<Props> = ({ articles }) => {
