@@ -23,7 +23,6 @@
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "feed": "^4.2.2",
-    "gray-matter": "^4.0.3",
     "highlight.js": "^11.8.0",
     "jsdom": "^22.0.0",
     "modern-normalize": "^2.0.0",
@@ -41,8 +40,7 @@
     "remark-gfm": "^4.0.0",
     "rss-parser": "^3.13.0",
     "strip-markdown": "^6.0.0",
-    "tocbot": "^4.22.0",
-    "zod": "^3.21.4"
+    "tocbot": "^4.22.0"
   },
   "devDependencies": {
     "@types/node": "^20.1.3",
