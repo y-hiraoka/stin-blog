@@ -1,13 +1,15 @@
-// @ts-check
+/* eslint-disable @typescript-eslint/no-var-requires */
 
-import nextBundleAnalyzer from "@next/bundle-analyzer";
-import { withContentlayer } from "next-contentlayer";
+const nextBundleAnalyzer = require("@next/bundle-analyzer")
+const  { withContentlayer } = require("next-contentlayer")
+
+
 
 const withBundleAnalyzer = nextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
-export default withBundleAnalyzer(
+module.exports = withBundleAnalyzer(
   withContentlayer({
     pageExtensions: ["ts", "tsx", "md", "mdx"],
     images: {
