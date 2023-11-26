@@ -1,9 +1,9 @@
 import { FC } from "react";
 import { ArticleCard } from "./ArticleCard";
 import classes from "./ArticleList.module.scss";
-import { BlogArticleHeader } from "@/models";
+import { BlogArticle } from "@/models";
 
-type Props = { articles: BlogArticleHeader[] };
+type Props = { articles: BlogArticle[] };
 
 export const ArticleList: FC<Props> = ({ articles }) => {
   return (

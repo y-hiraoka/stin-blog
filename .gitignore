@@ -35,3 +35,6 @@ tsconfig.tsbuildinfo
 *.module.scss.d.ts
 *.module.css.d.ts.map
 *.module.scss.d.ts.map
+
+# contentlayer
+.contentlayer

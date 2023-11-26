@@ -4,9 +4,9 @@ import { FC } from "react";
 import classes from "./ArticleCard.module.scss";
 import { Datetime } from "./Datetime";
 import { TagLink } from "./TagLink";
-import { BlogArticleHeader } from "@/models";
+import { BlogArticle } from "@/models";
 
-type Props = { article: BlogArticleHeader };
+type Props = { article: BlogArticle };
 
 export const ArticleCard: FC<Props> = ({ article }) => {
   return (

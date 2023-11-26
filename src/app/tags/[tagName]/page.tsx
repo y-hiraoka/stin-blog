@@ -1,16 +1,16 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { TaggedArticles } from "@/components/pages/TaggedArticles";
-import { getAllArticleTags, getSortedArticleHeaders } from "@/lib/posts";
+import { getAllArticleTags, getSortedArticles } from "@/lib/posts";
 
 type Params = {
   tagName: string;
 };
 
 export const generateStaticParams = async () => {
-  const tags = await getAllArticleTags();
+  const tags = getAllArticleTags();
 
-  return tags.map((tag) => ({ tagName: tag.name }));
+  return tags.map((tag) => ({ tagName: tag }));
 };
 
 export const generateMetadata = async ({
@@ -20,8 +20,8 @@ export const generateMetadata = async ({
 }): Promise<Metadata> => {
   const tagName = decodeURIComponent(params.tagName);
 
-  const articles = await getSortedArticleHeaders().then((articles) =>
-    articles.filter((article) => article.tags.includes(tagName)),
+  const articles = getSortedArticles().filter((article) =>
+    article.tags.includes(tagName),
   );
 
   if (articles.length === 0) {
@@ -46,8 +46,8 @@ export const generateMetadata = async ({
 const TagPage: React.FC<{ params: Params }> = async ({ params }) => {
   const tagName = decodeURIComponent(params.tagName);
 
-  const articles = await getSortedArticleHeaders().then((articles) =>
-    articles.filter((article) => article.tags.includes(tagName)),
+  const articles = getSortedArticles().filter((article) =>
+    article.tags.includes(tagName),
   );
 
   if (articles.length === 0) notFound();

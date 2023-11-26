@@ -2,10 +2,10 @@ import Image from "next/image";
 import { FC } from "react";
 import { PageTitle } from "../shared/PageTitle";
 import classes from "./ZennArticles.module.scss";
-import { ZennArticleHeader } from "@/models";
+import { ZennArticle } from "@/models";
 
 type Props = {
-  articles: ZennArticleHeader[];
+  articles: ZennArticle[];
 };
 
 export const ZennArticles: FC<Props> = ({ articles }) => {

@@ -1,16 +1,16 @@
-// @ts-check
+/* eslint-disable @typescript-eslint/no-var-requires */
 
-import nextBundleAnalyzer from "@next/bundle-analyzer";
-import nextMDX from "@next/mdx";
+const nextBundleAnalyzer = require("@next/bundle-analyzer")
+const  { withContentlayer } = require("next-contentlayer")
+
+
 
 const withBundleAnalyzer = nextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
 });
 
-const withMDX = nextMDX();
-
-export default withBundleAnalyzer(
-  withMDX({
+module.exports = withBundleAnalyzer(
+  withContentlayer({
     pageExtensions: ["ts", "tsx", "md", "mdx"],
     images: {
       remotePatterns: [
