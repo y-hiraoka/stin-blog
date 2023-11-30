@@ -1,9 +1,11 @@
 export function extractYouTubeVideoId(url: string): string | null {
-  const regExp = /^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#&?]*).*/;
-  const match = url.match(regExp);
+  const matched =
+    /^https?:\/\/(www\.)?youtube\.com\/watch\?(.*&)?v=(?<videoId>[^&]+)/.exec(url) ??
+    /^https?:\/\/youtu\.be\/(?<videoId>[^?]+)/.exec(url) ??
+    /^https?:\/\/(www\.)?youtube\.com\/embed\/(?<videoId>[^?]+)/.exec(url);
 
-  if (match && match[2]) {
-    return match[2];
+  if (matched?.groups?.videoId) {
+    return matched.groups.videoId;
   } else {
     return null;
   }
