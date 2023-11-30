@@ -8,7 +8,7 @@ import remarkGfm from "remark-gfm";
 import { ArticleTweetCard } from "./ArticleTweetCard";
 import classes from "./MarkdownRenderer.module.scss";
 import { RichLinkCard } from "./RichLinkCard";
-import "highlight.js/styles/panda-syntax-dark.css";
+import "highlight.js/styles/github-dark.css";
 import { YouTubeEmbed } from "./YouTubeEmbed";
 import { extractYouTubeVideoId } from "@/lib/extractYouTubeVideoId";
 
