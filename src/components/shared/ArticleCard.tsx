@@ -17,8 +17,9 @@ export const ArticleCard: FC<Props> = ({ article }) => {
             width={1200}
             height={630}
             src={`/articles/${article.slug}/opengraph-image`}
-            alt={article.title}
+            alt=""
           />
+          <span className={classes.hiddenTitle}>{article.title}</span>
         </NextLink>
       </h3>
       <div className={classes.metadata}>

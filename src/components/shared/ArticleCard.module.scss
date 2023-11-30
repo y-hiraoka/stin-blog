@@ -1,3 +1,5 @@
+@use "@/styles/system.scss" as *;
+
 .card {
   background: var(--c-article-card-bg);
   border-radius: 8px;
@@ -16,6 +18,10 @@
 .card:hover {
   border-color: var(--c-article-card-border-hover);
   background-color: var(--c-article-card-bg-hover);
+}
+
+.hiddenTitle {
+  @include srOnly;
 }
 
 .metadata {
