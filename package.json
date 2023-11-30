@@ -10,11 +10,13 @@
     "build:css": "hcm 'src/**/*.module.{css,scss,less}'",
     "build:next": "next build",
     "start": "next start",
+    "test": "vitest",
     "lint": "next lint",
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "dependencies": {
     "@next/bundle-analyzer": "^13.4.2",
+    "@next/third-parties": "^14.0.3",
     "@radix-ui/react-dropdown-menu": "^2.0.4",
     "@radix-ui/react-toggle-group": "^1.0.4",
     "@types/gtag.js": "^0.0.12",
@@ -55,6 +57,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.1.0",
     "sass": "^1.69.5",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
   }
 }

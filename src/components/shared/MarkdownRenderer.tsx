@@ -9,6 +9,8 @@ import { ArticleTweetCard } from "./ArticleTweetCard";
 import classes from "./MarkdownRenderer.module.scss";
 import { RichLinkCard } from "./RichLinkCard";
 import "highlight.js/styles/panda-syntax-dark.css";
+import { YouTubeEmbed } from "./YouTubeEmbed";
+import { extractYouTubeVideoId } from "@/lib/extractYouTubeVideoId";
 
 type Props = { children: string };
 
@@ -69,6 +71,15 @@ const Paragraph: Components["p"] = ({ node, ...props }) => {
       return (
         <div className={classes.embeded}>
           <ArticleTweetCard url={child.properties.href} />
+        </div>
+      );
+    }
+
+    const videoId = extractYouTubeVideoId(child.properties.href);
+    if (videoId) {
+      return (
+        <div className={classes.embeded}>
+          <YouTubeEmbed videoId={videoId} />
         </div>
       );
     }
