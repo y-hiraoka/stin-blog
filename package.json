@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:css": "hcm 'src/**/*.module.{css,scss,less}' --watch",
+    "dev:css": "hcm 'src/**/*.module.{css,scss,less}' --webpackResolveAlias='{\"@\": \"src\"}' --watch",
     "dev:next": "next dev",
     "build": "run-s build:*",
-    "build:css": "hcm 'src/**/*.module.{css,scss,less}'",
+    "build:css": "hcm 'src/**/*.module.{css,scss,less}' --webpackResolveAlias='{\"@\": \"src\"}'",
     "build:next": "next build",
     "start": "next start",
     "test": "vitest",
