@@ -1,9 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
-const nextBundleAnalyzer = require("@next/bundle-analyzer")
-const  { withContentlayer } = require("next-contentlayer")
-
-
+const nextBundleAnalyzer = require("@next/bundle-analyzer");
+const { withContentlayer } = require("next-contentlayer");
 
 const withBundleAnalyzer = nextBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
