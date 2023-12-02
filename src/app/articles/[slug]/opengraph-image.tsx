@@ -2,7 +2,6 @@ import fs from "fs/promises";
 import path from "path";
 import { ImageResponse } from "next/og";
 import { getArticle } from "@/lib/posts";
-import { allArticles } from "contentlayer/generated";
 
 type Props = {
   params: {
