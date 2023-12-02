@@ -1,5 +1,5 @@
 export const config = {
-  siteTitle: "stin's blog",
+  siteTitle: "stin's Blog",
   siteUrl: "https://blog.stin.ink",
   repository: "https://github.com/y-hiraoka/stin-blog",
   social: {
