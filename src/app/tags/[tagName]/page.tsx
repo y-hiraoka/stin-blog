@@ -39,6 +39,13 @@ export const generateMetadata = async ({
       url: `/tags/${params.tagName}`,
       title: `tag: ${params.tagName}`,
       description: `${params.tagName} でタグ付けされた記事一覧`,
+      images: [
+        {
+          url: "/images/opengraph-image.png",
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
   };
 };

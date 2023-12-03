@@ -2,6 +2,7 @@ import fs from "fs/promises";
 import path from "path";
 import { ImageResponse } from "next/og";
 import { getArticle } from "@/lib/posts";
+import { allArticles } from "markdown-contents";
 
 type Props = {
   params: {
@@ -11,7 +12,7 @@ type Props = {
 
 const assetsDirectory = process.cwd() + "/assets";
 
-const handler = async ({ params }: Props) => {
+const handler = async (_: unknown, { params }: Props) => {
   const article = getArticle(params.slug);
 
   if (!article) return new Response("Not Found", { status: 404 });
@@ -88,9 +89,15 @@ const handler = async ({ params }: Props) => {
   );
 };
 
-export default handler;
+export { handler as GET };
 
 export const size = {
   width: 1200,
   height: 630,
+};
+
+export const generateStaticParams = async () => {
+  const slugs = allArticles.map((article) => article.slug);
+
+  return slugs.map((slug) => ({ slug }));
 };

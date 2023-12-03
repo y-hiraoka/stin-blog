@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { Article } from "@/components/pages/Article";
 import { config } from "@/config";
 import { getArticle } from "@/lib/posts";
-import { allArticles } from "contentlayer/generated";
+import { allArticles } from "markdown-contents";
 
 type Params = {
   slug: string;
@@ -38,6 +38,13 @@ export const generateMetadata = async ({
       publishedTime: article.createdAt,
       modifiedTime: article.updatedAt ?? undefined,
       tags: article.tags,
+      images: [
+        {
+          url: `/articles/${params.slug}/opengraph-image.png`,
+          width: 1200,
+          height: 630,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",

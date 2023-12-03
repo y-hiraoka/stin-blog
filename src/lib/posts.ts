@@ -2,7 +2,7 @@ import { compareDesc } from "date-fns";
 import RssParser from "rss-parser";
 import { config } from "@/config";
 import { BlogArticle, ZennArticle } from "@/models";
-import { Article, allArticles } from "contentlayer/generated";
+import { Article, allArticles } from "markdown-contents";
 
 export async function getZennArticles(): Promise<ZennArticle[]> {
   const parser = new RssParser();

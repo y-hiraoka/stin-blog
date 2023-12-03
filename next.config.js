@@ -10,7 +10,9 @@ const withBundleAnalyzer = nextBundleAnalyzer({
 module.exports = withBundleAnalyzer(
   withContentlayer({
     pageExtensions: ["ts", "tsx", "md", "mdx"],
+    output: "export",
     images: {
+      unoptimized: true,
       remotePatterns: [
         {
           protocol: "https",

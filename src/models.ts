@@ -1,4 +1,4 @@
-import { Article } from "contentlayer/generated";
+import { Article } from "markdown-contents";
 
 export type ZennArticle = {
   url: string;

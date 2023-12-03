@@ -81,6 +81,10 @@ export const metadata: Metadata = {
     card: "summary",
     creator: `@${config.social.twitter}`,
   },
+  robots: {
+    follow: false,
+    index: false,
+  },
   openGraph: {
     type: "website",
     url: "/",
