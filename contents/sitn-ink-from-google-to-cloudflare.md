@@ -1,10 +1,10 @@
 ---
-title: "stin.ink を Google Domains から Cloudflare Register に移管した"
+title: "stin.ink を Google Domains から Cloudflare Registrar に移管した"
 createdAt: "2023-12-02T16:08:22.846Z"
 tags: ["cloudflare", "雑記"]
 ---
 
-## Cloudflare Register に移管した
+## Cloudflare Registrar に移管した
 
 このブログもサブドメインとして使用されている `stin.ink` は、僕が持つ唯一のドメインです。Google Domains で取得して、色々サブドメインを生やして使っています。
 
@@ -12,7 +12,7 @@ tags: ["cloudflare", "雑記"]
 
 そして今日(2023/12/02) Google Domains から更新日のお知らせメールが届いて移管しておかないといけないことを思い出しました。
 
-何もしなくても譲渡先の Squarespace に移管されるようですが、Squarespace は使う予定がなく、ドメインを持つためだけに利用するのも嫌だったので別のサービスを検討しました。ちょうど Google Domains がサービス終了を宣言したとき、移管先は Cloudflare Register がいいと噂が上がっていたので第一候補ではありました。
+何もしなくても譲渡先の Squarespace に移管されるようですが、Squarespace は使う予定がなく、ドメインを持つためだけに利用するのも嫌だったので別のサービスを検討しました。ちょうど Google Domains がサービス終了を宣言したとき、移管先は Cloudflare Registrar がいいと噂が上がっていたので第一候補ではありました。
 
 ところで最近 Cloudflare を使った構成を試してみたいと思っていました。Cloud Run のようなコンテナサービスにフル SSR する Next.js を置いて、それを覆う CDN として Cloudflare を使った構成です。Next.js をとりあえず Vercel にデプロイしてばかりだったので、いろんなスタックを試したいですね。
 
@@ -36,7 +36,7 @@ Cloudflare では当然できないと思うので、今後はちょっとだけ
 
 ## まとめ
 
-`stin.ink` を Google Domains から Cloudflare Register に無事移管できました。楽天カードを使っている人は PayPal を Cloudflare に登録しましょう…。
+`stin.ink` を Google Domains から Cloudflare Registrar に無事移管できました。楽天カードを使っている人は PayPal を Cloudflare に登録しましょう…。
 
 Cloudflare はどんどん活用していきたいですね。このブログも Vercel から載せ替えようかな。
 
