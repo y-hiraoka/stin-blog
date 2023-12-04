@@ -1,6 +1,6 @@
 ---
 title: "Next.js App Router の Static Exports の可能性を探るためにブログでやってみた話"
-createdAt: "2024-05-15T15:55:30.780Z"
+createdAt: "2023-12-04T12:55:35.646Z"
 tags: ["nextjs"]
 ---
 
