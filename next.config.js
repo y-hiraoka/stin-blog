@@ -14,11 +14,8 @@ module.exports = withBundleAnalyzer(
       remotePatterns: [
         {
           protocol: "https",
-          hostname: "www.google.com",
-        },
-        {
-          protocol: "https",
           hostname: "res.cloudinary.com",
+          pathname: "/zenn/image/upload/**",
         },
       ],
     },
