@@ -1,12 +1,11 @@
 import { compareDesc } from "date-fns";
 import RssParser from "rss-parser";
-import { config } from "@/config";
 import { BlogArticle, ZennArticle } from "@/models";
 import { Article, allArticles } from "contentlayer/generated";
 
 export async function getZennArticles(): Promise<ZennArticle[]> {
   const parser = new RssParser();
-  const xmlText = await fetch(`https://zenn.dev/${config.social.zenn}/feed?all=1`, {
+  const xmlText = await fetch(`https://zenn.dev/stin/feed?all=1`, {
     next: { revalidate: 60 * 60 * 24 },
   }).then((res) => res.text());
   const feed = await parser.parseString(xmlText);

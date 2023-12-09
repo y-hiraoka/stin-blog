@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import classes from "./RichLinkCard.module.scss";
-import { config } from "@/config";
+import { metadataBase } from "@/constants";
 import { fetchSiteMetadata } from "@/lib/fetchSiteMetadata";
 import { getFaviconUrl } from "@/lib/getFaviconUrl";
 
@@ -18,7 +18,7 @@ export const RichLinkCard: React.FC<Props> = ({ href, isExternal }) => {
 };
 
 const RichLinkCardInner: React.FC<Props> = async ({ href }) => {
-  const url = new URL(href, config.siteUrl);
+  const url = new URL(href, metadataBase);
   const metadata = await fetchSiteMetadata(url.href);
 
   if (!metadata) {

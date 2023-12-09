@@ -1,7 +1,6 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Article } from "@/components/pages/Article";
-import { config } from "@/config";
 import { getArticle } from "@/lib/posts";
 import { allArticles } from "contentlayer/generated";
 
@@ -41,7 +40,7 @@ export const generateMetadata = async ({
     },
     twitter: {
       card: "summary_large_image",
-      creator: `@${config.social.twitter}`,
+      creator: `@stin_factory`,
     },
   };
 };

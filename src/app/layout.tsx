@@ -9,7 +9,7 @@ import { Footer } from "@/components/shared/Footer";
 import { Header } from "@/components/shared/Header";
 import { Layout } from "@/components/shared/Layout";
 import { Main } from "@/components/shared/Main";
-import { config } from "@/config";
+import { SITE_DESCRIPTION, SITE_TITLE, metadataBase } from "@/constants";
 import { ColorModeAppliedHtml } from "@/lib/colorMode";
 import { GA_TRACKING_ID } from "@/lib/contant";
 import { GoogleAnalyticsScript } from "@/lib/gtag";
@@ -73,27 +73,23 @@ export default RootLayout;
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | ${config.siteTitle}`,
-    default: `Home | ${config.siteTitle}`,
+    template: `%s | ${SITE_TITLE}`,
+    default: `Home | ${SITE_TITLE}`,
   },
-  description: "すてぃんの技術ブログ",
+  description: SITE_DESCRIPTION,
   twitter: {
     card: "summary",
-    creator: `@${config.social.twitter}`,
+    creator: `@stin_factory`,
   },
   openGraph: {
     type: "website",
     url: "/",
     title: {
-      template: `%s | ${config.siteTitle}`,
-      default: `Home | ${config.siteTitle}`,
+      template: `%s | ${SITE_TITLE}`,
+      default: `Home | ${SITE_TITLE}`,
     },
-    description: "すてぃんの技術ブログ",
-    siteName: config.siteTitle,
+    description: SITE_DESCRIPTION,
+    siteName: SITE_TITLE,
   },
-  metadataBase: process.env.NEXT_PUBLIC_SITE_URL
-    ? new URL(process.env.NEXT_PUBLIC_SITE_URL)
-    : process.env.VERCEL_URL
-      ? new URL(`https://${process.env.VERCEL_URL}`)
-      : new URL(`http://localhost:${process.env.PORT || 3000}`),
+  metadataBase: metadataBase,
 };
