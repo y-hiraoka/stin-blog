@@ -8,8 +8,8 @@ type Props = { articles: BlogArticle[] };
 export const ArticleList: FC<Props> = ({ articles }) => {
   return (
     <div className={classes.articleList}>
-      {articles.map((article) => (
-        <ArticleCard key={article.slug} article={article} />
+      {articles.map((article, index) => (
+        <ArticleCard key={article.slug} article={article} imagePriority={index < 6} />
       ))}
     </div>
   );

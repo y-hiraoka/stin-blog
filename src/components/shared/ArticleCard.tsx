@@ -6,9 +6,12 @@ import { Datetime } from "./Datetime";
 import { TagLink } from "./TagLink";
 import { BlogArticle } from "@/models";
 
-type Props = { article: BlogArticle };
+type Props = {
+  article: BlogArticle;
+  imagePriority: boolean;
+};
 
-export const ArticleCard: FC<Props> = ({ article }) => {
+export const ArticleCard: FC<Props> = ({ article, imagePriority }) => {
   return (
     <article className={classes.card}>
       <h3>
@@ -18,6 +21,7 @@ export const ArticleCard: FC<Props> = ({ article }) => {
             height={630}
             src={`/articles/${article.slug}/opengraph-image`}
             alt=""
+            priority={imagePriority}
           />
           <span className={classes.hiddenTitle}>{article.title}</span>
         </NextLink>
