@@ -27,7 +27,7 @@ export const ColorModeAppliedHtml: FC<{ children: ReactNode }> = ({ children }) 
     initialState: "system",
     isValidValue: isColorModeValue,
   });
-  const preferColorSchemeIsDark = useMatchMedia("(prefers-color-scheme: dark)");
+  const preferColorSchemeIsDark = useMatchMedia("(prefers-color-scheme: dark)", true);
 
   const actualColorMode =
     colorMode === "system" ? (preferColorSchemeIsDark ? "dark" : "light") : colorMode;
