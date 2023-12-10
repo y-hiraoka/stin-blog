@@ -1,6 +1,7 @@
 ---
 title: "ポケモンBGMループ再生サイトを Cloudflare Pages に載せ替えた"
 createdAt: "2023-12-10T06:21:26.640Z"
+updatedAt: "2023-12-10T07:49:39.030Z"
 tags: ["cloudflare", "nextjs"]
 ---
 
@@ -164,6 +165,16 @@ export const onRequest: PagesFunction<Env, "version" | "fileName"> = async (cont
 もしかしたら `@cloudflare/workers-types` の `Response` は実態を伴わない型だけの export で、ランタイムには存在しないから起きているエラーなのかもしれないと思い、import から削除して Web 標準の `Response` を参照するようにしてみました。しかし次は `PagesFunction` 型の戻り値として Web 標準の `Response` はふさわしくないと tsc に怒られます。また、Web 標準の `Response` のボディとして R2 から取得した `file.body` の型も合わずエラーになっていました。
 
 色々試してみたのですがダメだったので、Web 標準の `Response` を使いつつ、ボディの型エラーは潰すことにしました。もしこの記事をご覧になった人で正しい書き方を知っていれば教えてください…。
+
+#### (追記)正しい書き方を教えてもらいました
+
+https://twitter.com/karibash/status/1733745537290281112
+
+そもそも `@cloudflare/workers-types` は `import` して使うものではなかったようです。tsconfig.json の `types` に指定することでグローバルに型が反映されて、Web 標準の `Response` を上書きしたり `PagesFunction` 型を追加したりしてくれるものでした。
+
+開発中に `import` して使えるように見えていたのは、`functions/tsconfig.json` を追加したばかりで VS Code に再読み込みされていなかったからと思われます。VS Code で当該プロジェクトを再度開いてみると、import 文の箇所がエラーになっていました…。
+
+教えていただき本当にありがとうございます。
 
 ## まとめ
 
