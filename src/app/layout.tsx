@@ -1,18 +1,18 @@
 import { Metadata } from "next";
 import { Inter, Noto_Sans_JP } from "next/font/google";
 import Script from "next/script";
-import { FC, ReactNode, Suspense } from "react";
+import { FC, ReactNode } from "react";
 import "modern-normalize/modern-normalize.css";
 import "@/styles/tokens.scss";
 import "@/styles/global.scss";
 import { Footer } from "@/components/shared/Footer";
+import { GoogleAnalytics } from "@/components/shared/GoogleAnalytics";
 import { Header } from "@/components/shared/Header";
 import { Layout } from "@/components/shared/Layout";
 import { Main } from "@/components/shared/Main";
 import { SITE_DESCRIPTION, SITE_TITLE, metadataBase } from "@/constants";
 import { ColorModeAppliedHtml } from "@/lib/colorMode";
 import { GA_TRACKING_ID } from "@/lib/contant";
-import { GoogleAnalyticsScript } from "@/lib/gtag";
 
 const inter = Inter({
   display: "swap",
@@ -35,28 +35,7 @@ const RootLayout: FC<{ children: ReactNode }> = ({ children }) => {
           src="https://platform.twitter.com/widgets.js"
           strategy="lazyOnload"
         />
-        <Script
-          strategy="afterInteractive"
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-        />
-        {/* eslint-disable-next-line @next/next/no-before-interactive-script-outside-document */}
-        <Script
-          id="gtag-init"
-          strategy="beforeInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_TRACKING_ID}', {
-            page_path: window.location.pathname,
-          });
-        `,
-          }}
-        />
-        <Suspense fallback={null}>
-          <GoogleAnalyticsScript />
-        </Suspense>
+        {GA_TRACKING_ID && <GoogleAnalytics trackingId={GA_TRACKING_ID} />}
       </head>
       <body className={`${inter.variable} ${notosansjp.variable}`}>
         <Layout>
