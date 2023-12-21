@@ -9,7 +9,7 @@ describe("extractYouTubeVideoId", () => {
   });
 
   it("www なしの通常の視聴ページURLから videoId を取得する", () => {
-    const videoId = extractYouTubeVideoId("https://www.youtube.com/watch?v=cyFB7sB6CYs");
+    const videoId = extractYouTubeVideoId("https://youtube.com/watch?v=cyFB7sB6CYs");
 
     expect(videoId).toBe("cyFB7sB6CYs");
   });
@@ -45,7 +45,7 @@ describe("extractYouTubeVideoId", () => {
   it("不正なURLから null を取得する", () => {
     const videoId = extractYouTubeVideoId("https://www.youtube.com/");
 
-    expect(videoId).toBe(null);
+    expect(videoId).toBeNull();
   });
 
   it("ドメインが全く異なるURLから null を取得する", () => {
@@ -53,6 +53,6 @@ describe("extractYouTubeVideoId", () => {
       "https://zenn.dev/stin/articles/about-dp-soundlibrary",
     );
 
-    expect(videoId).toBe(null);
+    expect(videoId).toBeNull();
   });
 });
