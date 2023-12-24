@@ -2,6 +2,7 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "run-p dev:*",
     "dev:css": "hcm 'src/**/*.module.{css,scss,less}' --webpackResolveAlias='{\"@\": \"src\"}' --watch",
