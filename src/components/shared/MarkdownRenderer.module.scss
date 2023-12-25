@@ -193,6 +193,11 @@
   pre {
     font-size: 0.9em;
   }
+
+  :global(.shiki) {
+    overflow-x: auto;
+    padding: 1em;
+  }
 }
 
 .textLink {

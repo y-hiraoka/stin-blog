@@ -1,10 +1,10 @@
-import highlightjs from "highlight.js";
-import "highlight.js/styles/vs2015.css";
+import "server-only";
 import { RootContent, RootContentMap, PhrasingContent } from "mdast";
 import React, { FC } from "react";
 import { remark } from "remark";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
+import shiki from "shiki";
 import { ArticleTweetCard } from "./ArticleTweetCard";
 import classes from "./MarkdownRenderer.module.scss";
 import { RichLinkCard } from "./RichLinkCard";
@@ -219,18 +219,14 @@ const ImageNode: FC<{ node: RootContentMap["image"] }> = ({ node }) => {
   );
 };
 
-const CodeNode: FC<{ node: RootContentMap["code"] }> = ({ node }) => {
-  const lang = node.lang ?? "plaintext";
-  const highlighted = highlightjs.highlight(node.value, { language: lang });
+const CodeNode: FC<{ node: RootContentMap["code"] }> = async ({ node }) => {
+  const lang = node.lang ?? "";
 
-  return (
-    <pre>
-      <code
-        className={`hljs ${highlighted.language}`}
-        dangerouslySetInnerHTML={{ __html: highlighted.value }}
-      />
-    </pre>
-  );
+  const highlighted = await shiki
+    .getHighlighter({ theme: "dark-plus" })
+    .then((highlighter) => highlighter.codeToHtml(node.value, { lang }));
+
+  return <div dangerouslySetInnerHTML={{ __html: highlighted }} />;
 };
 
 const DeleteNode: FC<{ node: RootContentMap["delete"] }> = ({ node }) => {
