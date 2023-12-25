@@ -9,8 +9,11 @@ export const remarkLinkBlock: Plugin<[], Root> = function () {
 
       if (node.children.length !== 1) return;
       if (maybeLink.type !== "link") return;
+      if (maybeLink.children.length !== 1) return;
 
-      const isPlainLink = maybeLink.children.every((child) => child.type === "text");
+      const isPlainLink =
+        maybeLink.children[0].type === "text" &&
+        maybeLink.url === maybeLink.children[0].value;
       if (!isPlainLink) return;
 
       if (!parent || index === undefined) return;
