@@ -187,6 +187,14 @@ const ListNode: FC<{ node: RootContentMap["list"] }> = ({ node }) => {
 };
 
 const ListItemNode: FC<{ node: RootContentMap["listItem"] }> = ({ node }) => {
+  if (node.children.length === 1 && node.children[0].type === "paragraph") {
+    return (
+      <li>
+        <NodesRenderer nodes={node.children[0].children} />
+      </li>
+    );
+  }
+
   return (
     <li>
       <NodesRenderer nodes={node.children} />
