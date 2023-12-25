@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { allArticles } from ".contentlayer/generated/index.mjs";
+import { allArticles } from "contentlayer/generated";
 
 allArticles.forEach((article) => {
   test(article.slug, async ({ page }) => {
