@@ -314,9 +314,7 @@ shiki の導入については remark のプラグインなどは関係なく、
 const CodeNode: FC<{ node: RootContentMap["code"] }> = async ({ node }) => {
   const lang = node.lang ?? "";
 
-  const highlighted = await shiki
-    .getHighlighter({ theme: "dark-plus" })
-    .then((highlighter) => highlighter.codeToHtml(node.value, { lang }));
+  const highlighted = await highlightWithShiki(node.value, lang);
 
   return <div dangerouslySetInnerHTML={{ __html: highlighted }} />;
 };
