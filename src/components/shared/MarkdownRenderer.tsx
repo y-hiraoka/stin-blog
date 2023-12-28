@@ -9,7 +9,7 @@ import { ArticleTweetCard } from "./ArticleTweetCard";
 import classes from "./MarkdownRenderer.module.scss";
 import { RichLinkCard } from "./RichLinkCard";
 import { YouTubeEmbed } from "./YouTubeEmbed";
-import { remarkLinkBlock } from "@/lib/remark-link-block";
+import { remarkBlockLink } from "@/lib/remark-block-link";
 import { remarkTwitterEmbed } from "@/lib/remark-twitter-embed";
 import { remarkYouTubeEmbed } from "@/lib/remark-youtube-embed";
 
@@ -17,7 +17,7 @@ const parseMarkdown = remark()
   .use(remarkFrontmatter)
   .use(remarkTwitterEmbed)
   .use(remarkYouTubeEmbed)
-  .use(remarkLinkBlock)
+  .use(remarkBlockLink)
   .use(remarkGfm);
 
 type Props = { children: string };
