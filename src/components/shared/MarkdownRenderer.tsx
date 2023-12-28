@@ -34,81 +34,77 @@ export const MarkdownRenderer: React.FC<Props> = async ({ children }) => {
 };
 
 const NodesRenderer: FC<{ nodes: RootContent[] }> = ({ nodes }) => {
-  return (
-    <>
-      {nodes.map((node, index) => {
-        switch (node.type) {
-          case "heading": {
-            return <HeadingNode key={index} node={node} />;
-          }
-          case "text": {
-            return <TextNode key={index} node={node} />;
-          }
-          case "paragraph": {
-            return <ParagraphNode key={index} node={node} />;
-          }
-          case "inlineCode": {
-            return <InlineCodeNode key={index} node={node} />;
-          }
-          case "blockquote": {
-            return <BlockQuoteNode key={index} node={node} />;
-          }
-          case "link": {
-            return <LinkNode key={index} node={node} />;
-          }
-          case "list": {
-            return <ListNode key={index} node={node} />;
-          }
-          case "listItem": {
-            return <ListItemNode key={index} node={node} />;
-          }
-          case "strong": {
-            return <StrongNode key={index} node={node} />;
-          }
-          case "image": {
-            return <ImageNode key={index} node={node} />;
-          }
-          case "code": {
-            return <CodeNode key={index} node={node} />;
-          }
-          case "delete": {
-            return <DeleteNode key={index} node={node} />;
-          }
-          case "table": {
-            return <TableNode key={index} node={node} />;
-          }
-          case "thematicBreak": {
-            return <ThematicBreakNode key={index} node={node} />;
-          }
-          case "html": {
-            return <HTMLNode key={index} node={node} />;
-          }
-          case "blocklink": {
-            return <BlockLinkNode key={index} node={node} />;
-          }
-          case "twitter-embed": {
-            return <TwitterEmbedNode key={index} node={node} />;
-          }
-          case "youtube-embed": {
-            return <YouTubeEmbedNode key={index} node={node} />;
-          }
+  return nodes.map((node, index) => {
+    switch (node.type) {
+      case "heading": {
+        return <HeadingNode key={index} node={node} />;
+      }
+      case "text": {
+        return <TextNode key={index} node={node} />;
+      }
+      case "paragraph": {
+        return <ParagraphNode key={index} node={node} />;
+      }
+      case "inlineCode": {
+        return <InlineCodeNode key={index} node={node} />;
+      }
+      case "blockquote": {
+        return <BlockQuoteNode key={index} node={node} />;
+      }
+      case "link": {
+        return <LinkNode key={index} node={node} />;
+      }
+      case "list": {
+        return <ListNode key={index} node={node} />;
+      }
+      case "listItem": {
+        return <ListItemNode key={index} node={node} />;
+      }
+      case "strong": {
+        return <StrongNode key={index} node={node} />;
+      }
+      case "image": {
+        return <ImageNode key={index} node={node} />;
+      }
+      case "code": {
+        return <CodeNode key={index} node={node} />;
+      }
+      case "delete": {
+        return <DeleteNode key={index} node={node} />;
+      }
+      case "table": {
+        return <TableNode key={index} node={node} />;
+      }
+      case "thematicBreak": {
+        return <ThematicBreakNode key={index} node={node} />;
+      }
+      case "html": {
+        return <HTMLNode key={index} node={node} />;
+      }
+      case "blocklink": {
+        return <BlockLinkNode key={index} node={node} />;
+      }
+      case "twitter-embed": {
+        return <TwitterEmbedNode key={index} node={node} />;
+      }
+      case "youtube-embed": {
+        return <YouTubeEmbedNode key={index} node={node} />;
+      }
 
-          default: {
-            if (process.env.NODE_ENV === "development") {
-              return (
-                <div key={index}>
-                  <p style={{ color: "red" }}>Unknown node type: {node.type}</p>
-                  <pre>{JSON.stringify(node, null, 2)}</pre>
-                </div>
-              );
-            } else {
-              throw new Error(`Unknown node type: ${node.type}`);
-            }
-          }
+      default: {
+        if (process.env.NODE_ENV === "development") {
+          return (
+            <div key={index}>
+              <p style={{ color: "red" }}>Unknown node type: {node.type}</p>
+              <pre>{JSON.stringify(node, null, 2)}</pre>
+            </div>
+          );
+        } else {
+          throw new Error(`Unknown node type: ${node.type}`);
         }
-      })}
-    </>
-  );
+      }
+    }
+  });
 };
 
 const HeadingNode: FC<{ node: RootContentMap["heading"] }> = ({ node }) => {
