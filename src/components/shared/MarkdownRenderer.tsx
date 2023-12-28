@@ -4,11 +4,11 @@ import React, { FC } from "react";
 import { remark } from "remark";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
-import shiki from "shiki";
 import { ArticleTweetCard } from "./ArticleTweetCard";
 import classes from "./MarkdownRenderer.module.scss";
 import { RichLinkCard } from "./RichLinkCard";
 import { YouTubeEmbed } from "./YouTubeEmbed";
+import { highlightWithShiki } from "@/lib/highlightWithShiki";
 import { remarkBlockLink } from "@/lib/remark-block-link";
 import { remarkTwitterEmbed } from "@/lib/remark-twitter-embed";
 import { remarkYouTubeEmbed } from "@/lib/remark-youtube-embed";
@@ -218,9 +218,7 @@ const ImageNode: FC<{ node: RootContentMap["image"] }> = ({ node }) => {
 const CodeNode: FC<{ node: RootContentMap["code"] }> = async ({ node }) => {
   const lang = node.lang ?? "";
 
-  const highlighted = await shiki
-    .getHighlighter({ theme: "dark-plus" })
-    .then((highlighter) => highlighter.codeToHtml(node.value, { lang }));
+  const highlighted = await highlightWithShiki(node.value, lang);
 
   return <div dangerouslySetInnerHTML={{ __html: highlighted }} />;
 };
