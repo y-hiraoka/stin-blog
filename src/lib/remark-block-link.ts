@@ -32,6 +32,6 @@ declare module "mdast" {
   }
 
   interface RootContentMap {
-    blocklink: BlockLink;
+    "block-link": BlockLink;
   }
 }

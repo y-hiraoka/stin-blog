@@ -269,7 +269,7 @@ const HTMLNode: FC<{ node: RootContentMap["html"] }> = ({ node }) => {
   return node.value;
 };
 
-const BlockLinkNode: FC<{ node: RootContentMap["blocklink"] }> = ({ node }) => {
+const BlockLinkNode: FC<{ node: RootContentMap["block-link"] }> = ({ node }) => {
   return (
     <div className={classes.embeded}>
       <RichLinkCard href={node.url} isExternal />
