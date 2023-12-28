@@ -24,11 +24,11 @@ type Props = { children: string };
 
 export const MarkdownRenderer: React.FC<Props> = async ({ children }) => {
   const parsed = parseMarkdown.parse(children);
-  const processed = await parseMarkdown.run(parsed);
+  const mdastRoot = await parseMarkdown.run(parsed);
 
   return (
     <div id="markdown-renderer" className={classes.markdown}>
-      <NodesRenderer nodes={processed.children} />
+      <NodesRenderer nodes={mdastRoot.children} />
     </div>
   );
 };
