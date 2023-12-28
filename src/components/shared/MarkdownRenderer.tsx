@@ -81,7 +81,7 @@ const NodesRenderer: FC<{ nodes: RootContent[] }> = ({ nodes }) => {
       case "html": {
         return <HTMLNode key={index} node={node} />;
       }
-      case "blocklink": {
+      case "block-link": {
         return <BlockLinkNode key={index} node={node} />;
       }
       case "twitter-embed": {

@@ -19,7 +19,7 @@ export const remarkLinkBlock: Plugin<[], Root> = function () {
       if (!parent || index === undefined) return;
 
       parent.children[index] = {
-        type: "blocklink",
+        type: "block-link",
         url: maybeLink.url,
       };
     });
@@ -28,7 +28,7 @@ export const remarkLinkBlock: Plugin<[], Root> = function () {
 
 declare module "mdast" {
   export interface BlockLink extends Resource {
-    type: "blocklink";
+    type: "block-link";
   }
 
   interface RootContentMap {
