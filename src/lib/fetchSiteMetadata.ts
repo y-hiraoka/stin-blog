@@ -10,7 +10,7 @@ export type SiteMetadata = {
 };
 
 export async function fetchSiteMetadata(url: string): Promise<SiteMetadata | null> {
-  const response = await fetch(url, { next: { revalidate: 60 * 60 * 24 } });
+  const response = await fetch(url, { next: { revalidate: 60 * 60 * 24 * 7 } });
 
   if (!response.ok) {
     return null;
