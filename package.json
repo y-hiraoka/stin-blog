@@ -37,7 +37,7 @@
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.0",
     "rss-parser": "^3.13.0",
-    "shiki": "^0.14.7",
+    "shiki": "^1.10.1",
     "strip-markdown": "^6.0.0",
     "tocbot": "^4.28.2",
     "unified": "^11.0.5"

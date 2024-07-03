@@ -1,9 +1,5 @@
-import type { Highlighter } from "shiki";
-import { getHighlighter } from "shiki";
-
-let highlighter: Highlighter;
+import { codeToHtml } from "shiki";
 
 export async function highlightWithShiki(code: string, lang: string): Promise<string> {
-  highlighter ??= await getHighlighter({ theme: "dark-plus" });
-  return highlighter.codeToHtml(code, { lang });
+  return codeToHtml(code, { lang, theme: "dark-plus" });
 }
