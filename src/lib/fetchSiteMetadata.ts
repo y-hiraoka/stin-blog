@@ -1,4 +1,4 @@
-import { JSDOM, VirtualConsole } from "jsdom";
+import * as cheerio from "cheerio";
 
 export type SiteMetadata = {
   url: string;
@@ -10,7 +10,7 @@ export type SiteMetadata = {
 };
 
 export async function fetchSiteMetadata(url: string): Promise<SiteMetadata | null> {
-  const response = await fetch(url, { next: { revalidate: 60 * 60 } });
+  const response = await fetch(url, { next: { revalidate: 60 * 60 * 24 } });
 
   if (!response.ok) {
     return null;
@@ -18,37 +18,36 @@ export async function fetchSiteMetadata(url: string): Promise<SiteMetadata | nul
 
   const html = await response.text();
   const metadata: SiteMetadata = { url };
-  const virtualConsole = new VirtualConsole();
-  const jsdom = new JSDOM(html, { virtualConsole });
+  const $ = cheerio.load(html);
 
-  const title = jsdom.window.document.title;
+  const title = $("title").text().trim();
   metadata.title = title;
 
-  const metaTags = jsdom.window.document.getElementsByTagName("meta");
+  const metaTags = $("meta");
 
   for (const meta of metaTags) {
-    const property = meta.getAttribute("property");
+    const property = meta.attribs.property;
 
     if (property === "og:site_name") {
-      metadata.site_name = meta.getAttribute("content") ?? undefined;
+      metadata.site_name = meta.attribs.content || undefined;
     }
     if (property === "og:title") {
-      metadata.title = meta.getAttribute("content") ?? title;
+      metadata.title = meta.attribs.content || title;
     }
     if (property === "og:description") {
-      metadata.description = meta.getAttribute("content") ?? undefined;
+      metadata.description = meta.attribs.content || undefined;
     }
     if (property === "og:image") {
-      metadata.image = meta.getAttribute("content") ?? undefined;
+      metadata.image = meta.attribs.content || undefined;
     }
     if (property === "og:type") {
-      metadata.type = meta.getAttribute("content") ?? undefined;
+      metadata.type = meta.attribs.content || undefined;
     }
 
-    const metaName = meta.getAttribute("name");
+    const metaName = meta.attribs.name;
 
     if (metaName === "description") {
-      metadata.description = meta.getAttribute("content") ?? undefined;
+      metadata.description = meta.attribs.content || undefined;
     }
   }
 
