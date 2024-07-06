@@ -4,7 +4,11 @@ import classes from "./TagLink.module.scss";
 
 export const TagLink: FC<{ tag: string }> = ({ tag }) => {
   return (
-    <NextLink className={classes.tagLink} key={tag} href={`/tags/${tag}`}>
+    <NextLink
+      prefetch={false}
+      className={classes.tagLink}
+      key={tag}
+      href={`/tags/${tag}`}>
       {tag}
     </NextLink>
   );
