@@ -1,15 +1,23 @@
 "use client";
 
-import { createContext, FC, ReactNode, useContext, useMemo } from "react";
-import { useLocalStorage } from "./useLocalStorage";
+import {
+  createContext,
+  FC,
+  ReactNode,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useMatchMedia } from "./useMatchMedia";
 
 const COLOR_MODE_VALUE = ["system", "light", "dark"] as const;
 export type ColorMode = (typeof COLOR_MODE_VALUE)[number];
 type ColorModeContextValue = {
-  colorMode: ColorMode;
+  colorMode: ColorMode | undefined;
   setColorMode: (color: ColorMode) => void;
-  actualColorMode: "light" | "dark";
+  actualColorMode: "light" | "dark" | undefined;
 };
 const ColorModeContext = createContext<ColorModeContextValue>({
   colorMode: "system",
@@ -21,13 +29,23 @@ export function isColorModeValue(value: unknown): value is ColorMode {
   return COLOR_MODE_VALUE.includes(value as ColorMode);
 }
 
-export const ColorModeAppliedHtml: FC<{ children: ReactNode }> = ({ children }) => {
-  const [colorMode, setColorMode] = useLocalStorage<ColorMode>({
-    storageKey: "stin-blog-color-mode",
-    initialState: "system",
-    isValidValue: isColorModeValue,
-  });
+export const ColorModeProvider: FC<{ children: ReactNode }> = ({ children }) => {
+  const [colorMode, _setColorMode] = useState<ColorMode>();
   const preferColorSchemeIsDark = useMatchMedia("(prefers-color-scheme: dark)", true);
+
+  useEffect(() => {
+    const storageValue = window.localStorage.getItem("stin-blog-color-mode");
+    if (storageValue === "light" || storageValue === "dark") {
+      _setColorMode(storageValue);
+    } else {
+      _setColorMode("system");
+    }
+  }, []);
+
+  const setColorMode = useCallback((color: ColorMode) => {
+    _setColorMode(color);
+    window.localStorage.setItem("stin-blog-color-mode", color);
+  }, []);
 
   const actualColorMode =
     colorMode === "system" ? (preferColorSchemeIsDark ? "dark" : "light") : colorMode;
@@ -41,13 +59,13 @@ export const ColorModeAppliedHtml: FC<{ children: ReactNode }> = ({ children }) 
     [actualColorMode, colorMode, setColorMode],
   );
 
-  return (
-    <ColorModeContext.Provider value={value}>
-      <html lang="ja" data-color-mode={actualColorMode}>
-        {children}
-      </html>
-    </ColorModeContext.Provider>
-  );
+  useEffect(() => {
+    if (actualColorMode) {
+      document.documentElement.dataset.colorMode = actualColorMode;
+    }
+  }, [actualColorMode]);
+
+  return <ColorModeContext.Provider value={value}>{children}</ColorModeContext.Provider>;
 };
 
 export function useColorMode() {

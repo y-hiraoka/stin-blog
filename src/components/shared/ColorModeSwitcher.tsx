@@ -6,7 +6,7 @@ import styles from "./ColorModeSwitcher.module.scss";
 import { isColorModeValue, useColorMode } from "@/lib/colorMode";
 
 export const ColorModeSwitcher: React.FC = () => {
-  const { colorMode, setColorMode } = useColorMode();
+  const { colorMode = "system", setColorMode } = useColorMode();
 
   return (
     <ToggleGroup.Root
