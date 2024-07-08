@@ -45,7 +45,8 @@ export const EmbeddedTweet: FC<EmbeddedTweetProps> = (props) => {
         data-width={props.width}
         data-align={props.align}
         data-lang={props.lang}
-        data-dnt={props.dnt}>
+        data-dnt={props.dnt}
+      >
         <a href={props.url} target="_blank" rel="noreferrer noopener">
           {props.url}
         </a>

@@ -13,28 +13,32 @@ export const Footer: FC = () => {
             className={classes.externalLink}
             href="https://twitter.com/stin_factory"
             target="_blank"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             Twitter
           </a>
           <a
             className={classes.externalLink}
             href="https://github.com/y-hiraoka"
             target="_blank"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             GitHub
           </a>
           <a
             className={classes.externalLink}
             href="https://zenn.dev/stin"
             target="_blank"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             Zenn
           </a>
           <a
             className={classes.externalLink}
             href="/feed"
             target="_blank"
-            rel="noreferrer">
+            rel="noreferrer"
+          >
             Feed
           </a>
         </div>

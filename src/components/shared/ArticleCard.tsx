@@ -18,7 +18,8 @@ export const ArticleCard: FC<Props> = ({ article, imagePriority }) => {
         <NextLink
           prefetch={false}
           href={`/articles/${article.slug}`}
-          className={classes.link}>
+          className={classes.link}
+        >
           <Image
             width={1200}
             height={630}

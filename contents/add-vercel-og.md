@@ -46,7 +46,8 @@ const handler: NextApiHandler = () => {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-        }}>
+        }}
+      >
         Hello World!
       </div>
     ),
@@ -86,7 +87,8 @@ return new ImageResponse(
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-      }}>
+      }}
+    >
       <img src="https://github.com/y-hiraoka.png" />
     </div>
   ),

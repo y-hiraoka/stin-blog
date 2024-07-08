@@ -15,26 +15,30 @@ export const ColorModeSwitcher: React.FC = () => {
       value={colorMode}
       onValueChange={(value) => isColorModeValue(value) && setColorMode(value)}
       aria-label="カラーモード設定"
-      data-value={colorMode}>
+      data-value={colorMode}
+    >
       <ToggleGroup.Item
         className={styles.switcherButton}
         value="light"
         aria-label="ライトモードにする"
-        title="ライトモードにする">
+        title="ライトモードにする"
+      >
         <MdLightMode />
       </ToggleGroup.Item>
       <ToggleGroup.Item
         className={styles.switcherButton}
         value="system"
         aria-label="OSに従う"
-        title="OSに従う">
+        title="OSに従う"
+      >
         <MdDevices />
       </ToggleGroup.Item>
       <ToggleGroup.Item
         className={styles.switcherButton}
         value="dark"
         aria-label="ダークモードにする"
-        title="ダークモードにする">
+        title="ダークモードにする"
+      >
         <MdDarkMode />
       </ToggleGroup.Item>
     </ToggleGroup.Root>

@@ -21,7 +21,8 @@ export const ZennArticles: FC<Props> = ({ articles }) => {
               className={classes.articleListItem}
               href={article.url}
               target="_blank"
-              rel="noopener noreferrer">
+              rel="noopener noreferrer"
+            >
               <Image
                 src={article.thumbnail}
                 alt={article.title}

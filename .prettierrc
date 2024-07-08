@@ -1,5 +1,4 @@
 {
   "printWidth": 90,
-  "trailingComma": "all",
-  "bracketSameLine": true
+  "trailingComma": "all"
 }

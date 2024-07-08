@@ -8,7 +8,8 @@ export const TagLink: FC<{ tag: string }> = ({ tag }) => {
       prefetch={false}
       className={classes.tagLink}
       key={tag}
-      href={`/tags/${tag}`}>
+      href={`/tags/${tag}`}
+    >
       {tag}
     </NextLink>
   );

@@ -29,13 +29,15 @@ const NavLinks: FC = () => {
       <NextLink
         href="/"
         className={classes.navLink}
-        aria-current={pathname === "/" ? "page" : undefined}>
+        aria-current={pathname === "/" ? "page" : undefined}
+      >
         Articles
       </NextLink>
       <NextLink
         href="/articles/zenn"
         className={classes.navLink}
-        aria-current={pathname === "/articles/zenn" ? "page" : undefined}>
+        aria-current={pathname === "/articles/zenn" ? "page" : undefined}
+      >
         Zenn
       </NextLink>
       <a
@@ -43,7 +45,8 @@ const NavLinks: FC = () => {
         target="_blank"
         rel="noreferrer"
         className={classes.githubLink}
-        aria-label="stin's Blog の GitHub repository">
+        aria-label="stin's Blog の GitHub repository"
+      >
         <FaGithub />
       </a>
     </>

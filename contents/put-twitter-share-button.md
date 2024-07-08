@@ -153,7 +153,8 @@ export const TwitterIntentTweet = forwardRef<HTMLAnchorElement, TwitterIntentTwe
   text="記事を読んだ！"
   url="https://blog.stin.ink"
   hashtags={["react", "nextjs"]}
-  colorScheme="twitter">
+  colorScheme="twitter"
+>
   記事をシェアする！
 </Button>
 ```

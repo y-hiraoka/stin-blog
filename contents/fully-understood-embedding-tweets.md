@@ -63,7 +63,8 @@ widgets.js による変換後の HTML ↓
 <div class="twitter-tweet twitter-tweet-rendered">
   <iframe
     id="twitter-widget-1"
-    src="https://platform.twitter.com/embed/Tweet.html..."></iframe>
+    src="https://platform.twitter.com/embed/Tweet.html..."
+  ></iframe>
 </div>
 ```
 
@@ -257,7 +258,8 @@ export const EmbeddedTweet: VFC<EmbeddedTweetProps> = (props) => {
         data-width={props.width}
         data-align={props.align}
         data-lang={props.lang}
-        data-dnt={props.dnt}>
+        data-dnt={props.dnt}
+      >
         <a href={props.url} target="_blank" rel="noreferrer noopener">
           {props.url}
         </a>

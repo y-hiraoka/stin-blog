@@ -33,7 +33,8 @@ https://vivliostyle.github.io/vivliostyle_doc/ja/vivliostyle-user-group-vol2/spr
     code: Code,
     p: Paragraph,
     img: Img,
-  }}>
+  }}
+>
   {children}
 </ReactMarkdown>
 ```

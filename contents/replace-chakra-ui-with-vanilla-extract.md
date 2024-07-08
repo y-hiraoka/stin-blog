@@ -41,7 +41,8 @@ const Home: NextPage = () => {
             &:first-child {
               color: green;
             }
-          `}>
+          `}
+        >
           {fruit}
         </li>
       ))}

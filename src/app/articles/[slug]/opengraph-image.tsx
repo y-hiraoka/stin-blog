@@ -37,7 +37,8 @@ const handler = async ({ params }: Props) => {
           alignItems: "center",
           padding: "80px 100px 120px",
           position: "relative",
-        }}>
+        }}
+      >
         {/*eslint-disable-next-line @next/next/no-img-element*/}
         <img
           alt=""
@@ -62,7 +63,8 @@ const handler = async ({ params }: Props) => {
             width: "100%",
             maxHeight: "100%",
             overflow: "hidden",
-          }}>
+          }}
+        >
           {article.title}
         </div>
       </div>
