@@ -1,5 +1,5 @@
 import "server-only";
-import { RootContent, RootContentMap, PhrasingContent } from "mdast";
+import { RootContent, RootContentMap, PhrasingContent, FootnoteDefinition } from "mdast";
 import React, { FC } from "react";
 import { remark } from "remark";
 import remarkFrontmatter from "remark-frontmatter";
@@ -12,23 +12,44 @@ import { highlightWithShiki } from "@/lib/highlightWithShiki";
 import { remarkBlockLink } from "@/lib/remark-block-link";
 import { remarkTwitterEmbed } from "@/lib/remark-twitter-embed";
 import { remarkYouTubeEmbed } from "@/lib/remark-youtube-embed";
+import { remarkFootnoteBackLink } from "@/lib/remark-footnote-back-link";
 
 const parseMarkdown = remark()
   .use(remarkFrontmatter)
   .use(remarkTwitterEmbed)
   .use(remarkYouTubeEmbed)
   .use(remarkBlockLink)
+  .use(remarkFootnoteBackLink)
   .use(remarkGfm);
 
 type Props = { children: string };
+
+const extractFootnoteDefinitions = (nodes: RootContent[]): FootnoteDefinition[] => {
+  const work: FootnoteDefinition[] = [];
+
+  for (const node of nodes) {
+    if (node.type === "footnoteDefinition") {
+      work.push(node);
+    } else if ("children" in node) {
+      work.push(...extractFootnoteDefinitions(node.children));
+    }
+  }
+
+  return work;
+};
 
 export const MarkdownRenderer: React.FC<Props> = async ({ children }) => {
   const parsed = parseMarkdown.parse(children);
   const mdastRoot = await parseMarkdown.run(parsed);
 
+  const footnoteDefinitions = extractFootnoteDefinitions(mdastRoot.children);
+
   return (
-    <div id="markdown-renderer" className={classes.markdown}>
-      <NodesRenderer nodes={mdastRoot.children} />
+    <div>
+      <div id="markdown-renderer" className={classes.markdown}>
+        <NodesRenderer nodes={mdastRoot.children} />
+      </div>
+      <FootnotesSection nodes={footnoteDefinitions} />
     </div>
   );
 };
@@ -89,6 +110,15 @@ const NodesRenderer: FC<{ nodes: RootContent[] }> = ({ nodes }) => {
       }
       case "youtube-embed": {
         return <YouTubeEmbedNode key={index} node={node} />;
+      }
+      case "footnoteReference": {
+        return <FootnoteReferenceNode key={index} node={node} />;
+      }
+      case "footnoteDefinition": {
+        return null;
+      }
+      case "footnote-back-link": {
+        return <FootnoteBackLinkNode key={index} node={node} />;
       }
 
       default: {
@@ -288,5 +318,52 @@ const YouTubeEmbedNode: FC<{ node: RootContentMap["youtube-embed"] }> = ({ node 
     <div className={classes.embeded}>
       <YouTubeEmbed videoId={node.videoId} />
     </div>
+  );
+};
+
+const FootnoteReferenceNode: FC<{ node: RootContentMap["footnoteReference"] }> = ({
+  node,
+}) => {
+  return (
+    <sup>
+      <a
+        id={`fnref-${node.identifier}`}
+        className={classes.textLink}
+        href={`#fn-${node.identifier}`}
+      >
+        [{node.identifier}]
+      </a>
+    </sup>
+  );
+};
+
+const FootnotesSection: FC<{ nodes: RootContentMap["footnoteDefinition"][] }> = ({
+  nodes,
+}) => {
+  if (nodes.length === 0) {
+    return null;
+  }
+
+  return (
+    <section className={classes.footnotesSection}>
+      <h2>Footnotes</h2>
+      <ol>
+        {nodes.map((node, index) => (
+          <li key={index} id={`fn-${node.identifier}`}>
+            <NodesRenderer nodes={node.children} />
+          </li>
+        ))}
+      </ol>
+    </section>
+  );
+};
+
+const FootnoteBackLinkNode: FC<{ node: RootContentMap["footnote-back-link"] }> = ({
+  node,
+}) => {
+  return (
+    <a href={node.url} className={classes.textLink}>
+      ↩
+    </a>
   );
 };

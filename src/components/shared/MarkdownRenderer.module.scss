@@ -1,3 +1,5 @@
+@use "../../styles/system.scss" as system;
+
 .markdown {
   overflow-wrap: break-word;
 
@@ -234,4 +236,23 @@
   margin-top: 16px;
   margin-bottom: 16px;
   max-height: 450px;
+}
+
+.footnotesSection {
+  border-top: 1px solid var(--c-divider);
+  padding-top: 16px;
+
+  h2 {
+    @include system.srOnly;
+  }
+
+  ol {
+    padding-left: 1.5em;
+    color: var(--c-text-secondary);
+    font-size: var(--font-size-sm);
+  }
+
+  li + li {
+    margin-top: 16px;
+  }
 }
