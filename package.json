@@ -16,21 +16,21 @@
     "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "^14.2.4",
-    "@next/third-parties": "^14.2.4",
+    "@next/bundle-analyzer": "^15.0.2",
+    "@next/third-parties": "^15.0.2",
     "@radix-ui/react-toggle-group": "^1.1.0",
     "@types/gtag.js": "^0.0.20",
-    "@types/react-dom": "^18.3.0",
+    "@types/react-dom": "^18.3.1",
     "cheerio": "^1.0.0-rc.12",
     "contentlayer": "^0.3.4",
     "date-fns": "^2.30.0",
     "date-fns-tz": "^2.0.0",
     "feed": "^4.2.2",
     "modern-normalize": "^2.0.0",
-    "next": "^14.2.5",
+    "next": "^15.0.2",
     "next-contentlayer": "^0.3.4",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "^19.0.0-rc-603e6108-20241029",
+    "react-dom": "^19.0.0-rc-603e6108-20241029",
     "react-icons": "^4.11.0",
     "remark": "^15.0.1",
     "remark-frontmatter": "^5.0.0",
@@ -44,7 +44,7 @@
   "devDependencies": {
     "@playwright/test": "^1.40.1",
     "@types/node": "^20.1.3",
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.12",
     "@typescript-eslint/eslint-plugin": "^7.15.0",
     "@typescript-eslint/parser": "^7.15.0",
     "eslint": "^9.6.0",
@@ -55,7 +55,7 @@
     "npm-run-all": "^4.1.5",
     "prettier": "^3.3.3",
     "sass": "^1.77.8",
-    "typescript": "5.4",
+    "typescript": "^5.6.3",
     "vitest": "^0.34.6"
   }
 }

@@ -17,9 +17,10 @@ export const generateStaticParams = async () => {
 export const generateMetadata = async ({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }): Promise<Metadata> => {
-  const article = getArticle(params.slug);
+  const { slug } = await params;
+  const article = getArticle(slug);
 
   if (!article) return notFound();
 
@@ -27,11 +28,11 @@ export const generateMetadata = async ({
     title: article.title,
     description: article.excerpt,
     alternates: {
-      canonical: `/articles/${params.slug}`,
+      canonical: `/articles/${slug}`,
     },
     openGraph: {
       type: "article",
-      url: `/articles/${params.slug}`,
+      url: `/articles/${slug}`,
       title: article.title,
       description: article.excerpt,
       publishedTime: article.createdAt,
@@ -46,9 +47,9 @@ export const generateMetadata = async ({
 };
 
 const ArticlePage: React.FC<{
-  params: Params;
+  params: Promise<Params>;
 }> = async ({ params }) => {
-  const { slug } = params;
+  const { slug } = await params;
   const article = getArticle(slug);
 
   if (!article) notFound();

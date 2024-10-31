@@ -16,9 +16,10 @@ export const generateStaticParams = async () => {
 export const generateMetadata = async ({
   params,
 }: {
-  params: Params;
+  params: Promise<Params>;
 }): Promise<Metadata> => {
-  const tagName = decodeURIComponent(params.tagName);
+  const tagNameRaw = (await params).tagName;
+  const tagName = decodeURIComponent(tagNameRaw);
 
   const articles = getSortedArticles().filter((article) =>
     article.tags.includes(tagName),
@@ -29,22 +30,23 @@ export const generateMetadata = async ({
   }
 
   return {
-    title: `tag: ${params.tagName}`,
-    description: `${params.tagName} でタグ付けされた記事一覧`,
+    title: `tag: ${tagName}`,
+    description: `${tagName} でタグ付けされた記事一覧`,
     alternates: {
-      canonical: `/tags/${params.tagName}`,
+      canonical: `/tags/${tagName}`,
     },
     openGraph: {
       type: "website",
-      url: `/tags/${params.tagName}`,
-      title: `tag: ${params.tagName}`,
-      description: `${params.tagName} でタグ付けされた記事一覧`,
+      url: `/tags/${tagName}`,
+      title: `tag: ${tagName}`,
+      description: `${tagName} でタグ付けされた記事一覧`,
     },
   };
 };
 
-const TagPage: React.FC<{ params: Params }> = async ({ params }) => {
-  const tagName = decodeURIComponent(params.tagName);
+const TagPage: React.FC<{ params: Promise<Params> }> = async ({ params }) => {
+  const tagNameRaw = (await params).tagName;
+  const tagName = decodeURIComponent(tagNameRaw);
 
   const articles = getSortedArticles().filter((article) =>
     article.tags.includes(tagName),

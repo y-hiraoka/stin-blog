@@ -44,7 +44,7 @@ Static Exports しない場合は Node.js サーバーがリクエストを受�
 
 ブランチをわけて Static Exports できるようにソースコードを調整し、GitHub Pages にデプロイしたものがこちらです↓
 
-https://blog-static.stin.ink/
+https: //blog-static.stin.ink/
 
 ブランチはこちら↓
 
@@ -192,7 +192,7 @@ npx serve out
 
 これを GitHub Pages に公開したものがこちら（再掲）
 
-[https://blog-static.stin.ink/](https://blog-static.stin.ink/)
+https: //blog-static.stin.ink/
 
 ## まとめ
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, useEffect } from "react";
-import tocbot from "tocbot";
+import * as tocbot from "tocbot";
 import classes from "./TableOfContents.module.scss";
 
 export const TableOfContents: FC = () => {

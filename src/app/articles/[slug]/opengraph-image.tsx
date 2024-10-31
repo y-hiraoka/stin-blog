@@ -4,15 +4,16 @@ import { ImageResponse } from "next/og";
 import { getArticle } from "@/lib/posts";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 const assetsDirectory = process.cwd() + "/assets";
 
 const handler = async ({ params }: Props) => {
-  const article = getArticle(params.slug);
+  const { slug } = await params;
+  const article = getArticle(slug);
 
   if (!article) return new Response("Not Found", { status: 404 });
 
