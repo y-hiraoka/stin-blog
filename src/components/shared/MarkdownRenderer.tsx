@@ -10,9 +10,9 @@ import { RichLinkCard } from "./RichLinkCard";
 import { YouTubeEmbed } from "./YouTubeEmbed";
 import { highlightWithShiki } from "@/lib/highlightWithShiki";
 import { remarkBlockLink } from "@/lib/remark-block-link";
+import { remarkFootnoteBackLink } from "@/lib/remark-footnote-back-link";
 import { remarkTwitterEmbed } from "@/lib/remark-twitter-embed";
 import { remarkYouTubeEmbed } from "@/lib/remark-youtube-embed";
-import { remarkFootnoteBackLink } from "@/lib/remark-footnote-back-link";
 
 const parseMarkdown = remark()
   .use(remarkFrontmatter)

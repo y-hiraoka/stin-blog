@@ -1,7 +1,7 @@
+import { Article, allArticles } from "contentlayer/generated";
 import { compareDesc } from "date-fns";
 import RssParser from "rss-parser";
 import { BlogArticle, ZennArticle } from "@/models";
-import { Article, allArticles } from "contentlayer/generated";
 
 export async function getZennArticles(): Promise<ZennArticle[]> {
   const parser = new RssParser();

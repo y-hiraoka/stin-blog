@@ -9,7 +9,6 @@ const withBundleAnalyzer = nextBundleAnalyzer({
 
 const config = withBundleAnalyzer(
   withContentlayer({
-    pageExtensions: ["ts", "tsx", "md", "mdx"],
     images: {
       remotePatterns: [
         {
@@ -21,6 +20,9 @@ const config = withBundleAnalyzer(
     },
     experimental: {
       typedRoutes: true,
+      staleTimes: {
+        dynamic: 30,
+      },
     },
   }),
 );

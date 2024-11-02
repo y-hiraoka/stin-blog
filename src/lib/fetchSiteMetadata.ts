@@ -53,7 +53,7 @@ export async function fetchSiteMetadata(url: string): Promise<SiteMetadata | nul
     }
 
     return metadata;
-  } catch (error) {
+  } catch {
     return null;
   }
 }
