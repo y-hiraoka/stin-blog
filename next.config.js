@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 import nextBundleAnalyzer from "@next/bundle-analyzer";
 import { withContentlayer } from "./next-contentlayer.cjs";
 
@@ -19,7 +17,6 @@ const config = withBundleAnalyzer(
       ],
     },
     experimental: {
-      typedRoutes: true,
       staleTimes: {
         dynamic: 30,
       },
