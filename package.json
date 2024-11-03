@@ -6,9 +6,11 @@
   "scripts": {
     "dev": "run-p dev:*",
     "dev:css": "hcm 'src/**/*.module.{css,scss,less}' --webpackResolveAlias='{\"@\": \"src\"}' --watch",
-    "dev:next": "next dev",
+    "dev:contents": "contentlayer dev",
+    "dev:next": "next dev --turbo",
     "build": "run-s build:*",
     "build:css": "hcm 'src/**/*.module.{css,scss,less}' --webpackResolveAlias='{\"@\": \"src\"}'",
+    "build:contents": "contentlayer build",
     "build:next": "next build",
     "start": "next start",
     "test": "vitest",
