@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { FaTwitter } from "react-icons/fa";
 import { MdArrowBack } from "react-icons/md";
+import { ArticlePicureInPicture } from "../shared/ArticlePicureInPicture";
 import { Datetime } from "../shared/Datetime";
 import { MarkdownRenderer } from "../shared/MarkdownRenderer";
 import { TableOfContents } from "../shared/TableOfContents";
@@ -18,7 +19,7 @@ export const Article: FC<Props> = ({ article }) => {
   return (
     <div className={classes.layout}>
       <div className={classes.article}>
-        <div>
+        <div className={classes.articleHeading}>
           <h1 className={classes.articleTitle}>{article.title}</h1>
           <p className={classes.createdAt}>
             <Datetime format="yyyy/MM/dd HH:mm" datetime={article.createdAt} />
@@ -30,6 +31,9 @@ export const Article: FC<Props> = ({ article }) => {
               </li>
             ))}
           </ul>
+          <div className={classes.articlePipButton}>
+            <ArticlePicureInPicture />
+          </div>
         </div>
         <hr className={classes.contentDivider} />
         <section>

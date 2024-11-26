@@ -14,6 +14,10 @@
   min-width: 0;
 }
 
+.articleHeading {
+  position: relative;
+}
+
 .articleTitle {
   font-weight: bold;
   font-size: var(--font-size-3xl);
@@ -33,6 +37,12 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
+}
+
+.articlePipButton {
+  position: absolute;
+  bottom: -48px;
+  right: 0;
 }
 
 .contentDivider {

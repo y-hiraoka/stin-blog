@@ -1,0 +1,15 @@
+.pipButton {
+  display: inline-grid;
+  place-items: center;
+  width: 40px;
+  height: 32px;
+  border-radius: 4px;
+  border: none;
+  font-size: var(--font-size-2xl);
+  background: none;
+  color: var(--c-text-secondary);
+}
+
+.pipButton[hidden] {
+  display: none;
+}
