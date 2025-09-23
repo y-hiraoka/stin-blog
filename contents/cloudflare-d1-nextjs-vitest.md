@@ -1,6 +1,6 @@
 ---
 title: "Next.js on Cloudflare Workers (OpenNext) で Drizzle + D1 を使ったユニットテストを書く"
-createdAt: "2025-09-20T12:32:47.309Z"
+createdAt: "2025-09-23T05:50:14.561Z"
 tags: ["cloudflare", "drizzle", "vitest"]
 ---
 
@@ -124,7 +124,7 @@ export default defineConfig({
 pnpm run migration:generate
 ```
 
-続いて、マイグレーション適用と同時に `prefecture` テーブルにいくつか値が insert されるように、カスタムマイグレーション を作成します。
+続いて、マイグレーション適用と同時に `prefecture` テーブルにいくつか値が insert されるように、カスタムマイグレーションを作成します。
 
 ```sh
 pnpm run migration:generate --custom --name insert_prefectures
@@ -150,7 +150,7 @@ insert into prefecture (name, created_at, updated_at) values ('岩手県', curre
 pnpm run migration:apply
 ```
 
-これでローカルの D1 (SQLite) が `.wrangler/state/v3/d1` ディレクトリに作成され、 `prefecture` テーブルの create と 3 つの都道府県が登録されます。
+これでローカルの D1 (SQLite) が `.wrangler/state/v3/d1` ディレクトリに作成され、 `prefecture` テーブルの create と3つの都道府県が登録されます。
 
 ## テスト対象の関数のサンプルを用意
 
@@ -165,7 +165,7 @@ import * as schema from "./schema";
 export type DrizzleClient = DrizzleD1Database<typeof schema>;
 ```
 
-今回テストしたいバックエンドロジックのサンプル関数は次のようなコードです。`page.tsx` や Server Functions(formerly Server Actions) がこれらを利用するイメージです。
+今回テストしたいバックエンドロジックのサンプル関数は次のようなコードです。`page.tsx` や Server Functions (formerly Server Actions) がこれらを利用するイメージです。
 
 ```ts
 import { DrizzleClient } from "@/db/client";
@@ -182,7 +182,7 @@ export async function insertPrefecture(db: DrizzleClient, name: string) {
 
 このサンプル関数が `src/service/pref.ts` にあるとします。
 
-`DrizzleClient` を引数で取るようにして、Dependency Injection(DI) っぽくしています。Next.js で D1 を使う場合は `getCloudflareContext()` 関数で環境変数を参照する必要がありますが、これはバックエンドロジックを利用する側で行うルールにしています。こうすることで、`getCloudflareContext()` を毎回モックしなくてもよくなります。
+`DrizzleClient` を引数で取るようにして、Dependency Injection (DI) っぽくしています。Next.js で D1 を使う場合は `getCloudflareContext()` 関数で環境変数を参照する必要がありますが、これはバックエンドロジックを利用する側で行うルールにしています。こうすることで、`getCloudflareContext()` を毎回モックしなくてもよくなります。
 
 ## Vitest のセットアップ
 
