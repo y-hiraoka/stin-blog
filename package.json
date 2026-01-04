@@ -29,7 +29,7 @@
     "date-fns-tz": "^2.0.0",
     "feed": "^4.2.2",
     "modern-normalize": "^2.0.0",
-    "next": "^15.5.7",
+    "next": "15.5.9",
     "next-contentlayer": "^0.3.4",
     "react": "^19.0.0-rc-603e6108-20241029",
     "react-dom": "^19.0.0-rc-603e6108-20241029",
