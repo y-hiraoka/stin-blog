@@ -1,0 +1,7 @@
+allowBuilds:
+  "@parcel/watcher": false
+  contentlayer: false
+  esbuild: false
+  protobufjs: false
+  sharp: false
+  unrs-resolver: false
