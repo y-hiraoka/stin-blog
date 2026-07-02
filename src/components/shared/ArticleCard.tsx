@@ -1,6 +1,7 @@
 import Image from "next/image";
 import NextLink from "next/link";
 import { FC } from "react";
+import ogimageBase from "../../../assets/article-ogimage-base.png";
 import classes from "./ArticleCard.module.scss";
 import { Datetime } from "./Datetime";
 import { TagLink } from "./TagLink";
@@ -20,14 +21,15 @@ export const ArticleCard: FC<Props> = ({ article, imagePriority }) => {
           href={`/articles/${article.slug}`}
           className={classes.link}
         >
-          <Image
-            width={1200}
-            height={630}
-            src={`/articles/${article.slug}/opengraph-image`}
-            alt=""
-            priority={imagePriority}
-          />
-          <span className={classes.hiddenTitle}>{article.title}</span>
+          <span className={classes.thumbnail}>
+            <Image
+              src={ogimageBase}
+              alt=""
+              priority={imagePriority}
+              sizes="(max-width: 640px) 100vw, 400px"
+            />
+            <span className={classes.title}>{article.title}</span>
+          </span>
         </NextLink>
       </h3>
       <div className={classes.metadata}>
