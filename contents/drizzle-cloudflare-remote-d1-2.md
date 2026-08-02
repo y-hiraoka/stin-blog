@@ -6,8 +6,7 @@ tags: ["cloudflare", "drizzle"]
 
 ## Intro
 
-以前 [Drizzle ORM を使った書き捨てスクリプトから Cloudflare D1 にアクセスしたい
-](/articles/drizzle-cloudflare-remote-d1) という記事を書きました。
+以前 [Drizzle ORM を使った書き捨てスクリプトから Cloudflare D1 にアクセスしたい](/articles/drizzle-cloudflare-remote-d1) という記事を書きました。
 
 こちらの記事では、Cloudflare Workers 環境ではないスクリプトから Cloudflare D1 にアクセスするための方法を模索して見つけた方法を紹介しました。
 
