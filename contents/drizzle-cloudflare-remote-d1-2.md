@@ -148,6 +148,10 @@ Cloudflare ダッシュボードから API トークンを発行して GitHub Ac
 
 今回は D1 にアクセスする方法を紹介しましたが、`getPlatformProxy` の本質は Cloudflare Workers の環境を Node.js に擬似的に提供することなので、D1 以外の Cloudflare サービスも同様に Node.js からアクセスできるようになります。応用が捗りそうですね。
 
+今回のコードの全体サンプルはこちらにありますので、興味があれば見てみてください。
+
+https://github.com/stinbox/drizzle-d1-script
+
 それでは。
 
 ## 余談
